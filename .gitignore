@@ -8,10 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Node dependencies (frontend)
-fronthand/node_modules/
+frontend/node_modules/
 
 # Python virtual environment (backend)
-backhand/venv/
+backend/venv/
 
 # Build outputs
 dist
@@ -21,8 +21,8 @@ dist-ssr
 *.local
 
 # Environment files
-fronthand/.env
-backhand/.env
+frontend/.env
+backhend/.env
 
 # Editor directories and files
 .vscode/*
