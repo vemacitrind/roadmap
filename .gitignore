@@ -22,7 +22,7 @@ dist-ssr
 
 # Environment files
 frontend/.env
-backhend/.env
+backend/.env
 
 # Editor directories and files
 .vscode/*
