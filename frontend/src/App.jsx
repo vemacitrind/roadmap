@@ -1,15 +1,10 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import './index.css';
-import { Button } from "@/components/ui/button";
-
-
+import Login from './pages/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
@@ -22,9 +17,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
+        <Login></Login>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -36,4 +29,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
