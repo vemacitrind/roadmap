@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from services.openai_client import generate_custom_roadmap 
 
-chatbot_b = Blueprint("chatbot", __name__)
+chatbot_bp = Blueprint("chatbot", __name__)
 
-@chatbot_b.route("/chatbot", methods=["POST"])
+@chatbot_bp.route("/chatbot", methods=["POST"])
 def chatbot():
     data = request.get_json()
     print("Received data:", data)
