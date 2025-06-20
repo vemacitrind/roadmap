@@ -1,0 +1,47 @@
+{
+  "title": "SQL Skill Roadmap",
+  "type": "skill-based",
+  "tree": {
+    "name": "SQL",
+    "children": [
+      {
+        "name": "Basics",
+        "children": [
+          {
+            "name": "SELECT Queries",
+            "attributes": {
+              "id": "sql-select",
+              "link": "/roadmaps/sql/select"
+            }
+          },
+          {
+            "name": "WHERE Clause",
+            "attributes": {
+              "id": "sql-where",
+              "link": "/roadmaps/sql/where"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Joins",
+        "children": [
+          {
+            "name": "INNER JOIN",
+            "attributes": {
+              "id": "sql-inner-join",
+              "link": "/roadmaps/sql/joins/inner"
+            }
+          },
+          {
+            "name": "LEFT JOIN",
+            "attributes": {
+              "id": "sql-left-join",
+              "link": "/roadmaps/sql/joins/left"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

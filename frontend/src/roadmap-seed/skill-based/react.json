@@ -1,0 +1,47 @@
+{
+  "title": "React Skill Roadmap",
+  "type": "skill-based",
+  "tree": {
+    "name": "React",
+    "children": [
+      {
+        "name": "Basics",
+        "children": [
+          {
+            "name": "JSX",
+            "attributes": {
+              "id": "react-jsx",
+              "link": "/roadmaps/react/jsx"
+            }
+          },
+          {
+            "name": "Components",
+            "attributes": {
+              "id": "react-components",
+              "link": "/roadmaps/react/components"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Advanced",
+        "children": [
+          {
+            "name": "Hooks",
+            "attributes": {
+              "id": "react-hooks",
+              "link": "/roadmaps/react/hooks"
+            }
+          },
+          {
+            "name": "Context API",
+            "attributes": {
+              "id": "react-context",
+              "link": "/roadmaps/react/context"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

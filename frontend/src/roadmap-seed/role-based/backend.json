@@ -1,0 +1,47 @@
+{
+  "title": "Backend Developer Roadmap",
+  "type": "role-based",
+  "tree": {
+    "name": "Backend Developer",
+    "children": [
+      {
+        "name": "Databases",
+        "children": [
+          {
+            "name": "SQL",
+            "attributes": {
+              "id": "backend-sql",
+              "link": "/roadmaps/backend/databases/sql"
+            }
+          },
+          {
+            "name": "NoSQL",
+            "attributes": {
+              "id": "backend-nosql",
+              "link": "/roadmaps/backend/databases/nosql"
+            }
+          }
+        ]
+      },
+      {
+        "name": "APIs",
+        "children": [
+          {
+            "name": "REST",
+            "attributes": {
+              "id": "backend-rest",
+              "link": "/roadmaps/backend/apis/rest"
+            }
+          },
+          {
+            "name": "GraphQL",
+            "attributes": {
+              "id": "backend-graphql",
+              "link": "/roadmaps/backend/apis/graphql"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

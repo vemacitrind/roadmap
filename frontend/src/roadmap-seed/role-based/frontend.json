@@ -1,0 +1,47 @@
+{
+  "title": "Frontend Developer Roadmap",
+  "type": "role-based",
+  "tree": {
+    "name": "Frontend Developer",
+    "children": [
+      {
+        "name": "HTML",
+        "children": [
+          {
+            "name": "Semantic HTML",
+            "attributes": {
+              "id": "semantic-html",
+              "link": "/roadmaps/frontend/html/semantic"
+            }
+          },
+          {
+            "name": "Forms and Validation",
+            "attributes": {
+              "id": "html-forms",
+              "link": "/roadmaps/frontend/html/forms"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CSS",
+        "children": [
+          {
+            "name": "Flexbox",
+            "attributes": {
+              "id": "css-flexbox",
+              "link": "/roadmaps/frontend/css/flexbox"
+            }
+          },
+          {
+            "name": "Grid",
+            "attributes": {
+              "id": "css-grid",
+              "link": "/roadmaps/frontend/css/grid"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
