@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.resend_client import send_progress_email
+from backend.services.smtp_client import send_progress_email
 
 email_bp = Blueprint("email", __name__)
 
