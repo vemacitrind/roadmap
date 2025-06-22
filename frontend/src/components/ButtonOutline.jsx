@@ -1,10 +1,7 @@
 import { Button } from "@/components/ui/button"
 
-export function ButtonOutline({ children, ...props }) {
-  return (
-    <Button variant="outline" {...props}>
-      {children}
-    </Button>
-  );
-}
+const ButtonOutline = (props) => {
+  return <Button variant="outline">{props.children}</Button>;
+};
 
+export default ButtonOutline;
