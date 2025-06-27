@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 import ChromaGrid from "./ChromaGrid";
+import { JavaIcon,PythonIcon,JavaScriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "./Icon";
 import {
   Coffee,
   FlaskConical,
@@ -13,14 +14,15 @@ import {
   Server,
   Database,
   Container,
-  GitBranch,MoveRight
+  GitBranch,MoveRight,
+  GiftIcon
 } from "lucide-react";
 
 const items = [
   {
     title: "Java",
     subtitle: "Enterprise applications, Android, Spring Boot...",
-    icon: <Coffee size={42} />,
+    icon: <JavaIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/java",
@@ -28,7 +30,7 @@ const items = [
   {
     title: "Python",
     subtitle: "Web development, Data Science, AI/ML, Django...",
-    icon: <FlaskConical size={42} />,
+    icon: <PythonIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/python",
@@ -36,7 +38,7 @@ const items = [
   {
     title: "JavaScript",
     subtitle: "Frontend, Backend (Node.js), Full-stack...",
-    icon: <Webhook size={42} />,
+    icon: <JavaScriptIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/javascript",
@@ -44,7 +46,7 @@ const items = [
   {
     title: "React",
     subtitle: "Frontend UI, Single-Page Applications, JSX...",
-    icon: <Atom size={42} />,
+    icon: <ReactIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/react",
@@ -52,7 +54,7 @@ const items = [
   {
     title: "Go (Golang)",
     subtitle: "High-performance APIs, Concurrency, Microservices...",
-    icon: <ArrowRightCircle size={42} />,
+    icon: <GoIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/go",
@@ -60,7 +62,7 @@ const items = [
   {
     title: "Flutter",
     subtitle: "Cross-platform mobile apps, Dart, UI Toolkit...",
-    icon: <SquareTerminal size={42} />,
+    icon: <FlutterIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/flutter",
@@ -68,7 +70,7 @@ const items = [
   {
     title: "TypeScript",
     subtitle: "Static typing for JS, Scalable applications...",
-    icon: <Type size={42} />,
+    icon: <TypeScriptIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/typescript",
@@ -76,7 +78,7 @@ const items = [
   {
     title: "C# (.NET)",
     subtitle: "Windows apps, Web APIs, Game Dev (Unity)...",
-    icon: <Cross size={42} />,
+    icon: <CSharpIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/csharp",
@@ -84,7 +86,7 @@ const items = [
   {
     title: "Node.js",
     subtitle: "Backend JavaScript, REST APIs, Event-driven...",
-    icon: <Server size={42} />,
+    icon: <NodejsIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/nodejs",
@@ -100,7 +102,7 @@ const items = [
   {
     title: "Docker",
     subtitle: "Containerization, Microservices, DevOps...",
-    icon: <Container size={42} />,
+    icon: <DockerIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/docker",
@@ -108,7 +110,7 @@ const items = [
   {
     title: "Git & GitHub",
     subtitle: "Version control, Collaboration, Code management...",
-    icon: <GitBranch size={42} />,
+    icon: <GitIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/git",
@@ -122,6 +124,9 @@ export default function SkillBasedSection() {
             <p className="text-md text-zinc-300 max-w-xl text-center mb-10">
                 Follow structured roadmaps for Skills like Python Developer, React Developer, and more.
             </p>
+            <div
+        className="w-full max-w-7xl h-[600px] overflow-y-auto flex justify-center items-start px-2 mb-10"
+      >
             <div style={{ height: '600px', position: 'relative' }}>
                 <ChromaGrid 
                     items={items}
@@ -130,6 +135,7 @@ export default function SkillBasedSection() {
                     fadeOut={0.6}
                     ease="power3.out"
                 />
+            </div>
             </div>
             
             <Link to="/explore?type=role-based" className="group">
@@ -142,3 +148,4 @@ export default function SkillBasedSection() {
         </section>
     );
 }
+

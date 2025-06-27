@@ -40,7 +40,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -57,7 +57,27 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}  */
+
+.global-button {
+  border-radius: 8px;
+  border: 1px solid rgba(209, 213, 219, 1);;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #131314	;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
+.global-button:hover {
+  border-color: #fafafa;
+}
+.global-button:focus,
+.global-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -67,7 +87,7 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
+  .global-button {
     background-color: #f9f9f9;
   }
 }

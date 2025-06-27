@@ -2,7 +2,6 @@ import Silk from '@/components/Silk';
 import { Link } from 'react-router-dom';
 import ButtonOutline from '@/components/ButtonOutline';
 
-
 export default function HeroSection() {
     return(
         <>
@@ -16,7 +15,7 @@ export default function HeroSection() {
             />
             <div className="absolute inset-0 z-10" />
             <div className="relative z-20 h-full flex flex-col justify-center items-center text-white text-center px-6">
-              <h1 className="text-9xl font-bold mb-4" style={{ fontFamily: 'Cascadia Mono' }}>
+              <h1 className="text-7xl md:text-9xl font-bold mb-4" style={{ fontFamily: 'Cascadia Mono' }}>
                 roadmap.in
               </h1>
               <p className="text-lg max-w-xl mb-6">

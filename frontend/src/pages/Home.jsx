@@ -4,7 +4,7 @@ import FloatingNavbar from "@/components/FloatingNavbar";
 import RoleBasedSection from '@/components/RoleBasedSection';
 import SkillBasedSection from '@/components/SkillBasedSection';
 import HeroSection from '@/components/HeroSection';
-
+import AboutSection from '@/components/AboutSection';
 export default function Home() {
   const parallaxRef = useRef();
 
@@ -14,7 +14,10 @@ export default function Home() {
       <FloatingNavbar parallaxRef={parallaxRef} />
 
       <Parallax pages={4} ref={parallaxRef}>
-      
+
+        {/* <ParallaxLayer sticky={{start:1,end:3}} speed={0.5}>
+          <FloatingNavbar parallaxRef={parallaxRef} />
+        </ParallaxLayer> */}
 
         <ParallaxLayer offset={0} speed={0.3}>
           <HeroSection />
@@ -28,8 +31,8 @@ export default function Home() {
           <SkillBasedSection />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={3}>
-          About
+        <ParallaxLayer offset={3} speed={1}>
+            <AboutSection />
         </ParallaxLayer>
       </Parallax>
     </div>

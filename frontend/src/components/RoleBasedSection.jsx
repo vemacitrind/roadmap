@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
-import { Monitor, Database, Code2, BrainCircuit, Smartphone, Palette, LineChart, ShieldCheck, Cloud, Gamepad2,BugPlay,FileText,MoveRight } from 'lucide-react';
+import { Monitor, Database, Code2, BrainCircuit, Smartphone, Palette, LineChart, ShieldCheck, Cloud, Gamepad2, BugPlay, FileText, MoveRight } from 'lucide-react';
 import ChromaGrid from "./ChromaGrid";
 
 const items = [
@@ -103,29 +103,33 @@ const items = [
 ];
 
 export default function RoleBasedSection() {
-    return (
-        <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
-            <h2 className="text-4xl text-white font-semibold mb-4">Role Based Roadmaps</h2>
-            <p className="text-md text-zinc-300 max-w-xl text-center mb-10">
-                Follow structured roadmaps for roles like Frontend Developer, Backend Developer, and more.
-            </p>
-            <div style={{ height: '600px', position: 'relative' }}>
-                <ChromaGrid 
-                    items={items}
-                    radius={300}
-                    damping={0.45}
-                    fadeOut={0.6}
-                    ease="power3.out"
-                />
-            </div>
-            
-            <Link to="/explore?type=role-based" className="group">
-                <ButtonWithIcon size="md" className="transition-all">
-                    View Role-Based
-                    <MoveRight className="hidden group-hover:inline-block transition-all" />
-                </ButtonWithIcon>
-            </Link>
+  return (
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+      <h2 className="text-4xl text-white font-semibold mb-4">Role Based Roadmaps</h2>
+      <p className="text-md text-zinc-300 max-w-xl text-center mb-10">
+        Follow structured roadmaps for roles like Frontend Developer, Backend Developer, and more.
+      </p>
+      <div
+        className="w-full max-w-7xl h-[600px] overflow-y-auto flex justify-center items-start px-2 mb-10"
+      >
+      <div style={{ height: '600px', position: 'relative' }}>
+        <ChromaGrid
+          items={items}
+          radius={300}
+          damping={0.45}
+          fadeOut={0.6}
+          ease="power3.out"
+        />
+      </div>
+      </div>
 
-        </section>
-    );
+      <Link to="/explore?type=role-based" className="group">
+        <ButtonWithIcon size="md" className="transition-all">
+          View Role-Based
+          <MoveRight className="hidden group-hover:inline-block transition-all" />
+        </ButtonWithIcon>
+      </Link>
+
+    </section>
+  );
 }
