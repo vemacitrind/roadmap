@@ -1,13 +1,14 @@
 import RoadmapTree from "@/components/RoadmapTree";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import { BrowserRouter as Router , Routes , Route, Link } from "react-router-dom";
 function App() {
   return (
     <>
-    <Home/>
-    {/* <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Frontend Roadmap</h1>
-      <RoadmapTree category="role-based" roadmapId="backend" />
-    </div> */}
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
+      </Routes>
     </>
   );
 }
