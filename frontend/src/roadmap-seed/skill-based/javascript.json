@@ -1,0 +1,118 @@
+{
+  "title": "Learn JavaScript from Scratch",
+  "description": "Master JavaScript — the language of the web. Build strong fundamentals in JavaScript to power frontend frameworks, dynamic websites, and full-stack development.",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Introduction to JavaScript",
+      "description": "Understand what JavaScript is, where it runs, and how it powers the web.",
+      "Lesson": [
+        "What is JavaScript?",
+        "Setting up your environment (Browser + VS Code)",
+        "Writing your first JS code"
+      ]
+    },
+    {
+      "title": "Variables and Data Types",
+      "description": "Learn how to store and manage data using variables and primitive types.",
+      "Lesson": [
+        "var, let, and const",
+        "Data types: number, string, boolean, null, undefined",
+        "Type conversion and coercion"
+      ]
+    },
+    {
+      "title": "Operators and Expressions",
+      "description": "Use JavaScript operators to build expressions and evaluate logic.",
+      "Lesson": [
+        "Arithmetic operators",
+        "Comparison operators",
+        "Logical operators",
+        "Assignment and Ternary operators"
+      ]
+    },
+    {
+      "title": "Control Flow",
+      "description": "Control how your code runs based on conditions and loops.",
+      "Lesson": [
+        "if, else if, else",
+        "switch-case",
+        "while, do-while, and for loops",
+        "break and continue"
+      ]
+    },
+    {
+      "title": "Functions",
+      "description": "Write reusable blocks of code using functions.",
+      "Lesson": [
+        "Declaring and calling functions",
+        "Function parameters and return values",
+        "Arrow functions"
+      ]
+    },
+    {
+      "title": "Arrays and Looping Through Data",
+      "description": "Store multiple values and iterate over them.",
+      "Lesson": [
+        "Creating and modifying arrays",
+        "Looping with for and forEach",
+        "Array methods: push, pop, shift, map, filter"
+      ]
+    },
+    {
+      "title": "Objects and JSON",
+      "description": "Use objects to group related data and interact with JSON.",
+      "Lesson": [
+        "Creating and accessing objects",
+        "Nested objects",
+        "Intro to JSON format"
+      ]
+    },
+    {
+      "title": "DOM Manipulation",
+      "description": "Learn how to interact with web pages dynamically using JavaScript.",
+      "Lesson": [
+        "Understanding the DOM",
+        "Selecting and modifying elements",
+        "Event listeners and interactivity"
+      ]
+    },
+    {
+      "title": "Events and Forms",
+      "description": "Handle user actions and manage form input.",
+      "Lesson": [
+        "Event types and handlers",
+        "Form validation and input",
+        "Prevent default behavior"
+      ]
+    },
+    {
+      "title": "ES6+ Features",
+      "description": "Modernize your code with the latest JavaScript features.",
+      "Lesson": [
+        "Destructuring and template literals",
+        "Spread and rest operators",
+        "let/const vs var",
+        "Default parameters"
+      ]
+    },
+    {
+      "title": "Asynchronous JavaScript",
+      "description": "Learn how to work with time-based and network-based operations.",
+      "Lesson": [
+        "setTimeout and setInterval",
+        "Callbacks",
+        "Promises and async/await"
+      ]
+    },
+    {
+      "title": "Fetching APIs",
+      "description": "Connect your web app to servers and APIs.",
+      "Lesson": [
+        "What is an API?",
+        "Using fetch() to get data",
+        "Handling JSON responses and errors"
+      ]
+    }
+  ]
+}

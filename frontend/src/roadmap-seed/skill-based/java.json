@@ -1,0 +1,118 @@
+{
+  "title": "Learn Java Programming",
+  "description": "Master Java programming within a month using our hands-on course. Learn Java syntax, OOP concepts, and prepare for backend development, Android apps, or competitive programming.",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Introduction and Setup",
+      "description": "Get started with Java by setting up your development environment and writing your first program.",
+      "Lesson": [
+        "What is Java?",
+        "Installing JDK and setting up IDE",
+        "Your first Java program"
+      ]
+    },
+    {
+      "title": "Variables and Data Types",
+      "description": "Learn about variables, primitive data types, and how to store data in Java.",
+      "Lesson": [
+        "Declaring variables",
+        "Primitive data types",
+        "Type casting and conversions"
+      ]
+    },
+    {
+      "title": "Operators",
+      "description": "Understand the operators Java provides for mathematical and logical operations.",
+      "Lesson": [
+        "Arithmetic Operators",
+        "Relational Operators",
+        "Logical Operators",
+        "Assignment and Unary Operators"
+      ]
+    },
+    {
+      "title": "Control Flow Statements",
+      "description": "Learn how to control the flow of your Java programs using conditions and loops.",
+      "Lesson": [
+        "if, else if, else",
+        "switch-case",
+        "while and do-while loops",
+        "for loops",
+        "break and continue"
+      ]
+    },
+    {
+      "title": "Taking User Input",
+      "description": "Read input from the user using Scanner class in Java.",
+      "Lesson": [
+        "Using Scanner for input",
+        "Common input-related issues"
+      ]
+    },
+    {
+      "title": "Debugging and Errors",
+      "description": "Learn how to debug your code and fix common compilation and runtime errors.",
+      "Lesson": [
+        "Compilation vs Runtime errors",
+        "Exception messages",
+        "Basic debugging techniques"
+      ]
+    },
+    {
+      "title": "Arrays",
+      "description": "Store multiple values in a single variable using arrays.",
+      "Lesson": [
+        "Declaring and initializing arrays",
+        "Iterating through arrays",
+        "Common array problems"
+      ]
+    },
+    {
+      "title": "Object-Oriented Programming",
+      "description": "Understand Java’s core principle of object-oriented design.",
+      "Lesson": [
+        "Classes and Objects",
+        "Constructors",
+        "Methods and 'this' keyword"
+      ]
+    },
+    {
+      "title": "Encapsulation and Inheritance",
+      "description": "Write cleaner, reusable, and modular code using OOP principles.",
+      "Lesson": [
+        "Access Modifiers",
+        "Getters and Setters",
+        "Inheritance and super keyword"
+      ]
+    },
+    {
+      "title": "Polymorphism and Abstraction",
+      "description": "Dive deeper into Java OOP using method overloading, overriding, abstract classes, and interfaces.",
+      "Lesson": [
+        "Method Overloading",
+        "Method Overriding",
+        "Abstract classes",
+        "Interfaces"
+      ]
+    },
+    {
+      "title": "Collections and ArrayList",
+      "description": "Use advanced data structures for dynamic data handling.",
+      "Lesson": [
+        "Intro to Java Collections",
+        "Using ArrayList",
+        "Looping and modifying collections"
+      ]
+    },
+    {
+      "title": "Problem Solving with Java",
+      "description": "Apply everything you’ve learned to solve real-world and algorithmic problems.",
+      "Lesson": [
+        "Using test cases in Java",
+        "Solving problems with functions and loops",
+        "Writing modular code"
+      ]
+    }
+  ]
+}

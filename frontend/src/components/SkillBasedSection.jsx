@@ -66,6 +66,7 @@ const items = [
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/flutter",
+    new:true
   },
   {
     title: "TypeScript",
@@ -106,6 +107,7 @@ const items = [
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/docker",
+    new:true
   },
   {
     title: "Git & GitHub",
@@ -138,7 +140,7 @@ export default function SkillBasedSection() {
             </div>
             </div>
             
-            <Link to="/explore?type=role-based" className="group">
+            <Link to="/explore?type=skill" className="group">
                 <ButtonWithIcon size="md" className="transition-all">
                     View Skill-Based
                     <MoveRight className="hidden group-hover:inline-block transition-all" />

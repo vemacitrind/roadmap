@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import AuthPage from "@/components/AuthPage";
 import AboutSection from "@/components/AboutSection";
 import Threads from "@/components/Threads"; 
+import BasicHeader from "@/components/BasicHeader";
 
 export default function Login() {
   return (
@@ -12,18 +11,7 @@ export default function Login() {
         <Threads amplitude={1} distance={0} enableMouseInteraction={false} />
       </div>
 
-      <header className="absolute top-6 left-1/2 -translate-x-1/2 w-full max-w-[90%] flex items-center justify-between z-50">
-        <Link to="/" className="flex items-center gap-1 text-zinc-400 hover:text-white">
-          <ArrowLeft size={18} />
-          <span className="text-sm">Back</span>
-        </Link>
-
-        <Link to="/" className="text-white font-semibold text-2xl tracking-wide hover:opacity-90">
-          roadmap.in
-        </Link>
-
-        <div className="w-[54px]" />
-      </header>
+      <BasicHeader/>
 
       <div className="relative z-10">
         <AuthPage />

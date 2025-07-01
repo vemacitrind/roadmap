@@ -1,47 +1,109 @@
 {
   "title": "Frontend Developer Roadmap",
+  "description": "Become a job-ready Frontend Developer. Learn HTML, CSS, JavaScript, React, and modern web development practices used in real-world companies.",
   "type": "role-based",
-  "tree": {
-    "name": "Frontend Developer",
-    "children": [
-      {
-        "name": "HTML",
-        "children": [
-          {
-            "name": "Semantic HTML",
-            "attributes": {
-              "id": "semantic-html",
-              "link": "/roadmaps/frontend/html/semantic"
-            }
-          },
-          {
-            "name": "Forms and Validation",
-            "attributes": {
-              "id": "html-forms",
-              "link": "/roadmaps/frontend/html/forms"
-            }
-          }
-        ]
-      },
-      {
-        "name": "CSS",
-        "children": [
-          {
-            "name": "Flexbox",
-            "attributes": {
-              "id": "css-flexbox",
-              "link": "/roadmaps/frontend/css/flexbox"
-            }
-          },
-          {
-            "name": "Grid",
-            "attributes": {
-              "id": "css-grid",
-              "link": "/roadmaps/frontend/css/grid"
-            }
-          }
-        ]
-      }
-    ]
-  }
+  "Syllabus": [
+    {
+      "title": "Web Fundamentals",
+      "description": "Master the building blocks of the web: HTML, CSS, and JavaScript.",
+      "Lesson": [
+        "HTML Basics: structure, tags, forms",
+        "CSS Basics: selectors, box model, layout",
+        "Responsive Design with Flexbox and Media Queries",
+        "JavaScript Basics: variables, control flow, DOM"
+      ]
+    },
+    {
+      "title": "Version Control with Git",
+      "description": "Track code changes and collaborate using Git and GitHub.",
+      "Lesson": [
+        "Git basics: init, add, commit, push",
+        "Branching and Merging",
+        "Working with GitHub"
+      ]
+    },
+    {
+      "title": "Advanced JavaScript",
+      "description": "Go deeper into JavaScript to write modern, clean, and efficient code.",
+      "Lesson": [
+        "ES6+ Features: let/const, arrow functions, spread/rest",
+        "Asynchronous JS: Promises, async/await, fetch API",
+        "JavaScript Modules and Scope"
+      ]
+    },
+    {
+      "title": "Modern UI with React",
+      "description": "Build dynamic, component-based applications using React.",
+      "Lesson": [
+        "JSX, Components, Props, State",
+        "Hooks: useState, useEffect",
+        "React Router and Forms",
+        "Conditional Rendering and Lists"
+      ]
+    },
+    {
+      "title": "State Management",
+      "description": "Manage global application state and complex data flows.",
+      "Lesson": [
+        "Context API",
+        "Redux Basics (optional)",
+        "State lifting and prop drilling"
+      ]
+    },
+    {
+      "title": "APIs and Backend Integration",
+      "description": "Connect to real-world APIs and handle asynchronous data.",
+      "Lesson": [
+        "Working with REST APIs",
+        "Axios vs fetch",
+        "Handling loading and errors"
+      ]
+    },
+    {
+      "title": "Styling Systems",
+      "description": "Write scalable and maintainable styles.",
+      "Lesson": [
+        "CSS Modules",
+        "Tailwind CSS",
+        "Styled Components / Emotion"
+      ]
+    },
+    {
+      "title": "Build Tools and Optimization",
+      "description": "Prepare your app for production and optimize performance.",
+      "Lesson": [
+        "Vite / Webpack",
+        "Minification, Lazy Loading, Code Splitting",
+        "Lighthouse & Performance Metrics"
+      ]
+    },
+    {
+      "title": "Testing Basics",
+      "description": "Write basic tests to ensure reliability of your frontend code.",
+      "Lesson": [
+        "Introduction to unit testing",
+        "React Testing Library basics",
+        "End-to-end testing with Playwright / Cypress"
+      ]
+    },
+    {
+      "title": "Deployment and CI/CD",
+      "description": "Take your project live and set up simple CI/CD pipelines.",
+      "Lesson": [
+        "Deploying with Netlify / Vercel",
+        "Environment variables",
+        "GitHub Actions basics"
+      ]
+    },
+    {
+      "title": "Portfolio and Projects",
+      "description": "Build a personal portfolio and real-world projects to showcase your skills.",
+      "Lesson": [
+        "Build a personal website with React",
+        "Create a weather app using API",
+        "Create a to-do or blog app",
+        "Publish your portfolio and resume"
+      ]
+    }
+  ]
 }

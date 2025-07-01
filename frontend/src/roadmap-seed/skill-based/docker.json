@@ -1,0 +1,115 @@
+{
+  "title": "Learn Docker from Scratch",
+  "description": "Master Docker within a month with this hands-on course. Learn how to containerize applications, manage Docker images and containers, and deploy efficiently across environments.",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Introduction to Docker",
+      "description": "Understand what Docker is and why it's useful for modern software development.",
+      "Lesson": [
+        "What is Docker?",
+        "Why use Docker?",
+        "Docker vs Virtual Machines"
+      ]
+    },
+    {
+      "title": "Installing Docker",
+      "description": "Get Docker running on your machine.",
+      "Lesson": [
+        "Install Docker on Windows/Linux/Mac",
+        "Docker CLI and Docker Desktop",
+        "Verifying installation"
+      ]
+    },
+    {
+      "title": "Working with Docker Images",
+      "description": "Learn how Docker images work and how to use them effectively.",
+      "Lesson": [
+        "Understanding Docker images",
+        "Using Docker Hub",
+        "Pulling and running images"
+      ]
+    },
+    {
+      "title": "Managing Containers",
+      "description": "Create, start, stop, and manage Docker containers.",
+      "Lesson": [
+        "Creating containers from images",
+        "Starting and stopping containers",
+        "Removing containers"
+      ]
+    },
+    {
+      "title": "Dockerfile and Custom Images",
+      "description": "Build your own Docker images using a Dockerfile.",
+      "Lesson": [
+        "What is a Dockerfile?",
+        "Basic Dockerfile structure",
+        "Building and tagging your image"
+      ]
+    },
+    {
+      "title": "Volumes and Data Persistence",
+      "description": "Handle data that needs to persist across container restarts.",
+      "Lesson": [
+        "What are Docker volumes?",
+        "Creating and mounting volumes",
+        "Bind mounts vs volumes"
+      ]
+    },
+    {
+      "title": "Networking in Docker",
+      "description": "Connect your containers using Docker networking features.",
+      "Lesson": [
+        "Container ports and exposure",
+        "Creating custom networks",
+        "Linking containers"
+      ]
+    },
+    {
+      "title": "Docker Compose",
+      "description": "Run multi-container applications using `docker-compose`.",
+      "Lesson": [
+        "Introduction to docker-compose.yml",
+        "Defining services and networks",
+        "Running and managing multi-container setups"
+      ]
+    },
+    {
+      "title": "Dockerizing Real Applications",
+      "description": "Learn how to Dockerize real applications and run them in isolated environments.",
+      "Lesson": [
+        "Dockerizing a Python/Node/Java app",
+        "Using environment variables",
+        "Best practices for Dockerfiles"
+      ]
+    },
+    {
+      "title": "Publishing and Sharing Images",
+      "description": "Share your Docker images with others.",
+      "Lesson": [
+        "Tagging and pushing to Docker Hub",
+        "Setting up a private registry",
+        "Image versioning strategies"
+      ]
+    },
+    {
+      "title": "Docker in Production",
+      "description": "Understand how Docker is used in production environments.",
+      "Lesson": [
+        "Security best practices",
+        "Monitoring containers",
+        "Resource limits and healthchecks"
+      ]
+    },
+    {
+      "title": "Troubleshooting and Debugging",
+      "description": "Learn how to debug issues and use Docker logs effectively.",
+      "Lesson": [
+        "Checking logs",
+        "Using `exec` and `inspect`",
+        "Common mistakes and fixes"
+      ]
+    }
+  ]
+}

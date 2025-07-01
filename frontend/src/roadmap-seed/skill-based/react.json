@@ -1,47 +1,115 @@
 {
-  "title": "React Skill Roadmap",
+  "title": "Learn React.js from Scratch",
+  "description": "Learn React – the most popular JavaScript library for building user interfaces. Build modern web apps using components, hooks, state management, and routing in this hands-on, project-oriented course.",
   "type": "skill-based",
-  "tree": {
-    "name": "React",
-    "children": [
-      {
-        "name": "Basics",
-        "children": [
-          {
-            "name": "JSX",
-            "attributes": {
-              "id": "react-jsx",
-              "link": "/roadmaps/react/jsx"
-            }
-          },
-          {
-            "name": "Components",
-            "attributes": {
-              "id": "react-components",
-              "link": "/roadmaps/react/components"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Advanced",
-        "children": [
-          {
-            "name": "Hooks",
-            "attributes": {
-              "id": "react-hooks",
-              "link": "/roadmaps/react/hooks"
-            }
-          },
-          {
-            "name": "Context API",
-            "attributes": {
-              "id": "react-context",
-              "link": "/roadmaps/react/context"
-            }
-          }
-        ]
-      }
-    ]
-  }
+  "Syllabus": [
+    {
+      "title": "Introduction to React",
+      "description": "Understand what React is, why it's useful, and how it fits into modern web development.",
+      "Lesson": [
+        "What is React?",
+        "React vs Vanilla JS",
+        "Setting up your first React app (Vite or CRA)"
+      ]
+    },
+    {
+      "title": "JSX and Rendering",
+      "description": "Learn JSX syntax and how React renders UI.",
+      "Lesson": [
+        "Introduction to JSX",
+        "Embedding expressions in JSX",
+        "Rendering elements"
+      ]
+    },
+    {
+      "title": "Components and Props",
+      "description": "Build UI with reusable components and pass data using props.",
+      "Lesson": [
+        "Function and Class components",
+        "Props and reusability",
+        "Children and nesting components"
+      ]
+    },
+    {
+      "title": "State and Events",
+      "description": "Use React's state to manage data and respond to user input.",
+      "Lesson": [
+        "Using useState hook",
+        "Handling events in React",
+        "Two-way binding and controlled inputs"
+      ]
+    },
+    {
+      "title": "Conditional Rendering and Lists",
+      "description": "Render UI conditionally and display lists dynamically.",
+      "Lesson": [
+        "Conditional rendering using if/ternary",
+        "Rendering lists with map()",
+        "Keys and performance tips"
+      ]
+    },
+    {
+      "title": "Forms and Input Handling",
+      "description": "Create and handle forms using React best practices.",
+      "Lesson": [
+        "Building controlled forms",
+        "Handling form submission",
+        "Validation basics"
+      ]
+    },
+    {
+      "title": "useEffect and Lifecycle",
+      "description": "Fetch data and react to changes using lifecycle hooks.",
+      "Lesson": [
+        "Introduction to useEffect",
+        "Dependency arrays and cleanup",
+        "Calling APIs using fetch/Axios"
+      ]
+    },
+    {
+      "title": "Component Communication",
+      "description": "Pass data between components and lift state up.",
+      "Lesson": [
+        "Parent-child communication",
+        "Lifting state up",
+        "Prop drilling and alternatives"
+      ]
+    },
+    {
+      "title": "React Router",
+      "description": "Create single-page applications with navigation and routing.",
+      "Lesson": [
+        "Installing and configuring React Router",
+        "Creating routes and nested routes",
+        "Navigating programmatically"
+      ]
+    },
+    {
+      "title": "Styling in React",
+      "description": "Style your React components using various techniques.",
+      "Lesson": [
+        "CSS Modules and global styles",
+        "Inline styles and styled-components",
+        "Tailwind and utility-first styling"
+      ]
+    },
+    {
+      "title": "Context API and Global State",
+      "description": "Manage global application state using React Context.",
+      "Lesson": [
+        "Understanding context",
+        "Creating a context provider",
+        "Consuming context in components"
+      ]
+    },
+    {
+      "title": "Deploying React Apps",
+      "description": "Take your React app live on the internet.",
+      "Lesson": [
+        "Building the project",
+        "Deploying to Netlify/Vercel",
+        "Environment variables and best practices"
+      ]
+    }
+  ]
 }

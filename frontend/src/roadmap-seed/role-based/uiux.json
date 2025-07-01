@@ -1,0 +1,113 @@
+{
+  "title": "UI/UX Designer Roadmap",
+  "description": "Become a professional UI/UX Designer. Learn how to design user-friendly interfaces, create prototypes, understand user behavior, and collaborate with developers.",
+  "type": "role-based",
+  "Syllabus": [
+    {
+      "title": "Introduction to UI/UX Design",
+      "description": "Understand the difference between UI and UX and why both are crucial.",
+      "Lesson": [
+        "What is UX design?",
+        "What is UI design?",
+        "UI vs UX – Key differences",
+        "Role of a UI/UX designer in a team"
+      ]
+    },
+    {
+      "title": "User Research and Empathy",
+      "description": "Learn to understand user needs and behaviors.",
+      "Lesson": [
+        "Conducting user interviews and surveys",
+        "Creating user personas",
+        "User journey maps",
+        "Empathy mapping"
+      ]
+    },
+    {
+      "title": "Wireframing and Sketching",
+      "description": "Visualize and plan your design ideas.",
+      "Lesson": [
+        "Low-fidelity wireframes",
+        "Paper sketching techniques",
+        "Tools: Balsamiq, Figma wireframes"
+      ]
+    },
+    {
+      "title": "Visual Design and UI Principles",
+      "description": "Design interfaces that are visually appealing and consistent.",
+      "Lesson": [
+        "Color theory and typography",
+        "Grids, spacing, and alignment",
+        "Design systems and UI kits",
+        "Creating UI components (buttons, cards, forms)"
+      ]
+    },
+    {
+      "title": "Tools of the Trade",
+      "description": "Get comfortable with industry-standard UI/UX tools.",
+      "Lesson": [
+        "Figma: Design and prototyping",
+        "Adobe XD / Sketch basics",
+        "Notion or Miro for planning and collaboration"
+      ]
+    },
+    {
+      "title": "Prototyping and Interaction Design",
+      "description": "Create clickable prototypes and interactive flows.",
+      "Lesson": [
+        "Creating interactive prototypes in Figma",
+        "Micro-interactions and animations",
+        "Linking pages and transitions"
+      ]
+    },
+    {
+      "title": "Usability Testing",
+      "description": "Test your design with real users to validate decisions.",
+      "Lesson": [
+        "What is usability testing?",
+        "Remote vs in-person testing",
+        "Iterating based on feedback"
+      ]
+    },
+    {
+      "title": "UX Writing and Accessibility",
+      "description": "Design for inclusivity and guide users with clear language.",
+      "Lesson": [
+        "Principles of UX writing",
+        "Writing clear CTAs and error messages",
+        "Introduction to accessibility (WCAG)",
+        "Keyboard navigation and contrast ratios"
+      ]
+    },
+    {
+      "title": "Design Handoff and Collaboration",
+      "description": "Work with developers and stakeholders effectively.",
+      "Lesson": [
+        "Design handoff using Figma/Zeplin",
+        "Exporting assets and style guides",
+        "Working with developers",
+        "Agile and design sprints"
+      ]
+    },
+    {
+      "title": "Portfolio Building",
+      "description": "Create a portfolio that showcases your skills and process.",
+      "Lesson": [
+        "Choosing the right projects",
+        "Documenting your design process",
+        "Creating a case study layout",
+        "Hosting your portfolio (Notion, Webflow, Behance)"
+      ]
+    },
+    {
+      "title": "Real-World Projects",
+      "description": "Build real or mock projects to showcase your capabilities.",
+      "Lesson": [
+        "Redesign a popular app (e.g., Spotify or WhatsApp)",
+        "Design a new mobile app UI",
+        "Create a responsive landing page UI",
+        "Work on freelance or open-source projects"
+      ]
+    }
+  ]
+}

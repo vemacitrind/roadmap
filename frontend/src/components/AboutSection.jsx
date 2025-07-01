@@ -1,13 +1,14 @@
 import { Github, Linkedin, Twitter, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import ShinyText from "./ShinyText";
+
 export default function AboutSection() {
     return (
         <div className="flex flex-col items-center justify-center h-full">
             <footer className="w-full text-zinc-200 px-6 py-12">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
                     <div className="space-y-2">
-                        <h1 className="text-3xl font-bold text-white">roadmap.in</h1>
+                        <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Cascadia Mono' }}>roadmap.in</h1>
                         <p className="text-sm text-zinc-400">by <a href="https://github.com/vemacitrind" target="_blank" className="bg-zinc-900 py-1 px-3 border rounded-md text-zinc-100" ><ShinyText text="@vemacitrind" disabled={false} speed={2} className='custom-class' /></a></p>
                         <p className="text-sm text-zinc-400">   Master your tech journey.</p>
                     </div>

@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
+import ShinyText from "./ShinyText";
 
 const ChromaGrid = ({
     items = [],
@@ -103,6 +104,7 @@ const ChromaGrid = ({
                                 <h3 className="text-[1rem] font-semibold m-0">{item.title}</h3>
                                 <p className="text-[0.85rem] opacity-80 m-0">{item.subtitle}</p>
                             </div>
+                        {item.new ? <div className="absolute text-9xl z-[-1] left-8 font-[Quantico]"><ShinyText text={"NEW"} speed="2" className="opacity-[0.5]"/></div>:<></>}
                         </footer>
                     </article>
 

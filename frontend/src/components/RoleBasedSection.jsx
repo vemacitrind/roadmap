@@ -35,6 +35,7 @@ const items = [
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/role/ai-engineer",
+    new: true
   },
   {
     title: "Mobile Developer",
@@ -123,7 +124,7 @@ export default function RoleBasedSection() {
       </div>
       </div>
 
-      <Link to="/explore?type=role-based" className="group">
+      <Link to="/explore?type=role" className="group">
         <ButtonWithIcon size="md" className="transition-all">
           View Role-Based
           <MoveRight className="hidden group-hover:inline-block transition-all" />

@@ -1,0 +1,114 @@
+{
+    "title": "Learn Python Programming",
+    "description": "Learn Python 3 programming language within a month using our practical course. Understand the basic syntax of Python using our online tutorial. Prepare for a future in data science, AI and ML.",
+    "type": "skill-based",
+    "Syllabus": [
+        {
+            "title": "Output / Print in Python",
+            "description": "Learn how to make Python print whatever you want, and learn to use it as a basic calculator.",
+            "Lesson": [
+                "Introducing output / printing",
+                "Printing on multiple lines",
+                "Print text and numbers using single print"
+            ]
+        },
+        {
+            "title": "Variables and datatypes",
+            "description": "Learn how to make Python store data and manipulate them",
+            "Lesson": [
+                "Introduction to variables and datatypes",
+                "Boolean data type and negative numbers",
+                "Quiz on variables",
+                "Type conversion"
+            ]
+        },
+        {
+            "title": "Operators",
+            "description": "Learn about the various operators in Python",
+            "Lesson": [
+                "Arithmetic Operators",
+                "Relational Operators",
+                "Logical Operators",
+                "Precedence and Associativity"
+            ]
+        },
+        {
+            "title": "Strings",
+            "description": "Till now, we have mostly worked with numbers. Learn to also work with text",
+            "Lesson": [
+                "Introduction to strings",
+                "Quiz on strings",
+                "String Indexing and Slicing"
+            ]
+        },
+        {
+            "title": "User inputs",
+            "description": "How do we get a user to input data to the Python code?",
+            "Lesson": [
+                "How to take user input",
+                "Practice problems"
+            ]
+        },
+        {
+            "title": "Conditional statements",
+            "description": "Get Python to take decisions based on some conditions that you specify",
+            "Lesson": [
+                "Intro to if / else",
+                "Quiz on conditions",
+                "Combining conditions - And / or"
+            ]
+        },
+        {
+            "title": "Debug your code",
+            "description": "Learn to debug common errors that you will encounter while writing code",
+            "Lesson": [
+                "Learn to debug common errors"
+            ]
+        },
+        {
+            "title": "Lists",
+            "description": "Store vast amounts of data and access them easily using lists.",
+            "Lesson": [
+                "Introduction to lists",
+                "Quiz on Lists",
+                "List Operations"
+            ]
+        },
+        {
+            "title": "Loops",
+            "description": "Make Python perform similar tasks a million times, using iteration.",
+            "Lesson": [
+                "While loops",
+                "For loops",
+                "Loops Practice",
+                "Quiz on loops",
+                "Break / continue",
+                "Nested Loops"
+            ]
+        },
+        {
+            "title": "Functions in python",
+            "description": "Learn to use functions in Python",
+            "Lesson": [
+                "Learn about functions",
+                "Use functions in problems"
+            ]
+        },
+        {
+            "title": "Tuples and Dictionary",
+            "description": "You learnt arrays - time to increase your Python firepower with Tuples and Dictionary",
+            "Lesson": [
+                "Learn about tuples",
+                "Dictionarys"
+            ]
+        },
+        {
+            "title": "Getting started with algorithmic problems",
+            "description": "You learnt arrays - time to increase your Python firepower with Tuples and Dictionary",
+            "Lesson": [
+                "What are test cases?",
+                "What are custom inputs?"
+            ]
+        }
+    ]
+}
