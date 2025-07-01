@@ -80,7 +80,6 @@ export function useAuth() {
       body: JSON.stringify({ email, otp }),
     }).then((res) => res.json());
 
-
   return {
     user,
     loading,

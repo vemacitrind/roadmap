@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useAuth } from "@/auth/useAuth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Card, CardHeader, CardContent, CardTitle,
-} from "@/components/ui/card";
+import { auth } from "@/firebase/config";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 
@@ -17,7 +16,7 @@ export default function AuthPage() {
     verifyOtp,
   } = useAuth();
 
-  const [mode, setMode] = useState("signin");  
+  const [mode, setMode] = useState("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -29,12 +28,24 @@ export default function AuthPage() {
     setProcessing(true);
     try {
       await loginWithEmail(email, password, rememberMe);
+
+      const user = auth.currentUser;
+      if (user) {
+        const userInfo = {
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName || null,
+        };
+        localStorage.setItem("authUser", JSON.stringify(userInfo));
+        console.log("✅ Email login user saved to localStorage:", userInfo);
+      }
     } catch (e) {
       alert("Invalid email or password");
     } finally {
       setProcessing(false);
     }
   };
+
 
   const handleSendOtp = async () => {
     if (!email || !password) return alert("Enter email and password");
@@ -58,8 +69,19 @@ export default function AuthPage() {
     setProcessing(true);
     try {
       const res = await verifyOtp(email, otp);
+      console.log(JSON.stringify(res))
       if (!res.verified) throw new Error("Invalid OTP");
-      await signupWithEmail(email, password, true); // Remember by default
+      await signupWithEmail(email, password, true);
+      const user = auth.currentUser;
+      if (user) {
+        const userInfo = {
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName || null,
+        };
+        localStorage.setItem("authUser", JSON.stringify(userInfo));
+        console.log("✅ OTP user saved to localStorage:", userInfo);
+      }
     } catch (e) {
       alert("OTP verification failed");
     } finally {
@@ -71,6 +93,16 @@ export default function AuthPage() {
     setProcessing(true);
     try {
       await loginWithGoogle(rememberMe);
+      const user = auth.currentUser;
+      if (user) {
+      const userInfo = {
+        email: user.email,
+        uid: user.uid,
+        name: user.displayName || null,
+      };
+      localStorage.setItem("authUser", JSON.stringify(userInfo));
+      console.log("✅ Google login user saved to localStorage:", userInfo);
+    }
     } catch {
       alert("Google login failed");
     } finally {
@@ -144,17 +176,17 @@ export default function AuthPage() {
               mode === "signin"
                 ? handleEmailSignIn
                 : mode === "signup"
-                ? handleSendOtp
-                : handleOtpSubmit
+                  ? handleSendOtp
+                  : handleOtpSubmit
             }
           >
             {processing
               ? "Please wait…"
               : mode === "signin"
-              ? "Continue with Email"
-              : mode === "signup"
-              ? "Send OTP"
-              : "Verify & Create"}
+                ? "Continue with Email"
+                : mode === "signup"
+                  ? "Send OTP"
+                  : "Verify & Create"}
           </Button>
 
           {mode === "signin" && (

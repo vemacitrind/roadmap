@@ -15,6 +15,7 @@ def request_otp():
     # Generate OTP
     otp = str(random.randint(100000, 999999))
     otp_storage[to] = otp
+    print(otp)
 
     subject = "Your OTP Code"
     html = f"""<div style="font-family: 'Segoe UI', Roboto, sans-serif; background-color: #0f0f0f; padding: 32px; color: #e4e4e7; line-height: 1.6;">
