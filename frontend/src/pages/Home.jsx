@@ -5,6 +5,8 @@ import RoleBasedSection from '@/components/RoleBasedSection';
 import SkillBasedSection from '@/components/SkillBasedSection';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import MobileNavbar from '@/components/MobileNavbar';
+
 export default function Home() {
   const parallaxRef = useRef();
 
@@ -12,7 +14,7 @@ export default function Home() {
     <div className="relative w-screen h-screen">
       
       <FloatingNavbar parallaxRef={parallaxRef} />
-
+      <MobileNavbar parallaxRef={parallaxRef} />
       <Parallax pages={4} ref={parallaxRef}>
 
         {/* <ParallaxLayer sticky={{start:1,end:3}} speed={0.5}>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 import ChromaGrid from "./ChromaGrid";
-import { JavaIcon,PythonIcon,JavaScriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "./Icon";
+import { JavaIcon,PythonIcon,JavascriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "./Icon";
 import {
   Coffee,
   FlaskConical,
@@ -38,7 +38,7 @@ const items = [
   {
     title: "JavaScript",
     subtitle: "Frontend, Backend (Node.js), Full-stack...",
-    icon: <JavaScriptIcon size={42} />,
+    icon: <JavascriptIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/skill/javascript",

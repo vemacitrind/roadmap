@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
+import { isAdmin } from "@/auth/isAdmin";
+import Profile from "@/assets/people-user.png"
 const FloatingNavbar = ({ parallaxRef }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const navItems = ["Home", "Role Based", "Skill Based", "About"];
+
+  const user = JSON.parse(localStorage.getItem("authUser"));
+  const isLoggedIn = !!user;
+  const admin = isLoggedIn && isAdmin(user);
+  const destination = isLoggedIn ? (admin ? "/admin" : "/dashboard") : "/login";
 
   const goTo = (index) => {
     parallaxRef.current?.scrollTo(index);
@@ -33,7 +39,7 @@ const FloatingNavbar = ({ parallaxRef }) => {
   }, [parallaxRef]);
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4">
+    <div className="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 md:flex">
       {/* Nav Bubble */}
       <div className="bg-white/10 backdrop-blur-xl text-white px-2 py-2 rounded-full shadow-lg flex items-center gap-6 border border-white/20">
         {navItems.map((item, index) => (
@@ -54,12 +60,29 @@ const FloatingNavbar = ({ parallaxRef }) => {
       </div>
 
       {/* Login Bubble */}
-      <div className="bg-white/10 backdrop-blur-xl px-6 py-2 rounded-full shadow-lg border border-white/20 flex items-center">
+      <div className={`bg-white/10 backdrop-blur-xl ${isLoggedIn ? "px-0 py-0":"px-8 py-2.5"} rounded-full shadow-lg border border-white/20 flex items-center`}>
         <button className="relative text-sm font-medium transition-all duration-300 text-white">
-          <Link to={"/login"}>Login</Link>
+          <Link to={destination}>
+            {isLoggedIn && user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="User"
+                className="w-10 h-10 rounded-full border border-zinc-600 hover:scale-105 transition"
+              />
+            ) : (
+              isLoggedIn ? <img
+                src={Profile}
+                alt="User"
+                className="w-10 h-10 rounded-full border border-zinc-600 hover:scale-105 transition"
+              />:
+              <button className="relative text-sm font-medium transition-all duration-300 text-white">
+                Login
+              </button>
+            )}
+          </Link>
         </button>
       </div>
-    </div>  
+    </div>
   );
 };
 

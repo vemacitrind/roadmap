@@ -74,8 +74,10 @@ export default function AdminPanel() {
         {/* <Squares speed={0.3} direction='diagonal'  /> */}
         {user?.photoURL && (
           <img
-            src={user.photoURL}
+            // src={user.photoURL}
+            src="https://lh3.googleusercontent.com/a/ACg8ocIVekfSpkjzFNt-jV5aaRw0EIdLjFcmRTQ8MoWqS5JqbgaAO3g=s96-c"
             alt="Profile"
+            referrerPolicy="no-referrer"
             className="w-24 h-24 rounded-full border border-zinc-800 z-[10]"
           />
         )}

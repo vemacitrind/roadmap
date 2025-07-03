@@ -1,4 +1,3 @@
-# Logs
 logs
 *.log
 npm-debug.log*
@@ -7,10 +6,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node dependencies (frontend)
 frontend/node_modules/
 
-# Python virtual environment (backend)
 backend/venv/
 backend/api/__pycache__
 backend/services/__pycache__
@@ -18,18 +15,14 @@ backend/utils/__pycache__
 backend/serviceAccountKey.json
 
 
-# Build outputs
 dist
 dist-ssr
 
-# Local environment files
 *.local
 
-# Environment files
 frontend/.env
 backend/.env
 
-# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -39,3 +32,45 @@ backend/.env
 *.njsproj
 *.sln
 *.sw?
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.so
+
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+env.bak/
+
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+db.sqlite3
+
+**/migrations/
+!*/migrations/__init__.py
+
+.env
+.env.*
+
+staticfiles/
+static/
+
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+.cache
+nosetests.xml
+*.log
+
+.pytest_cache/
+

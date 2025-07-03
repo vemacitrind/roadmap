@@ -9,6 +9,7 @@ import { isAdmin } from "./auth/isAdmin";
 import { Routes , Route, Link ,Navigate } from "react-router-dom";
 import { useAuth } from "@/auth/AuthContext";
 import "@/lib/console"
+import './App.css'
 
 function App() {
   const { user } = useAuth();

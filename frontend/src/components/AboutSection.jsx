@@ -8,7 +8,7 @@ export default function AboutSection() {
             <footer className="w-full text-zinc-200 px-6 py-12">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
                     <div className="space-y-2">
-                        <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Cascadia Mono' }}>roadmap.in</h1>
+                        <h1 className="text-2xl font-bold text-white" style={{ fontFamily: 'Noto Serif JP' }}>roadmap.in</h1>
                         <p className="text-sm text-zinc-400">by <a href="https://github.com/vemacitrind" target="_blank" className="bg-zinc-900 py-1 px-3 border rounded-md text-zinc-100" ><ShinyText text="@vemacitrind" disabled={false} speed={2} className='custom-class' /></a></p>
                         <p className="text-sm text-zinc-400">   Master your tech journey.</p>
                     </div>
@@ -37,8 +37,8 @@ export default function AboutSection() {
                     </div>
 
                     <div>
-                        <h2 className="text-lg font-semibold text-white mb-2">Follow Us</h2>
-                        <div className="flex space-x-4">
+                        <h2 className="text-lg font-semibold text-white mb-2 ">Follow Us</h2>
+                        <div className="flex space-x-4 justify-center">
                             <a href="https://github.com/vemacitrind" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                                 <Github />
                             </a>
