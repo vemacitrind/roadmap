@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchSkillBasedCollections } from "@/lib/fetchXBasedCollections";
 import { Card, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import * as Icons from "@/components/Icon"; // your icon components
+import * as Icons from "@/components/Icon"; 
 
 export default function ExploreSkillBased() {
     const [categories, setCategories] = useState([]);

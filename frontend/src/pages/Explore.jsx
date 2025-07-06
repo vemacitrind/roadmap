@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import ExploreRoleBased from "@/components/ExploreRoleBased";
 import ExploreSkillBased from "@/components/ExploreSkillBased";
 import BasicHeader from "@/components/BasicHeader";
-import Squares from "@/components/Squres";
+import AboutSection from "@/components/AboutSection";
 
 export default function Explore() {
   const [selected, setSelected] = useState("role");
@@ -23,8 +23,8 @@ export default function Explore() {
   return (
     <>
     <BasicHeader />
-      <div className="mt-24 w-full px-6 relative">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="mt-24 w-full px-0 relative">
+        <div className="w-full mx-auto text-center h-32 content-center bg-[linear-gradient(to_right,_#09090b_60%,_#e4e4e7_100%)]">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-zinc-200 to-white bg-clip-text text-transparent drop-shadow-lg">
             Explore Roadmaps
           </h1>
@@ -33,7 +33,7 @@ export default function Explore() {
           </p>
         </div>
       </div>
-      <div className="min-h-screen w-full overflow-x-hidden grid justify-items-center bg-zinc-950 px-6 py-10 mx-0 text-white">
+      <div className="min-h-screen w-full overflow-x-hidden grid justify-items-center bg-zinc-950 px-6 py-0 mx-0 text-white">
         <div className="w-full max-w-6xl">
           <Separator className="bg-zinc-700 mb-6" />
 
@@ -70,7 +70,9 @@ export default function Explore() {
             </div>
           </div>
         </div>
+        <AboutSection/>
       </div>
+    
     </>
   );
 }

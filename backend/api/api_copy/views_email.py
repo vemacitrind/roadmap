@@ -14,3 +14,4 @@ def send_email(request):
 
     sent = send_progress_email(to, subject, html)
     return Response({"status": "sent" if sent else "failed"})
+

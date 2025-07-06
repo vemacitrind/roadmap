@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 import { Monitor, Database, Code2, BrainCircuit, Smartphone, Palette, LineChart, ShieldCheck, Cloud, Gamepad2, BugPlay, FileText, MoveRight } from 'lucide-react';
 import ChromaGrid from "./ChromaGrid";
-
+import { FrontendIcon,BackendIcon,UiuxIcon } from "./Icon";
 const items = [
   {
     title: "Frontend Developer",
     subtitle: "HTML, CSS, JS, React...",
-    icon: <Monitor size={42} />,
+    icon: <FrontendIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/role/frontend",
@@ -15,7 +15,7 @@ const items = [
   {
     title: "Backend Developer",
     subtitle: "Node, Django, APIs...",
-    icon: <Database size={42} />,
+    icon: <BackendIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/role/backend",
@@ -48,7 +48,7 @@ const items = [
   {
     title: "UI/UX Designer",
     subtitle: "Figma, Sketch, Adobe XD, Wireframing, Prototyping...",
-    icon: <Palette size={42} />,
+    icon: <UiuxIcon size={42} />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
     path: "/explore/role/ui-ux",

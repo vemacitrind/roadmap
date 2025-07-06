@@ -1,5 +1,4 @@
 import AuthPage from "@/components/AuthPage";
-import AboutSection from "@/components/AboutSection";
 import Threads from "@/components/Threads"; 
 import BasicHeader from "@/components/BasicHeader";
 
