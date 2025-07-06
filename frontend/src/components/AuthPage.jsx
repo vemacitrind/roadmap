@@ -83,7 +83,7 @@ export default function AuthPage() {
         console.log("✅ OTP user saved to localStorage:", userInfo);
       }
     } catch (e) {
-      alert("OTP verification failed");
+      alert("OTP verification failed"+e);
     } finally {
       setProcessing(false);
     }

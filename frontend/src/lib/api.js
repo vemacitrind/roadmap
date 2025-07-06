@@ -1,7 +1,7 @@
 import { Description } from '@radix-ui/react-dialog';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000'; 
+const API_BASE_URL = 'http://localhost:5000/'; 
 
 export const sendProgressEmail = async (email, progressData) => {
   return axios.post(`${API_BASE_URL}/send-progress-email`, {
@@ -24,15 +24,11 @@ export const saveDailyLog = async (userId, logData) => {
 };
 
 export const sendRoadmapStartEmail = async (email, title, description) => {
-  try {
-    const res = await axios.post(`${API_BASE_URL}/send-roadmap-start-email`, {
-      email,
-      title,
-      description,
-    });
-    return res.data;
-  } catch (error) {
-    console.error("Failed to send roadmap start email:", error);
-    throw error;
-  }
+  axios.post("http://localhost:5000/send-roadmap-start-email", {
+    email: email,
+    title: title,
+    description: description,
+  })
+  .then((res) => {})
+  .catch((err) => console.error(err.response?.data || err.message));
 };

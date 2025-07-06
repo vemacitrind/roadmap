@@ -26,13 +26,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {sendRoadmapStartEmail} from "@/lib/api"
 
 export default function RoadmapViewer() {
   const { category } = useParams();
   const type = "role-based";
   const { user } = useAuth();
   const uid = user?.uid;
-
+  const email = user?.email
   const [roadmap, setRoadmap] = useState(null);
   const [error, setError] = useState(null);
   const [showSignin, setShowSignin] = useState(false);
@@ -67,6 +68,7 @@ export default function RoadmapViewer() {
     if (!user) return setShowSignin(true);
     await startRoadmapForUser(uid, roadmap.title);
     setStarted(true);
+    sendRoadmapStartEmail(email,roadmap.title,roadmap.description)
   };
 
   const handleToggleLesson = async (lessonId) => {

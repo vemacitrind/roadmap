@@ -1,10 +1,9 @@
-# backend/api/views_auth.py
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from services.smtp_client import send_progress_email
 import random, time
 
-# In‑memory store: {email: {"otp": "123456", "ts": 1690000000}}
+# {email: {"otp": "123456", "ts": 1690000000}}
 otp_storage = {}
 
 OTP_EXPIRY = 600  # 10 minutes (seconds)
@@ -21,7 +20,12 @@ def request_otp(request):
 
     subject = "Your OTP Code"
     html = f"""<div style="font-family: 'Segoe UI', Roboto, sans-serif; background:#0f0f0f;padding:32px;color:#e4e4e7;line-height:1.6">
+     
       <div style="max-width:480px;margin:auto;background:#18181b;padding:24px;border:1px solid #27272a;border-radius:8px">
+        <div style="justify-content: center;align-items:center;display:flex;gap:15px;"><img src="https://github.com/user-attachments/assets/cef38843-b715-4186-ac10-d27ff3f62c3d"  width="34">
+        <h1 style="font-family: serif;">roadmap.in</h1>
+        </div>
+        <hr style="border:none;border-top:1px solid #333;margin:24px 0" />
         <h2 style="text-align:center;color:#fff;font-size:20px;margin-bottom:16px">Verify Your Email</h2>
         <p style="text-align:center;font-size:15px;margin-bottom:24px">
           Thank you for signing up to <strong style="color:#3b82f6">roadmap.in</strong>!<br />
@@ -37,10 +41,10 @@ def request_otp(request):
         </p>
         <hr style="border:none;border-top:1px solid #333;margin:24px 0" />
         <p style="text-align:center;font-size:12px;color:#52525b">
-          roadmap.in&nbsp;· Ahmedabad, Gujarat, India
+          roadmap.in&nbsp;· Ahmedabad, Gujarat, India
         </p>
       </div>
-    </div>"""
+ </div>"""
 
     sent = send_progress_email(to, subject, html)
     return Response({"status": "sent" if sent else "failed"})
