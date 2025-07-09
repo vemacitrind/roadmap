@@ -1,12 +1,38 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
+import { useAuth } from "@/auth/AuthContext";
+import Profile from "@/assets/people-user.png";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { LogOut, LayoutDashboard } from "lucide-react";
 
 export default function BasicHeader() {
+  const { logout, user } = useAuth();
   const navigate = useNavigate();
+  const menuRef = useRef();
+
+
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = "/";
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header className="absolute top-6 left-1/2 -translate-x-1/2 w-full max-w-[90%] flex items-center justify-between z-50">
       <button
-        onClick={() => navigate(-1)} // 👈 Go back one step in history
+        onClick={() => navigate(-1)}
         className="flex items-center gap-1 text-zinc-400 hover:text-white"
       >
         <ArrowLeft size={18} />
@@ -17,7 +43,32 @@ export default function BasicHeader() {
         roadmap.in
       </Link>
 
-      <div className="w-[54px]" />
+      <div className="relative" ref={menuRef}> 
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="rounded-full p-0">
+              <Avatar className="w-9 h-9">
+                <AvatarImage
+                  src={user?.photoURL || Profile}
+                  alt="User"
+                />
+                <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>
+              </Avatar>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700 text-white">
+            <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+              <LayoutDashboard className="mr-2 w-4 h-4" />
+              Dashboard
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout} className="text-red-400">
+              <LogOut className="mr-2 w-4 h-4 text-red-400" />
+              Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
     </header>
-  )
+  );
 }

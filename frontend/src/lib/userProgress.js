@@ -9,12 +9,13 @@ export async function getUserRoadmapProgress(uid, roadmapId) {
   return data?.roadmap?.[roadmapId] || null;
 }
 
-export async function startRoadmapForUser(uid, roadmapId) {
+export async function startRoadmapForUser(uid, roadmapId,skill) {
   const docRef = doc(db, "users", uid);
   await updateDoc(docRef, {
     [`roadmap.${roadmapId}`]: {
       startedAt: new Date().toISOString(),
       completedLessons: [],
+      name:skill,
     },
   });
 }

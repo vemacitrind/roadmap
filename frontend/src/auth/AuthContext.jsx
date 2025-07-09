@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/config";
+import { fetchUserProfile } from "@/lib/userProfile";
 
 const AuthContext = createContext();
 
@@ -20,26 +21,35 @@ export function AuthProvider({ children }) {
   });
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser) {
+  const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
+    if (firebaseUser) {
+      try {
+        const profile = await fetchUserProfile(firebaseUser.uid);
+
         const userInfo = {
-          email: firebaseUser.email,
           uid: firebaseUser.uid,
-          name: firebaseUser.displayName || null,
-          photoURL: firebaseUser.photoURL || null
+          email: firebaseUser.email,
+          name: profile?.name || firebaseUser.displayName || "Anonymous",
+          photoURL: profile?.profileLink || firebaseUser.photoURL || null,
+          ...profile,
         };
+
         setUser(userInfo);
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        console.log("🔥 Synced Firebase");
-      } else {
+        console.log("🔥 Synced Firebase + Firestore profile");
+      } catch (err) {
+        console.error("❌ Failed to load profile:", err);
         setUser(null);
-        localStorage.removeItem("authUser");
-        console.log("👋 User signed out, removed from localStorage");
       }
-    });
+    } else {
+      setUser(null);
+      localStorage.removeItem("authUser");
+      console.log("👋 User signed out, removed from localStorage");
+    }
+  });
 
-    return () => unsub();
-  }, []);
+  return () => unsub();
+}, []);
 
   return (
     <AuthContext.Provider value={{ user }}>

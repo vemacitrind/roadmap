@@ -37,7 +37,10 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        console.log("✅ Email login user saved to localStorage:", userInfo);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+        alert("sign in complete!")
       }
     } catch (e) {
       alert("Invalid email or password");
@@ -83,7 +86,7 @@ export default function AuthPage() {
         console.log("✅ OTP user saved to localStorage:", userInfo);
       }
     } catch (e) {
-      alert("OTP verification failed"+e);
+      alert("OTP verification failed" + e);
     } finally {
       setProcessing(false);
     }
@@ -95,14 +98,18 @@ export default function AuthPage() {
       await loginWithGoogle(rememberMe);
       const user = auth.currentUser;
       if (user) {
-      const userInfo = {
-        email: user.email,
-        uid: user.uid,
-        name: user.displayName || null,
-      };
-      localStorage.setItem("authUser", JSON.stringify(userInfo));
-      console.log("✅ Google login user saved to localStorage:", userInfo);
-    }
+        const userInfo = {
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName || null,
+        };
+        localStorage.setItem("authUser", JSON.stringify(userInfo));
+        console.log("✅ Google login user saved to localStorage:", userInfo);
+        alert("sign in complete!");
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      }
     } catch {
       alert("Google login failed");
     } finally {

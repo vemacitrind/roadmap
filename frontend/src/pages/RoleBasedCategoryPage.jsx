@@ -27,6 +27,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {sendRoadmapStartEmail} from "@/lib/api"
+import { useLocation } from "react-router-dom";
+
 
 export default function RoadmapViewer() {
   const { category } = useParams();
@@ -39,6 +41,8 @@ export default function RoadmapViewer() {
   const [showSignin, setShowSignin] = useState(false);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [started, setStarted] = useState(false);
+  const location = useLocation();
+  const skill = location.pathname.split("/").filter(Boolean).pop();
 
   useEffect(() => {
     async function load() {
@@ -66,7 +70,7 @@ export default function RoadmapViewer() {
 
   const handleStart = async () => {
     if (!user) return setShowSignin(true);
-    await startRoadmapForUser(uid, roadmap.title);
+    await startRoadmapForUser(uid, roadmap.title,skill);
     setStarted(true);
     sendRoadmapStartEmail(email,roadmap.title,roadmap.description)
   };

@@ -11,7 +11,6 @@ export default function ExploreSkillBased() {
         fetchSkillBasedCollections().then(setCategories);
     }, []);
 
-    // Helper to capitalize and load icon
     const getIconForCategory = (cat) => {
         const name = cat.charAt(0).toUpperCase() + cat.slice(1); // e.g., java → Java
         const IconComponent = Icons[`${name}Icon`];
