@@ -8,7 +8,7 @@ import AdminPanel from "./pages/AdminPanel";
 import { isAdmin } from "./auth/isAdmin";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useAuth } from "@/auth/AuthContext";
-import "@/lib/console"
+// import "@/lib/console"
 import './App.css'
 import DashboardPage from "./pages/DashboardPage";
 import AdminDashBoard from "./pages/AdminDashBoard";
@@ -16,11 +16,13 @@ import UsersPage from "@/components/Admin/UsersPage";
 import DashboardPagea from "@/components/Admin/DashboardPage";
 import RoadmapsPage from "@/components/Admin/RoadmapsPage";
 import AnalyticsPage from "@/components/Admin/AnalyticsPage";
+import { Toaster } from "sonner";
 
 function App() {
   const { user } = useAuth();
   return (
     <>
+    <Toaster richColors closeButton position="top-center" theme="dark"/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

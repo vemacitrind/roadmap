@@ -8,19 +8,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner"
 
 export default function EditProfileDialog({ open, onClose, userData, onSave }) {
   const [formData, setFormData] = useState({
     name: "",
     about: "",
-    profileLink:"",
+    profileLink: "https://github.com/user-attachments/assets/c397a40b-d7a4-4e86-b7c5-8326c9a90610",
     github: "",
     linkedin: "",
     instagram: "",
-    urls: [""],
+    urls: [],
   });
 
-  // Sync form when dialog opens or userData changes
   useEffect(() => {
     if (userData) {
       setFormData({
@@ -50,9 +50,15 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
   };
 
   const handleSubmit = () => {
-    if (!formData.name.trim()) return alert("Name is required");
-    onSave(formData);
-    onClose();
+    if (!formData.name.trim()) return toast.error("Name required!");
+    const dataToSubmit = {
+      ...formData,
+      profileLink: formData.profileLink || "https://github-production-user-asset-6210df.s3.amazonaws.com/161121265/465578099-c397a40b-d7a4-4e86-b7c5-8326c9a90610.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250712%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250712T155508Z&X-Amz-Expires=300&X-Amz-Signature=3956a63cdc19eff28fed7e3e04f2103788992f35b8438e0349c2dd85e41ecbdf&X-Amz-SignedHeaders=host"
+    };
+
+    console.log("this is: " + dataToSubmit.profileLink);
+    onSave(dataToSubmit);
+    onClose();;
   };
 
   return (

@@ -5,17 +5,25 @@ import EditProfileDialog from "@/components/Dashboard/EditProfileDialog";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Img from "@/assets/people-user.png"
 import { LuGlobe } from "react-icons/lu";
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 export default function ProfileHeader({ user, onSave }) {
   const [open, setOpen] = useState(false);
+  const [openImg, setOpenImg] = useState(false);
+
   return (
     <>
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between">
           <div className="flex items-center gap-4 mb-2 sm:mb-0">
             <img
-              src={user?.profileLink || user?.photoURL || Img}
+              src={user?.profileLink}
               alt="Profile"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = Img;
+              }}
+              onClick={() => setOpenImg(true)}
               className="w-16 h-16 rounded-full object-cover border border-zinc-700"
             />
             <h2 className="text-2xl font-bold">{user?.name || "Anonymous"}</h2>
@@ -56,6 +64,22 @@ export default function ProfileHeader({ user, onSave }) {
         </div>
       </div>
 
+      <Dialog open={openImg} onOpenChange={setOpenImg}>
+        <DialogContent className="pointer-events-none">
+          <div className="pointer-events-auto">
+            <img
+              src={user?.profileLink }
+              alt="Profile Enlarged"
+              onError={(e) => {
+                e.target.onerror = null
+                e.target.src = Img
+              }}
+              className="w-40 h-40 rounded-full object-cover mx-auto"
+            />
+            <p className="text-center mt-4 text-lg font-semibold">{user?.name || "User Name"}</p>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <EditProfileDialog
         open={open}

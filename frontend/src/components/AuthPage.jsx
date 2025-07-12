@@ -6,6 +6,8 @@ import { auth } from "@/firebase/config";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "sonner"
+import {saveUserIfNew} from "@/lib/firebaseUser";
 
 export default function AuthPage() {
   const {
@@ -24,7 +26,11 @@ export default function AuthPage() {
   const [processing, setProcessing] = useState(false);
 
   const handleEmailSignIn = async () => {
-    if (!email || !password) return alert("Enter email and password");
+    if (!email || !password) return (
+      toast.error('Sign In Failed', {
+        description: 'Enter email and password',
+      })
+    )
     setProcessing(true);
     try {
       await loginWithEmail(email, password, rememberMe);
@@ -37,13 +43,14 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
+        saveUserIfNew(user)
         setTimeout(() => {
           window.location.href = '/';
-        }, 2000);
-        alert("sign in complete!")
+        }, 1500);
+        toast.success('Sign in complete!')
       }
     } catch (e) {
-      alert("Invalid email or password");
+      toast.error('Invalid email or password')
     } finally {
       setProcessing(false);
     }
@@ -51,28 +58,32 @@ export default function AuthPage() {
 
 
   const handleSendOtp = async () => {
-    if (!email || !password) return alert("Enter email and password");
+    if (!email || !password) return (
+      toast.error('Sign In Failed', {
+        description: 'Enter email and password',
+      })
+    )
     setProcessing(true);
     try {
       const res = await requestOtp(email);
       if (res.status === "sent") {
         setMode("otp");
       } else {
-        alert("Failed to send OTP");
+        toast.error('Failed to send OTP')
       }
     } catch {
-      alert("Could not send OTP");
+      toast.error('Could not send OTP')
     } finally {
       setProcessing(false);
     }
   };
 
   const handleOtpSubmit = async () => {
-    if (!otp || otp.length !== 6) return alert("Enter valid 6-digit OTP");
+    if (!otp || otp.length !== 6) return toast.error('Enter valid 6-digit OTP')
     setProcessing(true);
     try {
       const res = await verifyOtp(email, otp);
-      console.log(JSON.stringify(res))
+      // console.log(JSON.stringify(res))
       if (!res.verified) throw new Error("Invalid OTP");
       await signupWithEmail(email, password, true);
       const user = auth.currentUser;
@@ -83,7 +94,11 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        console.log("✅ OTP user saved to localStorage:", userInfo);
+        saveUserIfNew(user)
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1500);
+        toast.success('Sign in complete!')
       }
     } catch (e) {
       alert("OTP verification failed" + e);
@@ -104,14 +119,14 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        console.log("✅ Google login user saved to localStorage:", userInfo);
-        alert("sign in complete!");
+        saveUserIfNew(user)
         setTimeout(() => {
           window.location.href = '/';
-        }, 2000);
+        }, 1500);
+        toast.success('Sign in complete!')
       }
     } catch {
-      alert("Google login failed");
+      toast.error('Google login failed')
     } finally {
       setProcessing(false);
     }

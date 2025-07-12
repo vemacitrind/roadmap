@@ -1,74 +1,100 @@
-import { useEffect, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Plus, Trash, Pencil } from "lucide-react"
-import { getAllRoadmaps, deleteRoadmapById } from "@/lib/roadmapData"
-import { toast } from "sonner"
+import { useState, useEffect } from "react";
+import { getAllRoadmaps } from "@/lib/roadmapData";
+import { Button } from "@/components/ui/button";
+import { Table, TableHeader, TableRow, TableCell, TableBody,TableHead } from "@/components/ui/table";
+import { LayoutList, LayoutGrid } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function RoadmapsPage() {
-  const [roadmaps, setRoadmaps] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [roadmaps, setRoadmaps] = useState([]);
+  const [view, setView] = useState("card"); 
+  const [loading,setloading] = useState(true);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetchRoadmaps()
-  }, [])
+    getAllRoadmaps().then(setRoadmaps);
+    setTimeout(()=>setloading(false),1500);
+    
+  }, []);
 
-  const fetchRoadmaps = async () => {
-    setLoading(true)
-    const data = await getAllRoadmaps()
-    setRoadmaps(data)
-    setLoading(false)
-  }
+  const filtered = roadmaps.filter((r) => {
+    if (filter === "all") return true;
+    return r.type === filter;
+  });
 
-  const handleDelete = async (id) => {
-    await deleteRoadmapById(id)
-    toast("Roadmap deleted", {
-      description: "The roadmap was successfully removed.",
-    })
-    fetchRoadmaps()
-  }
-  console.log(roadmaps)
+  // if(loading) return <span className=" animate-ping">Loading...</span>
+
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Manage Roadmaps</h1>
-        <Button>
-          <Plus className="w-4 h-4 mr-1" /> Add Roadmap
-        </Button>
-      </div>
+      <h1 className="text-2xl font-bold">Manage Roadmaps</h1>
+      <div className="space-y-6">
+        {/* Controls */}
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex gap-2">
+            {["all", "role-based", "skill-based"].map((cat) => (
+              <Button
+                key={cat}
+                variant={filter === cat ? "default" : "outline"}
+                onClick={() => setFilter(cat)}
+              >
+                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </Button>
+            ))}
+          </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {loading ? (
-          <p className="text-zinc-400">Loading roadmaps…</p>
-        ) : (
-          roadmaps.map((roadmap) => (
-            <Card key={roadmap.id} className="bg-zinc-900 border-zinc-800">
-              <CardHeader className="flex justify-between items-start">
-                <CardTitle className="text-lg">{roadmap.title}</CardTitle>
-                <div className="flex gap-2">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => console.log("Edit", roadmap.id)}
-                  >
-                    <Pencil className="w-4 h-4 text-yellow-400" />
-                  </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => handleDelete(roadmap.id)}
-                  >
-                    <Trash className="w-4 h-4 text-red-500" />
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent className="text-zinc-400 text-sm">
-                {roadmap.description || "No description"}
-              </CardContent>
-            </Card>
-          ))
+          <Button variant="ghost" onClick={() => setView(view === "card" ? "table" : "card")}>
+            {view === "card" ? <LayoutGrid className="w-5 h-5" /> : <LayoutList className="w-5 h-5" />}
+          </Button>
+        </div>
+
+        {/* Card View */}
+        {view === "card" && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {filtered.map((r, i) => (
+              <Card key={i}>
+                <CardHeader>
+                  <CardTitle className="text-lg">{r.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-zinc-500">{r.type}</CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* Table View */}
+        {view === "table" && (
+          <div className="rounded-xl border border-zinc-800 max-h-[70vh] overflow-y-auto">
+            <Table className="min-w-[800px]">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="border-r border-zinc-800 text-center text-lg">Title</TableHead>
+                  <TableHead className="border-r border-zinc-800 text-center text-lg">Type</TableHead>
+                  <TableHead className="border-r border-zinc-800 text-center text-lg">Category</TableHead>
+                  <TableHead className="border-r border-zinc-800 text-center text-lg">Description</TableHead>
+                  <TableHead className="border-r border-zinc-800 text-center text-lg">Syllabus</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filtered.map((r, i) => (
+                  <TableRow key={i}>
+                    <TableCell className="border-r border-zinc-800">{r.title}</TableCell>
+                    <TableCell className="border-r border-zinc-800">{r.type}</TableCell>
+                    <TableCell className="border-r border-zinc-800">{r.category}</TableCell>
+                    <TableCell className="max-w-[200px] truncate text-wrap border-r border-zinc-800">
+                      {r.description || "-"}
+                    </TableCell>
+                    <TableCell className="max-w-[240px] text-wrap ">
+                      {Array.isArray(r.Syllabus)
+                        ? JSON.stringify(r.Syllabus).slice(0, 150) + "..."
+                        : "-"}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         )}
       </div>
     </div>
-  )
+  );
 }

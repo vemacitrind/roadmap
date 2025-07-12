@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Hourglass,ArrowUp,ArrowDown } from "lucide-react";
-
+import NullImg from "@/assets/Null.png"
 export default function PendingRoadmap({ roadmaps = {} }) {
   const [filter, setFilter] = useState("all");
   const [reverse, setReverse] = useState(true);
@@ -45,11 +45,12 @@ export default function PendingRoadmap({ roadmaps = {} }) {
       </div>
 
       {/* Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className={"grid sm:grid-cols-2 lg:grid-cols-3 gap-5"+filtered.length > 0 ? "" : "place-items-center"}>
+        { filtered.length > 0 ? <>
         {filtered.map(([title, data]) => (
           <div
-            key={title}
-            className="rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition p-5 shadow-sm hover:shadow-md"
+          key={title}
+          className="rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition p-5 shadow-sm hover:shadow-md"
           >
             <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
             <p className="text-sm text-zinc-400">
@@ -64,7 +65,12 @@ export default function PendingRoadmap({ roadmaps = {} }) {
               <span>{data.isComplete ? "Completed" : "In Progress"}</span>
             </div>
           </div>
-        ))}
+                
+        ))} </> : 
+        <>
+          <img src={NullImg} alt="null" />
+        </>
+        }
       </div>
     </div>
   );

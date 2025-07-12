@@ -1,6 +1,5 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, serverTimestamp, arrayUnion } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { serverTimestamp } from "firebase/firestore";
 
 export async function saveUserIfNew(user) {
   const userRef = doc(db, "users", user.uid);
@@ -12,11 +11,15 @@ export async function saveUserIfNew(user) {
       email: user.email,
       name: user.displayName || "Anonymous",
       createdAt: serverTimestamp(),
+      profileLink: user.photoURL || "https://github.com/user-attachments/assets/c397a40b-d7a4-4e86-b7c5-8326c9a90610",
       roadmap: null,
-      dailyLogs: [],
+      dailyLogs: [new Date().toISOString()],
     });
-    console.log("User saved to Firestore");
+    console.log(" User saved to Firestore");
   } else {
-    console.log("User already exists in Firestore");
+    await updateDoc(userRef, {
+      dailyLogs: arrayUnion(new Date().toISOString()),
+    });
+    console.log("Login recorded in dailyLogs");
   }
 }

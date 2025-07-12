@@ -53,11 +53,7 @@ export function useAuth() {
   const logout = async () => {
     await signOut(auth);
     setUser(null);
-  };
-
-  const logout1 = async () => {
-    console.log("heee");
-  };
+  };;
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (fbUser) => {
@@ -91,7 +87,6 @@ export function useAuth() {
     loginWithEmail,
     loginWithGoogle,
     logout,
-    logout1,
     requestOtp,
     verifyOtp
   };

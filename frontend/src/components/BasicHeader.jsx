@@ -1,18 +1,29 @@
 import { useState, useRef, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
-import { useAuth } from "@/auth/AuthContext";
+import { useAuth } from "@/auth/useAuth";
+import { useAuth as Auth } from "@/auth/AuthContext";
 import Profile from "@/assets/people-user.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { LogOut, LayoutDashboard } from "lucide-react";
+import { fetchUserProfile } from "@/lib/userProfile";
 
 export default function BasicHeader() {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
   const menuRef = useRef();
+  const [profile, setProfile] = useState(null);
+  const userr = Auth()
 
+  useEffect(() => {
+    fetchUserProfile(userr?.user?.uid).
+      then((data) => {
+        setProfile(data)
+      }).
+      catch(err => console.log(err))
+  }, [])
 
   const handleLogout = async () => {
     await logout();
@@ -22,7 +33,6 @@ export default function BasicHeader() {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -43,13 +53,13 @@ export default function BasicHeader() {
         roadmap.in
       </Link>
 
-      <div className="relative" ref={menuRef}> 
+      <div className="relative" ref={menuRef}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="rounded-full p-0">
               <Avatar className="w-9 h-9">
                 <AvatarImage
-                  src={user?.photoURL || Profile}
+                  src={profile?.profileLink || user?.photoURL || Profile}
                   alt="User"
                 />
                 <AvatarFallback>{user?.name?.charAt(0) || "U"}</AvatarFallback>

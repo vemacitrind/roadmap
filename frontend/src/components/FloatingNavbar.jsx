@@ -42,52 +42,50 @@ const FloatingNavbar = ({ parallaxRef }) => {
 
 
   return (
-
-      <div className="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 md:flex">
-        {/* Nav Bubble */}
-        <div className="bg-white/10 backdrop-blur-xl text-white px-2 py-2 rounded-full shadow-lg flex items-center gap-6 border border-white/20">
-          {navItems.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => goTo(index)}
-              className={clsx(
-                "relative px-4 py-1 text-sm font-medium transition-all duration-300",
-                activeIndex === index && "text-white"
-              )}
-            >
-              {item}
-              {activeIndex === index && (
-                <span className="absolute inset-0 bg-white/20 rounded-full backdrop-blur-md -z-10"></span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Login Bubble */}
-        <div className={`bg-white/10 backdrop-blur-xl ${isLoggedIn ? "px-0 py-0" : "px-8 py-2.5"} rounded-full shadow-lg border border-white/20 flex items-center`}>
-          <button className="relative text-sm font-medium transition-all duration-300 text-white">
-            <Link to={destination}>
-              {isLoggedIn && user?.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  referrerPolicy='no-referrer'
-                  alt="User"
-                  className="w-10 h-10 rounded-full border border-zinc-600 hover:scale-105 transition"
-                />
-              ) : (
-                isLoggedIn ? <img
-                  src={Profile}
-                  alt="User"
-                  className="w-10 h-10 rounded-full border border-zinc-600 hover:scale-105 transition"
-                /> :
-                  <button className="relative text-sm font-medium transition-all duration-300 text-white">
-                    Login
-                  </button>
-              )}
-            </Link>
+    <div className="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 md:flex">
+      {/* Nav Bubble */}
+      <div className="bg-white/10 backdrop-blur-xl text-white px-2 py-2 rounded-full shadow-lg flex items-center gap-6 border border-white/20">
+        {navItems.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => goTo(index)}
+            className={clsx(
+              "relative px-4 py-1 text-sm font-medium transition-all duration-300",
+              activeIndex === index && "text-white"
+            )}
+          >
+            {item}
+            {activeIndex === index && (
+              <span className="absolute inset-0 bg-white/20 rounded-full backdrop-blur-md -z-10"></span>
+            )}
           </button>
-        </div>
+        ))}
       </div>
+
+      {/* Login Bubble */}
+      <div className={`bg-white/10 backdrop-blur-xl ${isLoggedIn ? "px-0 py-0" : "px-8 py-2.5"} rounded-full shadow-lg border border-white/20 flex items-center`}>
+        <button className="relative text-sm font-medium transition-all duration-300 text-white">
+          <Link to={destination}>
+            {isLoggedIn ? (
+              <img
+                src={user?.photoURL || Profile}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = Profile;
+                }}
+                referrerPolicy="no-referrer"
+                alt="User"
+                className="w-10 h-10 rounded-full border border-zinc-600 hover:scale-105 transition"
+              />
+            ) : (
+              <button className="relative text-sm font-medium transition-all duration-300 text-white">
+                Login
+              </button>
+            )}
+          </Link>
+        </button>
+      </div>
+    </div>
   );
 };
 
