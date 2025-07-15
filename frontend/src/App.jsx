@@ -16,6 +16,7 @@ import UsersPage from "@/components/Admin/UsersPage";
 import DashboardPagea from "@/components/Admin/DashboardPage";
 import RoadmapsPage from "@/components/Admin/RoadmapsPage";
 import AnalyticsPage from "@/components/Admin/AnalyticsPage";
+import Community from "@/pages/Community"
 import { Toaster } from "sonner";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/explore/role/:category" element={<RoleBasedCategoryPage />} />
         <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/community" element={<Community />} />
         <Route path="/admin" element={<AdminDashBoard />}>
           <Route index element={<DashboardPagea />} />
           <Route path="roadmaps" element={<RoadmapsPage />} />
