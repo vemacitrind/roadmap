@@ -1,4 +1,4 @@
-import Silk from '@/components/Silk';
+import Silk from '@/components/ReactBit/Silk';
 import { Link } from 'react-router-dom';
 import ButtonOutline from '@/components/ButtonOutline';
 

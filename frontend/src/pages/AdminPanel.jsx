@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import BasicHeader from "@/components/BasicHeader";
 import { Separator } from "@/components/ui/separator";
-import Squares from "@/components/Squres";
 
 
 export default function AdminPanel() {

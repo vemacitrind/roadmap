@@ -18,12 +18,14 @@ import RoadmapsPage from "@/components/Admin/RoadmapsPage";
 import AnalyticsPage from "@/components/Admin/AnalyticsPage";
 import Community from "@/pages/Community"
 import { Toaster } from "sonner";
+import ProjectDetails from "@/pages/Project/ProjectDetails"
+import Project from "@/pages/Project/Projects"
 
 function App() {
   const { user } = useAuth();
   return (
     <>
-    <Toaster richColors closeButton position="top-center" theme="dark"/>
+      <Toaster richColors closeButton position="top-center" theme="dark" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -33,6 +35,8 @@ function App() {
         <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/project/" element={<Project />} />
+        <Route path="/project/:projectId" element={<ProjectDetails />} />
         <Route path="/admin" element={<AdminDashBoard />}>
           <Route index element={<DashboardPagea />} />
           <Route path="roadmaps" element={<RoadmapsPage />} />

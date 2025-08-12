@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,13 +8,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner"
+import { toast } from "sonner";
+import { Pencil } from "lucide-react";
 
 export default function EditProfileDialog({ open, onClose, userData, onSave }) {
+  const fileInputRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     about: "",
-    profileLink: "https://github.com/user-attachments/assets/c397a40b-d7a4-4e86-b7c5-8326c9a90610",
+    profileLink:
+      "https://github.com/user-attachments/assets/c397a40b-d7a4-4e86-b7c5-8326c9a90610",
     github: "",
     linkedin: "",
     instagram: "",
@@ -49,16 +53,39 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
     setFormData((prev) => ({ ...prev, urls: [...prev.urls, ""] }));
   };
 
+  const handleFileUpload = async (file) => {
+    if (!file) return;
+    const formDataObj = new FormData();
+    formDataObj.append("file", file);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/generate-img-url", {
+        method: "POST",
+        body: formDataObj,
+      });
+
+      if (!res.ok) throw new Error("Upload failed");
+
+      const data = await res.json();
+      handleChange("profileLink", data.url);
+      toast.success("Image uploaded!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to upload image");
+    }
+  };
+
   const handleSubmit = () => {
     if (!formData.name.trim()) return toast.error("Name required!");
     const dataToSubmit = {
       ...formData,
-      profileLink: formData.profileLink || "https://github-production-user-asset-6210df.s3.amazonaws.com/161121265/465578099-c397a40b-d7a4-4e86-b7c5-8326c9a90610.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250712%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250712T155508Z&X-Amz-Expires=300&X-Amz-Signature=3956a63cdc19eff28fed7e3e04f2103788992f35b8438e0349c2dd85e41ecbdf&X-Amz-SignedHeaders=host"
+      profileLink:
+        formData.profileLink ||
+        "https://github-production-user-asset-6210df.s3.amazonaws.com/161121265/465578099-c397a40b-d7a4-4e86-b7c5-8326c9a90610.png",
     };
 
-    console.log("this is: " + dataToSubmit.profileLink);
     onSave(dataToSubmit);
-    onClose();;
+    onClose();
   };
 
   return (
@@ -67,6 +94,28 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
         <DialogHeader>
           <DialogTitle>Edit Profile</DialogTitle>
         </DialogHeader>
+
+        {/* Profile Image with Edit Icon */}
+        <div className="flex justify-center mb-6 relative">
+          <img
+            src={formData.profileLink}
+            alt="Profile"
+            className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
+          />
+          <button
+            onClick={() => fileInputRef.current.click()}
+            className="absolute bottom-0 right-[calc(50%-48px)] bg-white p-1 rounded-full shadow hover:bg-gray-100"
+          >
+            <Pencil size={16} />
+          </button>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            className="hidden"
+            onChange={(e) => handleFileUpload(e.target.files[0])}
+          />
+        </div>
 
         <div className="space-y-4">
           {/* Name */}
@@ -89,16 +138,6 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
               value={formData.about}
               onChange={(e) => handleChange("about", e.target.value)}
               placeholder="Something about you"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="about">Profile URL</Label>
-            <Input
-              id="profileLink"
-              value={formData.profileLink}
-              onChange={(e) => handleChange("profileLink", e.target.value)}
-              placeholder="img url"
             />
           </div>
 

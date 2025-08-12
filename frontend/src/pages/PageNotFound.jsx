@@ -1,4 +1,4 @@
-import FuzzyText from "@/components/FuzzyText";
+import FuzzyText from "@/components/ReactBit/FuzzyText";
 import { Link } from "react-router-dom";
 import BasicHeader from '@/components/BasicHeader';
 import { Cog } from 'lucide-react';

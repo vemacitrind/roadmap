@@ -35,7 +35,7 @@ export default function ProfileHeader({ user, onSave }) {
 
 
         {user?.about && (
-          <p className="text-sm text-zinc-400 mt-2 italic">
+          <p className="text-sm text-zinc-400 mt-2 italic text-start">
             {user.about}
           </p>
         )}

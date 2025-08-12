@@ -1,5 +1,5 @@
 import AuthPage from "@/components/AuthPage";
-import Threads from "@/components/Threads"; 
+import Threads from "@/components/ReactBit/Threads"; 
 import BasicHeader from "@/components/BasicHeader";
 
 export default function Login() {

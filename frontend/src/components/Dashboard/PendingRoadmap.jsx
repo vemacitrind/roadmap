@@ -45,7 +45,7 @@ export default function PendingRoadmap({ roadmaps = {} }) {
       </div>
 
       {/* Cards */}
-      <div className={"grid sm:grid-cols-2 lg:grid-cols-3 gap-5"+filtered.length > 0 ? "" : "place-items-center"}>
+      <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-5 ${filtered.length > 0 ? "" : "place-items-center"}`}>
         { filtered.length > 0 ? <>
         {filtered.map(([title, data]) => (
           <div

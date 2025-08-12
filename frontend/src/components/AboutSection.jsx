@@ -1,6 +1,6 @@
 import { Github, Linkedin, Twitter, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-import ShinyText from "./ShinyText";
+import ShinyText from "@/components/ReactBit/ShinyText";
 
 export default function AboutSection() {
     return (

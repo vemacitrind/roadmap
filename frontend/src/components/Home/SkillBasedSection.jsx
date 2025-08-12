@@ -1,22 +1,8 @@
 import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
-import ChromaGrid from "./ChromaGrid";
-import { JavaIcon,PythonIcon,JavascriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "./Icon";
-import {
-  Coffee,
-  FlaskConical,
-  Webhook,
-  Atom,
-  ArrowRightCircle,
-  SquareTerminal,
-  Type,
-  Cross, 
-  Server,
-  Database,
-  Container,
-  GitBranch,MoveRight,
-  GiftIcon
-} from "lucide-react";
+import ChromaGrid from "@/components/ReactBit/ChromaGrid";
+import { JavaIcon,PythonIcon,JavascriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "@/components/Icon";
+import {Database,MoveRight} from "lucide-react";
 
 const items = [
   {

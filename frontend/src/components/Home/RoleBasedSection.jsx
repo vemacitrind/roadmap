@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
-import { Monitor, Database, Code2, BrainCircuit, Smartphone, Palette, LineChart, ShieldCheck, Cloud, Gamepad2, BugPlay, FileText, MoveRight } from 'lucide-react';
-import ChromaGrid from "./ChromaGrid";
-import { FrontendIcon,BackendIcon,UiuxIcon } from "./Icon";
+import { Code2, BrainCircuit, Smartphone, LineChart, ShieldCheck, Cloud, Gamepad2, BugPlay, FileText, MoveRight } from 'lucide-react';
+import ChromaGrid from "@/components/ReactBit/ChromaGrid";
+import { FrontendIcon,BackendIcon,UiuxIcon } from "@/components/Icon";
 const items = [
   {
     title: "Frontend Developer",

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { MessageSquare, X } from "lucide-react";
 import { Button } from "@/components/ui/button"; 
-import ShinyText from "./ShinyText";
-
 export default function FloatingChat() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -12,7 +10,6 @@ export default function FloatingChat() {
     if (!input.trim()) return;
     setMessages([...messages, { from: "user", text: input }]);
     setInput("");
-    // TODO: Connect to your chatbot API
   };
 
   return (

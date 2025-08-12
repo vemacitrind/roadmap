@@ -25,10 +25,11 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogFooter
 } from "@/components/ui/dialog";
-import {sendRoadmapStartEmail} from "@/lib/api"
+import { sendRoadmapStartEmail } from "@/lib/api"
 import { useLocation } from "react-router-dom";
-
+import Confetti from "react-confetti";
 
 export default function RoadmapViewer() {
   const { category } = useParams();
@@ -43,6 +44,7 @@ export default function RoadmapViewer() {
   const [started, setStarted] = useState(false);
   const location = useLocation();
   const skill = location.pathname.split("/").filter(Boolean).pop();
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -70,9 +72,9 @@ export default function RoadmapViewer() {
 
   const handleStart = async () => {
     if (!user) return setShowSignin(true);
-    await startRoadmapForUser(uid, roadmap.title,skill);
+    await startRoadmapForUser(uid, roadmap.title, skill);
     setStarted(true);
-    sendRoadmapStartEmail(email,roadmap.title,roadmap.description)
+    sendRoadmapStartEmail(email, roadmap.title, roadmap.description)
   };
 
   const handleToggleLesson = async (lessonId) => {
@@ -95,8 +97,14 @@ export default function RoadmapViewer() {
 
   useEffect(() => {
     if (!user || !started || !roadmap) return;
-    updateCompletionStatus(user.uid,progressPercent,roadmap.title);
+    updateCompletionStatus(user.uid, progressPercent, roadmap.title);
   }, [progressPercent, user, started, roadmap]);
+
+  useEffect(() => {
+    if (progressPercent === 100) {
+      setShowDialog(true);
+    }
+  }, [progressPercent]);
 
   if (error) return <PageNotFound type="roadmap-error" />;
   if (!roadmap) return <p className="text-center text-zinc-500">Loading roadmap...</p>;
@@ -170,6 +178,20 @@ export default function RoadmapViewer() {
         </div>
         <AboutSection />
       </div>
+
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Congratulations!</DialogTitle>
+          </DialogHeader>
+          <p className="mb-4">You've completed 100% of your progress!</p>
+          <DialogFooter>
+            <Button onClick={() => setShowDialog(false)}>Close</Button>
+          </DialogFooter>
+          {/* Confetti */}
+          {showDialog && <Confetti numberOfPieces={200} recycle={false} />}
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={showSignin} onOpenChange={setShowSignin}>
         <DialogContent className="text-center">

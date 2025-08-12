@@ -54,3 +54,64 @@ def startroadmap_email(request):
 
     success = send_progress_email(email, f"You've started {title}", html)
     return Response({"status": "sent" if success else "failed"})
+
+@api_view(["POST"])
+def payment_emails(request):
+    project_title = request.data.get("project_title")
+    project_link = request.data.get("project_drive_link")  # matching frontend
+    project_price = request.data.get("project_price")
+    buyer_email = request.data.get("buyer_email")
+    seller_email = request.data.get("seller_email")
+    buyer_title = request.data.get("buyer_title")
+    seller_title = request.data.get("seller_title")
+    buyer_des = request.data.get("buyer_desc")
+    seller_des = request.data.get("seller_desc")
+
+    # Validate required fields
+    if not all([project_title, project_link, project_price,
+                buyer_email, seller_email,
+                buyer_title, seller_title,
+                buyer_des, seller_des]):
+        return Response({"error": "Missing required fields!"}, status=400)
+
+    # Buyer email HTML
+    buyer_html = f"""
+    <div style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #4CAF50;">Thank you for your purchase!</h2>
+        <p>Hi there,</p>
+        <p>You have successfully started the project <strong>{project_title}</strong>.</p>
+        <p><strong>Project Price:</strong> ₹{project_price}</p>
+        <p>{buyer_des}</p>
+        <p>
+            <a href="{project_link}" style="background:#4CAF50;color:white;padding:10px 15px;
+               text-decoration:none;border-radius:5px;">View Project</a>
+        </p>
+        <hr style="border:none;border-top:1px solid #ccc;margin:20px 0;">
+        <p style="font-size: 12px; color: #777;">This is an automated message. Please do not reply.</p>
+    </div>
+    """
+
+    # Seller email HTML
+    seller_html = f"""
+    <div style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #2196F3;">New order received!</h2>
+        <p>Hi there,</p>
+        <p>You have a new buyer for the project <strong>{project_title}</strong>.</p>
+        <p><strong>Project Price:</strong> ₹{project_price}</p>
+        <p>{seller_des}</p>
+        <p>
+            <a href="{project_link}" style="background:#2196F3;color:white;padding:10px 15px;
+               text-decoration:none;border-radius:5px;">View Project</a>
+        </p>
+        <hr style="border:none;border-top:1px solid #ccc;margin:20px 0;">
+        <p style="font-size: 12px; color: #777;">This is an automated message. Please do not reply.</p>
+    </div>
+    """
+
+    buyer_success = send_progress_email(buyer_email, f"You've started {buyer_title}", buyer_html)
+    seller_success = send_progress_email(seller_email, f"New Buyer for {seller_title}", seller_html)
+
+    if buyer_success and seller_success:
+        return Response({"status": "sent"})
+    else:
+        return Response({"status": "failed"}, status=500)

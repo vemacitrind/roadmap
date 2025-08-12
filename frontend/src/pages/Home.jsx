@@ -1,9 +1,9 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { useRef, useState, useEffect } from 'react';
 import FloatingNavbar from "@/components/FloatingNavbar";
-import RoleBasedSection from '@/components/RoleBasedSection';
-import SkillBasedSection from '@/components/SkillBasedSection';
-import HeroSection from '@/components/HeroSection';
+import RoleBasedSection from '@/components/Home/RoleBasedSection';
+import SkillBasedSection from '@/components/Home/SkillBasedSection';
+import HeroSection from '@/components/Home/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import MobileNavbar from '@/components/MobileNavbar';
 import FloatingChat from '@/components/FloatingChat';
