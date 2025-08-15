@@ -1,7 +1,7 @@
 # backend/api/views_chatbot.py
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from services.openai_client import generate_custom_roadmap
+from ..services.openai_client import generate_custom_roadmap
 
 @api_view(["POST"])
 def chatbot(request):

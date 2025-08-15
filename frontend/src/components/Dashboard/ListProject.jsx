@@ -12,6 +12,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import axios from "axios";
+import techList from "@/lib/technologies.json";
+import { Icon } from "@iconify/react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Badge } from "@/components/ui/badge";
 
 export default function ListProject({ open, onOpenChange, onSubmit, user }) {
     const [title, setTitle] = useState("");
@@ -22,6 +26,8 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
     const [technologies, setTechnologies] = useState("");
     const [price, setPrice] = useState("");
     const [uploading, setUploading] = useState(false);
+    const [techQuery, setTechQuery] = useState("");
+    const [selectedTech, setSelectedTech] = useState([]);
 
     // Upload images one by one, return array of URLs
     const uploadImages = async () => {
@@ -52,6 +58,23 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
         return urls;
     };
 
+    const addTechnology = (tech) => {
+        if (!selectedTech.find(t => t.name === tech.name)) {
+            setSelectedTech([...selectedTech, tech]);
+        }
+        setTechQuery("");
+    };
+
+    const removeTechnology = (name) => {
+        setSelectedTech(selectedTech.filter(t => t.name !== name));
+    };
+
+    const filteredTech = techQuery.length >= 1
+        ? techList.filter(t =>
+            t.name.toLowerCase().includes(techQuery.toLowerCase())
+        )
+        : [];
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!title.trim()) {
@@ -67,7 +90,7 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
             }
         } catch {
             setUploading(false);
-            return; // upload failed, exit
+            return;
         }
 
         const projectData = {
@@ -173,14 +196,49 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
                     </div>
 
                     <div>
-                        <Label htmlFor="technologies">Technologies (comma separated)</Label>
-                        <Input
-                            id="technologies"
-                            type="text"
-                            value={technologies}
-                            onChange={(e) => setTechnologies(e.target.value)}
-                            disabled={uploading}
-                        />
+                        <Label>Technologies</Label>
+                        <div className="flex flex-wrap gap-2 mb-2">
+                            {selectedTech.map((tech) => (
+                                <Badge
+                                    key={tech.name}
+                                    className="flex items-center gap-1 cursor-pointer"
+                                    variant={"secondary"}
+                                    onClick={() => removeTechnology(tech.name)}
+                                >
+                                    <Icon icon={tech.icon} className="w-4 h-4" />
+                                    {tech.name} ✕
+                                </Badge>
+                            ))}
+                        </div>
+
+                        <Popover open={!!techQuery && filteredTech.length > 0}>
+                            <PopoverTrigger asChild>
+                                <Input
+                                    type="text"
+                                    value={techQuery}
+                                    onChange={(e) => setTechQuery(e.target.value)}
+                                    placeholder="Type a technology..."
+                                    disabled={uploading}
+                                />
+                            </PopoverTrigger>
+                            <PopoverContent
+                                className="w-full p-0"
+                                onOpenAutoFocus={(e) => e.preventDefault()} 
+                            >
+                                <div className="max-h-48 overflow-y-auto">
+                                    {filteredTech.map((tech) => (
+                                        <button
+                                            key={tech.name}
+                                            onClick={() => addTechnology(tech)}
+                                            className="flex items-center gap-2 w-full p-2 hover:bg-accent"
+                                        >
+                                            <Icon icon={tech.icon} className="w-5 h-5" />
+                                            {tech.name}
+                                        </button>
+                                    ))}
+                                </div>
+                            </PopoverContent>
+                        </Popover>
                     </div>
 
                     <div>

@@ -23,7 +23,7 @@ export const saveDailyLog = async (userId, logData) => {
 };
 
 export const sendRoadmapStartEmail = async (email, title, description) => {
-  axios.post("http://localhost:5000/send-roadmap-start-email", {
+  axios.post(`${API_BASE_URL}send-roadmap-start-email`, {
     email: email,
     title: title,
     description: description,
@@ -31,3 +31,4 @@ export const sendRoadmapStartEmail = async (email, title, description) => {
   .then((res) => {})
   .catch((err) => console.error(err.response?.data || err.message));
 };
+

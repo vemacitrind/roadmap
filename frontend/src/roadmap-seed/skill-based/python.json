@@ -1,114 +1,188 @@
 {
-    "title": "Learn Python Programming",
-    "description": "Learn Python 3 programming language within a month using our practical course. Understand the basic syntax of Python using our online tutorial. Prepare for a future in data science, AI and ML.",
-    "type": "skill-based",
-    "Syllabus": [
-        {
-            "title": "Output / Print in Python",
-            "description": "Learn how to make Python print whatever you want, and learn to use it as a basic calculator.",
-            "Lesson": [
-                "Introducing output / printing",
-                "Printing on multiple lines",
-                "Print text and numbers using single print"
-            ]
-        },
-        {
-            "title": "Variables and datatypes",
-            "description": "Learn how to make Python store data and manipulate them",
-            "Lesson": [
-                "Introduction to variables and datatypes",
-                "Boolean data type and negative numbers",
-                "Quiz on variables",
-                "Type conversion"
-            ]
-        },
-        {
-            "title": "Operators",
-            "description": "Learn about the various operators in Python",
-            "Lesson": [
-                "Arithmetic Operators",
-                "Relational Operators",
-                "Logical Operators",
-                "Precedence and Associativity"
-            ]
-        },
-        {
-            "title": "Strings",
-            "description": "Till now, we have mostly worked with numbers. Learn to also work with text",
-            "Lesson": [
-                "Introduction to strings",
-                "Quiz on strings",
-                "String Indexing and Slicing"
-            ]
-        },
-        {
-            "title": "User inputs",
-            "description": "How do we get a user to input data to the Python code?",
-            "Lesson": [
-                "How to take user input",
-                "Practice problems"
-            ]
-        },
-        {
-            "title": "Conditional statements",
-            "description": "Get Python to take decisions based on some conditions that you specify",
-            "Lesson": [
-                "Intro to if / else",
-                "Quiz on conditions",
-                "Combining conditions - And / or"
-            ]
-        },
-        {
-            "title": "Debug your code",
-            "description": "Learn to debug common errors that you will encounter while writing code",
-            "Lesson": [
-                "Learn to debug common errors"
-            ]
-        },
-        {
-            "title": "Lists",
-            "description": "Store vast amounts of data and access them easily using lists.",
-            "Lesson": [
-                "Introduction to lists",
-                "Quiz on Lists",
-                "List Operations"
-            ]
-        },
-        {
-            "title": "Loops",
-            "description": "Make Python perform similar tasks a million times, using iteration.",
-            "Lesson": [
-                "While loops",
-                "For loops",
-                "Loops Practice",
-                "Quiz on loops",
-                "Break / continue",
-                "Nested Loops"
-            ]
-        },
-        {
-            "title": "Functions in python",
-            "description": "Learn to use functions in Python",
-            "Lesson": [
-                "Learn about functions",
-                "Use functions in problems"
-            ]
-        },
-        {
-            "title": "Tuples and Dictionary",
-            "description": "You learnt arrays - time to increase your Python firepower with Tuples and Dictionary",
-            "Lesson": [
-                "Learn about tuples",
-                "Dictionarys"
-            ]
-        },
-        {
-            "title": "Getting started with algorithmic problems",
-            "description": "You learnt arrays - time to increase your Python firepower with Tuples and Dictionary",
-            "Lesson": [
-                "What are test cases?",
-                "What are custom inputs?"
-            ]
-        }
-    ]
+  "title": "Python Tutorial",
+  "description": "Master Python step-by-step, from installation to advanced OOP concepts. Includes interactive code challenges and practical examples for each topic.",
+  "icon": "logos:python",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Python Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Python" },
+        { "type": "text", "content": "Python can be installed from the official Python website: https://www.python.org/downloads/" },
+        { "type": "text", "content": "Steps:" },
+        { "type": "list", "content": [
+          "Download the installer for your OS",
+          "Run the installer and check 'Add Python to PATH'",
+          "Verify installation by running `python --version` in your terminal"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Python Syntax",
+      "content": [
+        { "type": "heading", "content": "Execute Python Syntax" },
+        { "type": "text", "content": "Python syntax can be executed directly in the command line or from a file." },
+        { "type": "bash", "content": ">>> print(\"Hello, World!\")\nHello, World!" }
+      ],
+      "questions": [
+        {"language":"python","question": "Write a Python program to print 'Hello, Python!'", "expectedOutput": "Hello, Python!" }
+      ]
+    },
+    {
+      "title": "Python Comments",
+      "content": [
+        { "type": "heading", "content": "Comments in Python" },
+        { "type": "text", "content": "Comments are used to explain code. They start with a # symbol." },
+        { "type": "bash", "content": "# This is a comment\nprint(\"Hello\")" }
+      ],
+      "questions": [
+        { "language":"python","question": "Write a comment saying 'My first program' and print Hello", "expectedOutput": "Hello" }
+      ]
+    },
+    {
+      "title": "Python Variables",
+      "content": [
+        { "type": "heading", "content": "Creating Variables" },
+        { "type": "text", "content": "Variables are containers for storing data values." },
+        { "type": "bash", "content": "x = 5\ny = \"John\"\nprint(x)\nprint(y)" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create a variable age with value 25 and print it", "expectedOutput": "25" }
+      ]
+    },
+    {
+      "title": "Python Data Types",
+      "content": [
+        { "type": "heading", "content": "Data Types in Python" },
+        { "type": "text", "content": "Python has various data types such as int, float, str, bool, list, tuple, set, and dict." },
+        { "type": "bash", "content": "x = 5         # int\ny = 3.14      # float\nz = \"Hello\"   # str" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create variables of int, float, and string type and print each", "expectedOutput": "5\n3.14\nHello" }
+      ]
+    },
+    {
+      "title": "Python Numbers",
+      "content": [
+        { "type": "heading", "content": "Number Types" },
+        { "type": "text", "content": "Python supports integers, floating-point numbers, and complex numbers." },
+        { "type": "bash", "content": "x = 1     # int\ny = 2.8   # float\nz = 1j    # complex" }
+      ],
+      "questions": [
+        { "language":"python","question": "Assign a complex number 3+5j to a variable and print it", "expectedOutput": "(3+5j)" }
+      ]
+    },
+    {
+      "title": "Python Casting",
+      "content": [
+        { "type": "heading", "content": "Type Casting" },
+        { "type": "text", "content": "Casting is used to convert variables from one type to another." },
+        { "type": "bash", "content": "x = int(1.5)\ny = float(2)\nz = str(3)" }
+      ],
+      "questions": [
+        { "language":"python","question": "Convert float 5.99 to int and print it", "expectedOutput": "5" }
+      ]
+    },
+    {
+      "title": "Python Strings",
+      "content": [
+        { "type": "heading", "content": "Working with Strings" },
+        { "type": "text", "content": "Strings in Python are surrounded by either single or double quotes." },
+        { "type": "bash", "content": "x = \"Hello\"\nprint(x[0])\nprint(x[1:4])" }
+      ],
+      "questions": [
+        { "language":"python","question": "Store 'Python' in a variable and print the first 3 letters", "expectedOutput": "Pyt" }
+      ]
+    },
+    {
+      "title": "Python Booleans",
+      "content": [
+        { "type": "heading", "content": "Boolean Values" },
+        { "type": "text", "content": "Booleans represent True or False values." },
+        { "type": "bash", "content": "print(10 > 9)\nprint(10 == 9)\nprint(10 < 9)" }
+      ],
+      "questions": [
+        { "language":"python","question": "Write an expression that returns True if 7 is greater than 3", "expectedOutput": "True" }
+      ]
+    },
+    {
+      "title": "Python Operators",
+      "content": [
+        { "type": "heading", "content": "Operators in Python" },
+        { "type": "text", "content": "Operators are used to perform operations on variables and values." },
+        { "type": "bash", "content": "x = 5\ny = 3\nprint(x + y)\nprint(x - y)\nprint(x * y)\nprint(x / y)" }
+      ],
+      "questions": [
+        { "language":"python","question": "Add 8 and 12", "expectedOutput": "20" }
+      ]
+    },
+    {
+      "title": "Python Lists",
+      "content": [
+        { "type": "heading", "content": "Lists" },
+        { "type": "text", "content": "Lists are used to store multiple items in a single variable." },
+        { "type": "bash", "content": "fruits = [\"apple\", \"banana\", \"cherry\"]\nprint(fruits[0])" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create a list of 3 numbers and print the second number", "expectedOutput": "2" }
+      ]
+    },
+    {
+      "title": "Python Tuples",
+      "content": [
+        { "type": "heading", "content": "Tuples" },
+        { "type": "text", "content": "Tuples are ordered and unchangeable collections." },
+        { "type": "bash", "content": "thistuple = (\"apple\", \"banana\", \"cherry\")\nprint(thistuple[1])" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create a tuple of 3 fruits and print the last one", "expectedOutput": "cherry" }
+      ]
+    },
+    {
+      "title": "Python Sets",
+      "content": [
+        { "type": "heading", "content": "Sets" },
+        { "type": "text", "content": "Sets are unordered and do not allow duplicate values." },
+        { "type": "bash", "content": "thisset = {\"apple\", \"banana\", \"cherry\"}\nprint(thisset)" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create a set with values 1, 2, 3 and print it", "expectedOutput": "{1, 2, 3}" }
+      ]
+    },
+    {
+      "title": "Python Dictionaries",
+      "content": [
+        { "type": "heading", "content": "Dictionaries" },
+        { "type": "text", "content": "Dictionaries are used to store data values in key:value pairs." },
+        { "type": "bash", "content": "thisdict = {\"brand\": \"Ford\", \"model\": \"Mustang\"}\nprint(thisdict[\"brand\"])" }
+      ],
+      "questions": [
+        { "language":"python","question": "Create a dictionary with name and age, print name", "expectedOutput": "John" }
+      ]
+    },
+    {
+      "title": "Python If...Else",
+      "content": [
+        { "type": "heading", "content": "If...Else Statements" },
+        { "type": "text", "content": "Python supports if, elif, and else conditions." },
+        { "type": "bash", "content": "a = 33\nb = 200\nif b > a:\n    print(\"b is greater than a\")" }
+      ],
+      "questions": [
+        { "language":"python","question": "Write an if statement that prints 'Yes' if 5 is less than 10", "expectedOutput": "Yes" }
+      ]
+    },
+    {
+      "title": "Python Match",
+      "content": [
+        { "type": "heading", "content": "Match Statement" },
+        { "type": "text", "content": "Match is used for pattern matching, similar to switch in other languages." },
+        { "type": "bash", "content": "x = 2\nmatch x:\n    case 1:\n        print(\"One\")\n    case 2:\n        print(\"Two\")" }
+      ],
+      "questions": [
+        { "language":"python","question": "Write a match statement that prints 'Three' if variable is 3", "expectedOutput": "Three" }
+      ]
+    }
+  ]
 }

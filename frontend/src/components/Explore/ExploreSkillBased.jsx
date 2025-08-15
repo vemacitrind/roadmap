@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
-import { fetchSkillBasedCollections } from "@/lib/fetchXBasedCollections";
-import { Card, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import * as Icons from "@/components/Icon"; 
+import { Icon } from "@iconify/react";
+import { fetchSkillBasedRoadmaps } from "@/lib/roadmap"
 
 export default function ExploreSkillBased() {
-    const [categories, setCategories] = useState([]);
+    const [roadmaps, setRoadmaps] = useState([]);
 
     useEffect(() => {
-        fetchSkillBasedCollections().then(setCategories);
+        fetchSkillBasedRoadmaps().then(setRoadmaps);
     }, []);
 
-    const getIconForCategory = (cat) => {
-        const name = cat.charAt(0).toUpperCase() + cat.slice(1); // e.g., java → Java
-        const IconComponent = Icons[`${name}Icon`];
-        return IconComponent || null;
-    };
+    const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 
     return (
         <div>
@@ -25,26 +21,28 @@ export default function ExploreSkillBased() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.map((cat) => {
-                    const Icon = getIconForCategory(cat);
-                    const capitalized = cat.charAt(0).toUpperCase() + cat.slice(1);
-
-                    return (
-                        <Link to={`/explore/skill/${cat}`} key={cat}>
-                            <Card className="py-6 px-4 hover:bg-zinc-900 transition">
-                                <CardTitle className="flex flex-col items-center justify-center text-center gap-3">
-                                    {Icon && (
-                                        <div className="w-10 h-10 flex items-center justify-center">
-                                            <Icon className="max-w-full max-h-full" />
-                                        </div>
-                                    )}
-
-                                    <span className="text-lg font-medium">{capitalized}</span>
+                {roadmaps.map((roadmap) => (
+                    <Link
+                        key={roadmap.id}
+                        to={`/skill-based/${slugify(roadmap.title)}`}
+                        className="block"
+                    >
+                        <Card className="py-6 px-4 group hover:bg-zinc-900 transition">
+                            <CardHeader className="flex flex-col items-center justify-center gap-3">
+                                {roadmap.icon && (
+                                    <Icon
+                                        icon={roadmap.icon}
+                                        className="w-10 h-10 transition duration-300 filter brightness-0 invert group-hover:filter-none"
+                                        
+                                    />
+                                )}
+                                <CardTitle className="text-lg font-medium text-center text-zinc-200">
+                                    {roadmap.title}
                                 </CardTitle>
-                            </Card>
-                        </Link>
-                    );
-                })}
+                            </CardHeader>
+                        </Card>
+                    </Link>
+                ))}
             </div>
         </div>
     );

@@ -9,6 +9,10 @@ import { fetchUserProfile } from "@/lib/community_page";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { purchase } from '@/lib/project'
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
+import { Icon } from "@iconify/react";
+import techList from "@/lib/technologies.json";
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -90,7 +94,7 @@ export default function ProjectDetails() {
             className="w-14 h-14 rounded-full border border-zinc-700 object-cover"
           />
           <div>
-            <p className="text-sm text-zinc-400">Created by</p>
+            <p className="text-sm text-zinc-400 text-start">Created by</p>
             <h2 className="text-xl font-semibold">{creatorProfile?.name || "Unknown"}</h2>
           </div>
         </div>
@@ -104,28 +108,44 @@ export default function ProjectDetails() {
         {project.technologies?.length > 0 && (
           <div className="mt-4">
             <h3 className="font-semibold text-start">Technologies Used:</h3>
-            <ul className="list-disc list-inside text-start">
-              {project.technologies.map((tech, i) => (
-                <li key={i}>{tech}</li>
-              ))}
-            </ul>
+            <div className="flex flex-wrap gap-3 mt-2">
+              {project.technologies.map((tech, i) => {
+                const techData = techList.find(
+                  (t) => t.name.toLowerCase() === tech.toLowerCase()
+                );
+                return (
+                  <Badge
+                    key={i}
+                    variant="outline"
+                    className="flex items-center gap-2 text-white border-white/30 px-3 py-1.5 text-sm"
+                  >
+                    {techData && (
+                      <Icon icon={techData.icon} className="w-5 h-5 text-white" />
+                    )}
+                    {tech}
+                  </Badge>
+                );
+              })}
+            </div>
           </div>
         )}
-
         <div className="mt-6 text-lg font-semibold text-start">
           Price: ₹{project.price}
         </div>
 
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 underline mt-2 block"
-          >
-            Demo Link
-          </a>
-        )}
+        <div className="text-start">
+
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-1 hover:shadow-lg "
+            >
+              Demo Link <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
+        </div>
 
         <div className="mt-8">
           <Button variant="default" className="px-6 py-3 rounded transition" onClick={handleBuyClick}>

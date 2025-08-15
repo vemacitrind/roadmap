@@ -1,5 +1,5 @@
-import firebase_admin
-from firebase_admin import credentials, firestore
+import firebase_admin # type: ignore
+from firebase_admin import credentials, firestore # type: ignore
 
 if not firebase_admin._apps:
     cred = credentials.Certificate("/home/master/Documents/ip/backend/roadmap-site-firebase.json")
@@ -12,7 +12,7 @@ def save_reddit_post(post):
 
     if not doc_ref.get().exists:
         doc_ref.set({
-            "uid": "0mpJx8NHbwXydCCdhBfvkqNbeyB2",  # Admin UID only
+            "uid": "0mpJx8NHbwXydCCdhBfvkqNbeyB2",  
             "title": post["title"],
             "link": post["link"],
             "category": post.get("category", "general"),

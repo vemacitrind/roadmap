@@ -2,106 +2,124 @@ import { Link } from "react-router-dom";
 import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 import { Code2, BrainCircuit, Smartphone, LineChart, ShieldCheck, Cloud, Gamepad2, BugPlay, FileText, MoveRight } from 'lucide-react';
 import ChromaGrid from "@/components/ReactBit/ChromaGrid";
-import { FrontendIcon,BackendIcon,UiuxIcon } from "@/components/Icon";
+import { Icon } from "@iconify/react";
+
+const IconWrapper = ({ name, className = "" }) => (
+  <div className="w-[42px] h-[42px] flex items-center justify-center">
+    <Icon
+      icon={name}
+      className={className}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "block",
+        color: "inherit", 
+      }}
+    />
+  </div>
+);
+
 const items = [
   {
     title: "Frontend Developer",
     subtitle: "HTML, CSS, JS, React...",
-    icon: <FrontendIcon size={42} />,
+    icon: <IconWrapper name="streamline-ultimate-color:modern-tv-curvy-edge" />,
     borderColor: "#71717a",
-    gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/frontend",
+    gradient: "linear-gradient(145deg, #1b1818ff, #3f3f46)",
+    path: "/role-based/frontend",
   },
   {
     title: "Backend Developer",
     subtitle: "Node, Django, APIs...",
-    icon: <BackendIcon size={42} />,
+    icon: <IconWrapper name="streamline-sharp-color:database-server-2-flat" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/backend",
+    path: "/role-based/backend-developer-roadmap",
   },
   {
     title: "DevOps Engineer",
     subtitle: "CI/CD, Docker, AWS...",
-    icon: <Code2 size={42} />,
+    icon: <IconWrapper name="vscode-icons:folder-type-docker-opened" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/devops",
+    path: "/role-based/devops",
   },
   {
     title: "AI Engineer",
     subtitle: "ML, DL, Python...",
-    icon: <BrainCircuit size={42} />,
+    icon: <IconWrapper name="material-icon-theme:gemini-ai" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/ai-engineer",
-    new: true
+    path: "/role-based/ai-engineer",
+    new: true,
   },
   {
     title: "Mobile Developer",
     subtitle: "iOS, Android, React Native, Swift, Kotlin...",
-    icon: <Smartphone size={42} />,
+    icon: <IconWrapper name="noto:mobile-phone" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/mobile",
+    path: "/role-based/mobile",
   },
   {
     title: "UI/UX Designer",
     subtitle: "Figma, Sketch, Adobe XD, Wireframing, Prototyping...",
-    icon: <UiuxIcon size={42} />,
+    icon: <IconWrapper name="streamline-sharp-color:graphic-template-website-ui-flat" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/ui-ux",
+    path: "/role-based/ui-ux",
   },
   {
     title: "Data Scientist",
     subtitle: "Python, R, SQL, Pandas, NumPy, Machine Learning...",
-    icon: <LineChart size={42} />,
+    icon: <IconWrapper name="fluent-color:data-area-32" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/data-scientist",
+    path: "/role-based/data-scientist",
   },
   {
     title: "Cybersecurity Analyst",
     subtitle: "Network Security, Incident Response, Ethical Hacking...",
-    icon: <ShieldCheck size={42} />,
+    icon: <IconWrapper name="fluent-color:shield-48" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/cybersecurity",
+    path: "/role-based/cybersecurity",
   },
   {
     title: "Cloud Engineer",
     subtitle: "AWS, Azure, GCP, Cloud Architecture, Virtualization...",
-    icon: <Cloud size={42} />,
+    icon: <IconWrapper name="fluent-color:cloud-48" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/cloud",
+    path: "/role-based/cloud",
   },
   {
     title: "Game Developer",
     subtitle: "Unity, Unreal Engine, C++, C#, Game Design...",
-    icon: <Gamepad2 size={42} />,
+    icon: <IconWrapper name="file-icons:unrealscript" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/game-developer",
+    path: "/role-based/game-developer",
   },
   {
     title: "QA Engineer",
     subtitle: "Manual Testing, Automation, Selenium, Jest, Cypress...",
-    icon: <BugPlay size={42} />,
+    icon: <IconWrapper name="vaadin:automation" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/qa-engineer",
+    path: "/role-based/qa-engineer",
   },
   {
     title: "Technical Writer",
     subtitle: "Documentation, API Docs, User Manuals, Content Creation...",
-    icon: <FileText size={42} />,
+    icon: <IconWrapper name="flat-color-icons:file" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/role/technical-writer",
+    path: "/role-based/technical-writer",
   },
 ];
+
+
 
 export default function RoleBasedSection() {
   return (

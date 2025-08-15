@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from services.smtp_client import send_progress_email
+from ..services.smtp_client import send_progress_email
 import random, time
 
 # {email: {"otp": "123456", "ts": 1690000000}}

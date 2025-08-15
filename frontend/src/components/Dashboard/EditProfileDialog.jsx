@@ -95,7 +95,6 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
           <DialogTitle>Edit Profile</DialogTitle>
         </DialogHeader>
 
-        {/* Profile Image with Edit Icon */}
         <div className="flex justify-center mb-6 relative">
           <img
             src={formData.profileLink}
@@ -106,7 +105,7 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
             onClick={() => fileInputRef.current.click()}
             className="absolute bottom-0 right-[calc(50%-48px)] bg-white p-1 rounded-full shadow hover:bg-gray-100"
           >
-            <Pencil size={16} />
+            <Pencil size={16} className="text-zinc-950"/>
           </button>
           <input
             type="file"

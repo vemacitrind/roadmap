@@ -43,7 +43,7 @@ export default function Dashboard() {
     try {
       listenToUserProjects(user.uid, setProjects);
     } catch (err) {
-      // console.log(err)
+      console.log(err)
     }
   }, []);
 
@@ -79,6 +79,7 @@ export default function Dashboard() {
       name: data.name?.toLowerCase() || "",
     }));
 
+
   const x = (
     <>
 
@@ -88,26 +89,31 @@ export default function Dashboard() {
         <CompletedBadges data={completed} />
 
         {/* Toggle buttons */}
-        <div className="flex space-x-4 mb-6">
-          <Button
-            size="sm"
-            variant={activeView === "roadmap" ? "default" : "outline"}
-            onClick={() => setActiveView("roadmap")}
-          >
-            Roadmaps
-          </Button>
-          <Button
-            size="sm"
-            variant={activeView === "projects" ? "default" : "outline"}
-            onClick={() => setActiveView("projects")}
-          >
-            Projects
-          </Button>
+        <div className="flex relative mb-6 border-b border-zinc-700 justify-around">
+          {["roadmap", "projects"].map((view) => (
+            <button
+              key={view}
+              onClick={() => setActiveView(view)}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 
+                ${activeView === view ? "text-zinc-50" : "text-zinc-200 hover:text-zinc-100"}`}
+            >
+              {view === "roadmap" ? "Roadmaps" : "Projects"}
+            </button>
+          ))}
+
+          {/* Animated underline */}
+          <span
+            className="absolute bottom-0 h-[2px] bg-zinc-50 transition-all duration-300"
+            style={{
+              left: activeView === "roadmap" ? "0%" : "50%",
+              width: "50%",
+            }}
+          />
         </div>
 
         {/* Show PendingRoadmap or ProjectSection based on toggle */}
         {activeView === "roadmap" ? (
-          <PendingRoadmap roadmaps={profile?.roadmap} />
+          <PendingRoadmap roadmapsProgress={profile?.roadmapsProgress} />
         ) : (
           <ProjectSection projects={projects} loading={projectsLoading} user={user} />
         )}

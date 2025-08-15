@@ -94,7 +94,6 @@ export const subscribeToComments = (postId, callback) => {
   });
 };
 
-
 export const handlePostReaction = async (postId, user, type) => {
   if (!user) return { success: false, message: "Login required" };
 
@@ -155,3 +154,68 @@ export const createUserPost = async ({ title, link, category, source }, user) =>
 
   await addDoc(collection(db, "/community/reddit/posts"), post);
 };
+
+// Scrapper
+
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+
+export async function startScraper() {
+  try {
+    const res = await fetch(`${BASE_URL}/scraper/start/`, {
+      method: "POST",
+    });
+    if (!res.ok) throw new Error("Failed to start scraper");
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}
+
+export async function stopScraper() {
+  try {
+    const res = await fetch(`${BASE_URL}/scraper/stop/`, {
+      method: "POST",
+    });
+    if (!res.ok) throw new Error("Failed to stop scraper");
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}
+
+export async function trainModel() {
+  try {
+    const res = await fetch(`${BASE_URL}/scraper/train/`, {
+      method: "POST",
+    });
+    if (!res.ok) throw new Error("Failed to start training");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+export async function fetchLogs() {
+  try {
+    const res = await fetch(`${BASE_URL}/scraper/logs/`);
+    if (!res.ok) throw new Error("Failed to fetch logs");
+    const data = await res.json();
+    return data; // data is already an array of logs
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
+export function pollLogs(callback, interval = 3000) {
+  const id = setInterval(async () => {
+    const logs = await fetchLogs();
+    callback(logs);
+  }, interval);
+  return () => clearInterval(id);
+}
+
+

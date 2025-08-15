@@ -1,0 +1,53 @@
+[
+  { "name": "JavaScript", "icon": "simple-icons:javascript" },
+  { "name": "TypeScript", "icon": "simple-icons:typescript" },
+  { "name": "Python", "icon": "simple-icons:python" },
+  { "name": "Java", "icon": "ri:java-fill" },
+  { "name": "C", "icon": "simple-icons:c" },
+  { "name": "C++", "icon": "simple-icons:cplusplus" },
+  { "name": "C#", "icon": "simple-icons:csharp" },
+  { "name": "Go", "icon": "simple-icons:go" },
+  { "name": "Rust", "icon": "simple-icons:rust" },
+  { "name": "PHP", "icon": "simple-icons:php" },
+  { "name": "Ruby", "icon": "simple-icons:ruby" },
+  { "name": "Kotlin", "icon": "simple-icons:kotlin" },
+  { "name": "Swift", "icon": "simple-icons:swift" },
+  { "name": "HTML5", "icon": "simple-icons:html5" },
+  { "name": "CSS", "icon": "simple-icons:css" },
+  { "name": "Sass", "icon": "simple-icons:sass" },
+  { "name": "Bootstrap", "icon": "simple-icons:bootstrap" },
+  { "name": "Tailwind CSS", "icon": "simple-icons:tailwindcss" },
+
+  { "name": "React", "icon": "simple-icons:react" },
+  { "name": "Next.js", "icon": "simple-icons:nextdotjs" },
+  { "name": "Vue.js", "icon": "simple-icons:vuedotjs" },
+  { "name": "Nuxt.js", "icon": "simple-icons:nuxtdotjs" },
+  { "name": "Angular", "icon": "simple-icons:angular" },
+  { "name": "Svelte", "icon": "simple-icons:svelte" },
+
+  { "name": "Node.js", "icon": "simple-icons:nodedotjs" },
+  { "name": "Express.js", "icon": "simple-icons:express" },
+  { "name": "NestJS", "icon": "simple-icons:nestjs" },
+  { "name": "Django", "icon": "simple-icons:django" },
+  { "name": "Flask", "icon": "simple-icons:flask" },
+  { "name": "Spring Boot", "icon": "simple-icons:springboot" },
+  { "name": "Laravel", "icon": "simple-icons:laravel" },
+
+  { "name": "MySQL", "icon": "lineicons:mysql" },
+  { "name": "PostgreSQL", "icon": "simple-icons:postgresql" },
+  { "name": "MongoDB", "icon": "simple-icons:mongodb" },
+  { "name": "SQLite", "icon": "simple-icons:sqlite" },
+  { "name": "Redis", "icon": "simple-icons:redis" },
+
+  { "name": "Git", "icon": "simple-icons:git" },
+  { "name": "GitHub", "icon": "simple-icons:github" },
+  { "name": "Docker", "icon": "simple-icons:docker" },
+  { "name": "Kubernetes", "icon": "simple-icons:kubernetes" },
+  { "name": "AWS", "icon": "simple-icons:amazonaws" },
+  { "name": "Firebase", "icon": "simple-icons:firebase" },
+  { "name": "Vercel", "icon": "simple-icons:vercel" },
+  { "name": "Netlify", "icon": "simple-icons:netlify" },
+
+  { "name": "Streamlit", "icon": "devicon-plain:streamlit" }
+  
+]

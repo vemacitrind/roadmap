@@ -6,9 +6,9 @@ import ShinyText from "./ShinyText";
 const ChromaGrid = ({
     items = [],
     className = "",
-    radius = 200,
-    damping = 0.45,
-    fadeOut = 0.8,
+    radius = 300,
+    damping = 0.5,
+    fadeOut = 0.6,
     ease = "power3.out",
 }) => {
     const rootRef = useRef(null);

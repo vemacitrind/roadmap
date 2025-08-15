@@ -1,117 +1,316 @@
 {
-  "title": "Learn Java Programming",
-  "description": "Master Java programming within a month using our hands-on course. Learn Java syntax, OOP concepts, and prepare for backend development, Android apps, or competitive programming.",
+  "title": "Java Tutorial",
+  "description": "Master Java step-by-step, from installation to advanced OOP concepts. Includes interactive code challenges and practical examples for each topic.",
+  "icon": "logos:java",
+  "category": "Programming",
   "type": "skill-based",
   "Syllabus": [
     {
-      "title": "Introduction and Setup",
-      "description": "Get started with Java by setting up your development environment and writing your first program.",
-      "Lesson": [
-        "What is Java?",
-        "Installing JDK and setting up IDE",
-        "Your first Java program"
+      "title": "Java Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Java (JDK)" },
+        { "type": "text", "content": "Download and install the JDK (Java Development Kit) from the official website. After installation, verify in your terminal:" },
+        { "type": "bash", "content": "java -version\njavac -version" },
+        { "type": "heading", "content": "Your First Compile & Run" },
+        { "type": "bash", "content": "/* Main.java */\npublic class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, World!\");\n  }\n}\n\n// Compile\njavac Main.java\n// Run\njava Main" }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Java Syntax",
+      "content": [
+        { "type": "heading", "content": "Basic Program Structure" },
+        { "type": "text", "content": "Every Java app starts from the main method inside a class. Class name should match filename." },
+        { "type": "bash", "content": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello, Java!\");\n  }\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print 'Hello, Java!'", "expectedOutput": "Hello, Java!" }
       ]
     },
     {
-      "title": "Variables and Data Types",
-      "description": "Learn about variables, primitive data types, and how to store data in Java.",
-      "Lesson": [
-        "Declaring variables",
-        "Primitive data types",
-        "Type casting and conversions"
+      "title": "Java Output",
+      "content": [
+        { "type": "heading", "content": "Printing in Java" },
+        { "type": "text", "content": "Use System.out.println for line output and System.out.print to continue on the same line." },
+        { "type": "bash", "content": "System.out.println(\"Line 1\");\nSystem.out.print(\"Line 2\");\nSystem.out.print(\" continues\");" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print exactly: Welcome to Java!", "expectedOutput": "Welcome to Java!" }
       ]
     },
     {
-      "title": "Operators",
-      "description": "Understand the operators Java provides for mathematical and logical operations.",
-      "Lesson": [
-        "Arithmetic Operators",
-        "Relational Operators",
-        "Logical Operators",
-        "Assignment and Unary Operators"
+      "title": "Java Comments",
+      "content": [
+        { "type": "heading", "content": "Single-line & Multi-line" },
+        { "type": "text", "content": "Use // for single-line comments and /* ... */ for multi-line comments." },
+        { "type": "bash", "content": "// This is a comment\n/* This is\n   a multi-line comment */" }
+      ],
+      "questions": [
+        { "language":"java","question": "Write a single-line comment 'My first Java program' and print Hello", "expectedOutput": "Hello" }
       ]
     },
     {
-      "title": "Control Flow Statements",
-      "description": "Learn how to control the flow of your Java programs using conditions and loops.",
-      "Lesson": [
-        "if, else if, else",
-        "switch-case",
-        "while and do-while loops",
-        "for loops",
-        "break and continue"
+      "title": "Java Variables",
+      "content": [
+        { "type": "heading", "content": "Declaring Variables" },
+        { "type": "text", "content": "Java is statically typed. You must declare a type before using a variable." },
+        { "type": "bash", "content": "int age = 25;\nString name = \"John\";\nSystem.out.println(age);\nSystem.out.println(name);" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create an int x = 10 and print it", "expectedOutput": "10" }
       ]
     },
     {
-      "title": "Taking User Input",
-      "description": "Read input from the user using Scanner class in Java.",
-      "Lesson": [
-        "Using Scanner for input",
-        "Common input-related issues"
+      "title": "Java Data Types",
+      "content": [
+        { "type": "heading", "content": "Primitive Types" },
+        { "type": "text", "content": "Common primitives: byte, short, int, long, float, double, char, boolean." },
+        { "type": "bash", "content": "int i = 5;\ndouble d = 3.14;\nchar c = 'A';\nboolean b = true;" }
+      ],
+      "questions": [
+        { "language":"java","question": "Declare a double price = 9.99 and print it", "expectedOutput": "9.99" }
       ]
     },
     {
-      "title": "Debugging and Errors",
-      "description": "Learn how to debug your code and fix common compilation and runtime errors.",
-      "Lesson": [
-        "Compilation vs Runtime errors",
-        "Exception messages",
-        "Basic debugging techniques"
+      "title": "Java Type Casting",
+      "content": [
+        { "type": "heading", "content": "Widening & Narrowing" },
+        { "type": "text", "content": "Widening happens automatically; narrowing requires explicit cast." },
+        { "type": "bash", "content": "int a = 5;\ndouble w = a;        // widening\nint n = (int) 5.99;   // narrowing" }
+      ],
+      "questions": [
+        { "language":"java","question": "Cast 7.8 to int and print it", "expectedOutput": "7" }
       ]
     },
     {
-      "title": "Arrays",
-      "description": "Store multiple values in a single variable using arrays.",
-      "Lesson": [
-        "Declaring and initializing arrays",
-        "Iterating through arrays",
-        "Common array problems"
+      "title": "Java Operators",
+      "content": [
+        { "type": "heading", "content": "Arithmetic, Relational, Logical" },
+        { "type": "text", "content": "Use + - * / % for arithmetic; == != > < >= <= for comparison; && || ! for logic." },
+        { "type": "bash", "content": "int x = 8, y = 3;\nSystem.out.println(x + y);\nSystem.out.println(x > y);\nSystem.out.println((x > 5) && (y < 5));" }
+      ],
+      "questions": [
+        { "language":"java","question": "Add 12 and 13 and print the result", "expectedOutput": "25" }
       ]
     },
     {
-      "title": "Object-Oriented Programming",
-      "description": "Understand Java’s core principle of object-oriented design.",
-      "Lesson": [
-        "Classes and Objects",
-        "Constructors",
-        "Methods and 'this' keyword"
+      "title": "Java Strings",
+      "content": [
+        { "type": "heading", "content": "Working with Strings" },
+        { "type": "text", "content": "Strings are objects. Common methods: length(), substring(), toUpperCase(), toLowerCase(), contains()." },
+        { "type": "bash", "content": "String s = \"Java\";\nSystem.out.println(s.length());\nSystem.out.println(s.substring(1,3));" }
+      ],
+      "questions": [
+        { "language":"java","question": "Store 'Java' and print the first 2 letters", "expectedOutput": "Ja" }
       ]
     },
     {
-      "title": "Encapsulation and Inheritance",
-      "description": "Write cleaner, reusable, and modular code using OOP principles.",
-      "Lesson": [
-        "Access Modifiers",
-        "Getters and Setters",
-        "Inheritance and super keyword"
+      "title": "Java Math",
+      "content": [
+        { "type": "heading", "content": "Math Utilities" },
+        { "type": "text", "content": "Use Math.max, Math.min, Math.sqrt, Math.abs, Math.random, etc." },
+        { "type": "bash", "content": "System.out.println(Math.max(5, 9));\nSystem.out.println(Math.sqrt(16));" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print the square root of 49", "expectedOutput": "7.0" }
       ]
     },
     {
-      "title": "Polymorphism and Abstraction",
-      "description": "Dive deeper into Java OOP using method overloading, overriding, abstract classes, and interfaces.",
-      "Lesson": [
-        "Method Overloading",
-        "Method Overriding",
-        "Abstract classes",
-        "Interfaces"
+      "title": "Java Booleans",
+      "content": [
+        { "type": "heading", "content": "True/False" },
+        { "type": "text", "content": "Booleans hold true or false. Often used in conditions." },
+        { "type": "bash", "content": "boolean ok = (10 > 5);\nSystem.out.println(ok);" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print the result of (7 > 3)", "expectedOutput": "true" }
       ]
     },
     {
-      "title": "Collections and ArrayList",
-      "description": "Use advanced data structures for dynamic data handling.",
-      "Lesson": [
-        "Intro to Java Collections",
-        "Using ArrayList",
-        "Looping and modifying collections"
+      "title": "Java If...Else",
+      "content": [
+        { "type": "heading", "content": "Conditional Branching" },
+        { "type": "text", "content": "Use if, else if, and else to branch logic." },
+        { "type": "bash", "content": "int n = 10;\nif (n > 5) {\n  System.out.println(\"Yes\");\n} else {\n  System.out.println(\"No\");\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "If 5 < 10 print Yes", "expectedOutput": "Yes" }
       ]
     },
     {
-      "title": "Problem Solving with Java",
-      "description": "Apply everything you’ve learned to solve real-world and algorithmic problems.",
-      "Lesson": [
-        "Using test cases in Java",
-        "Solving problems with functions and loops",
-        "Writing modular code"
+      "title": "Java Switch",
+      "content": [
+        { "type": "heading", "content": "Switch Statement" },
+        { "type": "text", "content": "Switch selects a branch based on matching case value." },
+        { "type": "bash", "content": "int day = 2;\nswitch (day) {\n  case 1: System.out.println(\"Mon\"); break;\n  case 2: System.out.println(\"Tue\"); break;\n  default: System.out.println(\"Other\");\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Using switch, print 'Three' when x = 3", "expectedOutput": "Three" }
+      ]
+    },
+    {
+      "title": "Java While Loop",
+      "content": [
+        { "type": "heading", "content": "While Loop" },
+        { "type": "text", "content": "Repeats while a condition remains true. Be careful to update the loop variable." },
+        { "type": "bash", "content": "int i = 1;\nwhile (i <= 3) {\n  System.out.println(i);\n  i++;\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print numbers 1 to 3 using while", "expectedOutput": "1\n2\n3" }
+      ]
+    },
+    {
+      "title": "Java For Loop",
+      "content": [
+        { "type": "heading", "content": "For Loop" },
+        { "type": "text", "content": "Compact loop with initializer; condition; increment." },
+        { "type": "bash", "content": "for (int i = 0; i < 3; i++) {\n  System.out.println(i);\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print 0, 1, 2 each on new line using for", "expectedOutput": "0\n1\n2" }
+      ]
+    },
+    {
+      "title": "Java Break/Continue",
+      "content": [
+        { "type": "heading", "content": "Controlling Loop Flow" },
+        { "type": "text", "content": "break exits a loop; continue skips to the next iteration." },
+        { "type": "bash", "content": "for (int i = 1; i <= 3; i++) {\n  if (i == 2) continue;\n  System.out.println(i);\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print 1 and 3 (skipping 2) using continue", "expectedOutput": "1\n3" }
+      ]
+    },
+    {
+      "title": "Java Arrays",
+      "content": [
+        { "type": "heading", "content": "Array Basics" },
+        { "type": "text", "content": "Arrays store fixed-size sequences of elements of the same type." },
+        { "type": "bash", "content": "int[] nums = {1, 2, 3};\nSystem.out.println(nums[1]);" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create int[] a = {2,4,6} and print the last element", "expectedOutput": "6" }
+      ]
+    },
+    {
+      "title": "Java Methods",
+      "content": [
+        { "type": "heading", "content": "Defining & Calling Methods" },
+        { "type": "text", "content": "Methods group reusable code. static methods can be called without creating objects." },
+        { "type": "bash", "content": "static void hello() {\n  System.out.println(\"Hi\");\n}\n// call\nhello();" }
+      ],
+      "questions": [
+        { "language":"java","question": "Write a method greet() that prints Hello and call it once", "expectedOutput": "Hello" }
+      ]
+    },
+    {
+      "title": "Java Method Parameters",
+      "content": [
+        { "type": "heading", "content": "Passing Arguments" },
+        { "type": "text", "content": "Parameters let you pass data into methods." },
+        { "type": "bash", "content": "static void greet(String name) {\n  System.out.println(\"Hello, \" + name);\n}\n// call\ngreet(\"Sam\");" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create a method add(int a, int b) and print sum of 2 and 5", "expectedOutput": "7" }
+      ]
+    },
+    {
+      "title": "Java Method Overloading",
+      "content": [
+        { "type": "heading", "content": "Same Name, Different Params" },
+        { "type": "text", "content": "Overloading allows multiple methods with the same name but different parameter lists." },
+        { "type": "bash", "content": "static int add(int a, int b) { return a + b; }\nstatic double add(double a, double b) { return a + b; }" }
+      ],
+      "questions": [
+        { "language":"java","question": "Overload sum so it works for (2,3) and (2.5,3.5). Print both results", "expectedOutput": "5\n6.0" }
+      ]
+    },
+    {
+      "title": "Java Scope",
+      "content": [
+        { "type": "heading", "content": "Local vs Class Scope" },
+        { "type": "text", "content": "Variables defined inside methods are local; fields belong to the class instance." },
+        { "type": "bash", "content": "int x = 10; // field\nstatic void f() {\n  int y = 5; // local\n  System.out.println(y);\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Inside a method, declare int temp = 42 and print it", "expectedOutput": "42" }
+      ]
+    },
+    {
+      "title": "Java Recursion",
+      "content": [
+        { "type": "heading", "content": "Functions Calling Themselves" },
+        { "type": "text", "content": "Recursion solves a problem by calling the same method with smaller inputs." },
+        { "type": "bash", "content": "static int fact(int n) {\n  if (n <= 1) return 1;\n  return n * fact(n - 1);\n}\nSystem.out.println(fact(4));" }
+      ],
+      "questions": [
+        { "language":"java","question": "Write a recursive method to compute factorial(3) and print result", "expectedOutput": "6" }
+      ]
+    },
+    {
+      "title": "Java Classes",
+      "content": [
+        { "type": "heading", "content": "Defining a Class" },
+        { "type": "text", "content": "Classes define blueprints for objects (fields + methods)." },
+        { "type": "bash", "content": "class Car {\n  String brand;\n}" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create a class Person with a String name field and print 'Done'", "expectedOutput": "Done" }
+      ]
+    },
+    {
+      "title": "Java OOP",
+      "content": [
+        { "type": "heading", "content": "Pillars of OOP" },
+        { "type": "text", "content": "Encapsulation, Inheritance, Polymorphism, and Abstraction are the core OOP concepts." },
+        { "type": "bash", "content": "// Example snippets will appear in later lessons (classes, inheritance, polymorphism)" }
+      ],
+      "questions": [
+        { "language":"java","question": "Print 'OOP Ready' (no code logic needed)", "expectedOutput": "OOP Ready" }
+      ]
+    },
+    {
+      "title": "Java Classes/Objects",
+      "content": [
+        { "type": "heading", "content": "Creating Objects" },
+        { "type": "text", "content": "Use the new keyword to instantiate a class." },
+        { "type": "bash", "content": "class Dog { String name; }\nDog d = new Dog();\nd.name = \"Bob\";\nSystem.out.println(d.name);" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create a class Book, make an object, set a title 'Java 101' and print it", "expectedOutput": "Java 101" }
+      ]
+    },
+    {
+      "title": "Java Class Attributes",
+      "content": [
+        { "type": "heading", "content": "Fields/Properties" },
+        { "type": "text", "content": "Attributes (fields) store object state; can be public, private, protected." },
+        { "type": "bash", "content": "class User { int id; String name; }" }
+      ],
+      "questions": [
+        { "language":"java","question": "Add int year to a Car class and print 2024", "expectedOutput": "2024" }
+      ]
+    },
+    {
+      "title": "Java Class Methods",
+      "content": [
+        { "type": "heading", "content": "Behavior of a Class" },
+        { "type": "text", "content": "Instance methods operate on object state; static methods belong to the class." },
+        { "type": "bash", "content": "class Calc {\n  int add(int a, int b) { return a + b; }\n}\nCalc c = new Calc();\nSystem.out.println(c.add(2,3));" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create a class MathOps with method mul that returns 3*4 and print result", "expectedOutput": "12" }
+      ]
+    },
+    {
+      "title": "Java Constructors",
+      "content": [
+        { "type": "heading", "content": "Initializing Objects" },
+        { "type": "text", "content": "Constructors run when an object is created; use them to set initial state." },
+        { "type": "bash", "content": "class Point {\n  int x, y;\n  Point(int x, int y) { this.x = x; this.y = y; }\n}\nPoint p = new Point(2, 5);\nSystem.out.println(p.x + \",\" + p.y);" }
+      ],
+      "questions": [
+        { "language":"java","question": "Create a class Student with a constructor taking a name and print the name", "expectedOutput": "John" }
       ]
     }
   ]

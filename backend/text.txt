@@ -1,0 +1,124 @@
+# Step-by-Step Guide: Django + Code Runner Docker Setup
+
+## 1️⃣ Setup project structure
+
+Project root:
+├── backend/             # Django project folder
+│   ├── manage.py
+│   ├── settings.py
+│   └── ... other Django files
+├── dockerfiles/         # Dockerfile for code_runner
+│   └── Dockerfile
+├── tmp/                 # Folder for user code files (Python/Java)
+└── docker-compose.yml
+
+---
+
+## 2️⃣ Dockerfile for code_runner
+
+Create `dockerfiles/Dockerfile`:
+
+FROM ubuntu:24.04
+
+# Install Python and Java
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3 python3-pip openjdk-17-jdk && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Optional: Set Java environment
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+# Create non-root user
+RUN useradd -m coder
+USER coder
+WORKDIR /app
+
+CMD ["bash"]
+
+---
+
+## 3️⃣ docker-compose.yml
+
+version: '3.9'
+
+services:
+  django:
+    image: python:3.12-slim
+    container_name: django_server
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - code_runner
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  code_runner:
+    build:
+      context: ./dockerfiles
+    container_name: code_runner
+    volumes:
+      - ./tmp:/app
+
+---
+
+## 4️⃣ Run Docker Compose
+
+In project root:
+
+1. Build images and start containers:
+
+   docker-compose up --build
+
+2. Django will be available at:
+
+   http://localhost:8000
+
+3. `code_runner` container will be running and ready to execute Python/Java.
+
+---
+
+## 5️⃣ Running user code (from Django)
+
+Example Python execution:
+
+import subprocess
+
+def run_python_code(file_path):
+    result = subprocess.run(
+        ["docker", "exec", "code_runner", "python3", f"/app/{file_path}"],
+        capture_output=True, text=True, timeout=5
+    )
+    return result.stdout, result.stderr
+
+Example Java execution:
+
+def run_java_code(file_name):
+    subprocess.run(["docker", "exec", "code_runner", "javac", f"/app/{file_name}"])
+    result = subprocess.run(["docker", "exec", "code_runner", "java", "-cp", "/app", file_name.replace(".java", "")],
+                            capture_output=True, text=True, timeout=5)
+    return result.stdout, result.stderr
+
+> User code files should be written to `./tmp` folder.
+
+---
+
+## 6️⃣ Notes & Tips
+
+- Always use `docker-compose up` to start both Django and code_runner containers.  
+- `python manage.py runserver` alone **won’t start code_runner**, so user code execution will fail.  
+- `volumes` allow Django to write code into `tmp` and let code_runner read it.  
+- Use a **non-root user** in code_runner for security.  
+- Set **timeouts** when running user code to prevent infinite loops.  
+
+---
+
+## 7️⃣ Optional optimizations
+
+- Use `--no-install-recommends` in Dockerfile to reduce image size.  
+- Clean apt cache after installation (`apt-get clean && rm -rf /var/lib/apt/lists/*`).  
+- Mount only necessary folders to code_runner, not the full host system.

@@ -20,6 +20,9 @@ import Community from "@/pages/Community"
 import { Toaster } from "sonner";
 import ProjectDetails from "@/pages/Project/ProjectDetails"
 import Project from "@/pages/Project/Projects"
+import ProjectsPage from "@/components/Admin/ProjectsPage";
+import CommunityPage from "@/components/Admin/CommunityPage";
+import RoadmapPage from "@/pages/Roadmap"
 
 function App() {
   const { user } = useAuth();
@@ -31,17 +34,20 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
-        <Route path="/explore/role/:category" element={<RoleBasedCategoryPage />} />
-        <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} />
+        {/* <Route path="/explore/role/:category" element={<RoleBasedCategoryPage />} />
+        <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} /> */}
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/community" element={<Community />} />
         <Route path="/project/" element={<Project />} />
+        <Route path="/:type/:slug" element={<RoadmapPage />} />
         <Route path="/project/:projectId" element={<ProjectDetails />} />
         <Route path="/admin" element={<AdminDashBoard />}>
           <Route index element={<DashboardPagea />} />
           <Route path="roadmaps" element={<RoadmapsPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="community" element={<CommunityPage />} />
         </Route>
         <Route path="/aaa" element={user && isAdmin(user) ? <AdminPanel /> : <Navigate to="/" />} />
       </Routes>

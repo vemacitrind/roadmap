@@ -1,117 +1,250 @@
 {
   "title": "Backend Developer Roadmap",
   "description": "Become a professional backend developer. Learn how to build APIs, manage databases, handle authentication, and deploy scalable backend applications.",
+  "icon": "logos:backend-developer",
+  "category": "Programming",
   "type": "role-based",
   "Syllabus": [
     {
       "title": "Programming Foundations",
-      "description": "Master a backend programming language and foundational concepts.",
-      "Lesson": [
-        "Choose one: Python, Java, Node.js, Go, Ruby",
-        "Variables, data types, control flow",
-        "Functions, error handling, modules"
-      ]
+      "content": [
+        {"type": "heading","content": "Mastering a Backend Language"},
+        {"type": "text","content": "Choose one of the following languages to build your foundational knowledge:"},
+        {"type": "list","content": ["Python","Java","Node.js","Go","Ruby"]},
+        {"type": "heading","content": "Core Concepts"},
+        {"type": "list","content": [
+          "Variables and data types",
+            "Control flow (if/else, loops)",
+            "Functions and error handling",
+            "Modules and packages"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Understanding Web Servers",
-      "description": "Learn how backend servers handle HTTP requests and responses.",
-      "Lesson": [
-        "How the web works: HTTP, DNS, ports",
-        "Client-server architecture",
-        "RESTful services overview"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "How the Web Works"
+        },
+        {
+          "type": "text",
+          "content": "Learn the fundamental protocols and concepts that enable web communication."
+        },
+        {
+          "type": "list",
+          "content": [
+            "HTTP (Hypertext Transfer Protocol)",
+            "DNS (Domain Name System)",
+            "Ports and client-server architecture"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "RESTful services overview"
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Building APIs",
-      "description": "Create and manage REST APIs using a backend framework.",
-      "Lesson": [
-        "Setting up a basic server (Flask, Express, Spring Boot)",
-        "Defining routes and endpoints",
-        "Sending/receiving JSON data"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Creating a REST API"
+        },
+        {
+          "type": "text",
+          "content": "Use a backend framework to create and manage endpoints."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Setting up a basic server (e.g., Flask, Express, Spring Boot)",
+            "Defining routes and endpoints",
+            "Handling JSON data (sending and receiving)"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Databases and CRUD",
-      "description": "Store and manipulate data using databases.",
-      "Lesson": [
-        "SQL vs NoSQL",
-        "Connecting to MySQL/PostgreSQL/MongoDB",
-        "Performing CRUD operations"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Data Storage and Manipulation"
+        },
+        {
+          "type": "text",
+          "content": "Store and manipulate application data."
+        },
+        {
+          "type": "list",
+          "content": [
+            "SQL vs NoSQL databases",
+            "Connecting to a database (e.g., MySQL, PostgreSQL, MongoDB)",
+            "Performing CRUD (Create, Read, Update, Delete) operations"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Authentication and Security",
-      "description": "Implement secure user authentication and protect your app.",
-      "Lesson": [
-        "User registration and login",
-        "Hashing passwords (bcrypt, etc.)",
-        "JWTs and session management",
-        "Basic security: CORS, rate limiting, input validation"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Securing Your Application"
+        },
+        {
+          "type": "text",
+          "content": "Implement user authentication and protect against common vulnerabilities."
+        },
+        {
+          "type": "list",
+          "content": [
+            "User registration and login workflows",
+            "Password hashing (e.g., bcrypt)",
+            "JSON Web Tokens (JWT) and session management",
+            "Basic security practices: CORS, rate limiting, input validation"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Middleware and Error Handling",
-      "description": "Manage request flow and exceptions effectively.",
-      "Lesson": [
-        "Using middleware for logging/auth",
-        "Error handling and custom error responses",
-        "Validating input data"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Managing Request Flow"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Using middleware for tasks like logging and authentication",
+            "Effective error handling and custom error responses",
+            "Input data validation"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Async Programming and Background Jobs",
-      "description": "Perform non-blocking tasks and schedule background jobs.",
-      "Lesson": [
-        "Callbacks, Promises, async/await (Node.js)",
-        "Threading and async (Python/Java)",
-        "Message queues (e.g., RabbitMQ, Redis Queue)"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Non-Blocking Operations"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Understanding asynchronous concepts (callbacks, promises, async/await)",
+            "Using threading and async libraries",
+            "Implementing message queues (e.g., RabbitMQ, Redis Queue) for background jobs"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Testing and Debugging",
-      "description": "Ensure your backend is reliable and bug-free.",
-      "Lesson": [
-        "Unit and integration testing (e.g., pytest, JUnit, Jest)",
-        "Postman for API testing",
-        "Debugging techniques and logging"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Ensuring Reliability"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Writing unit and integration tests (e.g., pytest, JUnit, Jest)",
+            "Using tools like Postman for API testing",
+            "Debugging techniques and effective logging"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "File Handling and Storage",
-      "description": "Manage file uploads and external storage.",
-      "Lesson": [
-        "Handling uploads (e.g., Multer, Flask-Upload)",
-        "Saving files to disk or cloud (S3, Cloudinary)",
-        "Serving static files"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Managing Files"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Handling file uploads (e.g., using Multer, Flask-Upload)",
+            "Saving files to disk or cloud storage (e.g., AWS S3)",
+            "Serving static files"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "WebSockets and Real-Time Communication",
-      "description": "Enable real-time features like chat or live updates.",
-      "Lesson": [
-        "Understanding WebSockets",
-        "Implementing real-time chat or notifications",
-        "Socket.io or WebSocket libraries"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Real-Time Features"
+        },
+        {
+          "type": "text",
+          "content": "Enable real-time communication between the client and server."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Understanding WebSockets",
+            "Implementing real-time chat or notifications",
+            "Using libraries like Socket.io"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Deployment and DevOps Basics",
-      "description": "Take your backend app to production.",
-      "Lesson": [
-        "Using Docker for containerization",
-        "Deploying to services like Render, Railway, DigitalOcean, or AWS",
-        "CI/CD basics with GitHub Actions"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Taking an Application to Production"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Containerization with Docker",
+            "Deploying to cloud services (e.g., Render, DigitalOcean, AWS)",
+            "Introduction to CI/CD with GitHub Actions"
+          ]
+        }
+      ],
+      "questions": []
     },
     {
       "title": "Scalability and Best Practices",
-      "description": "Write clean, scalable, and maintainable backend code.",
-      "Lesson": [
-        "Project structuring and design patterns",
-        "Caching (Redis, Memcached)",
-        "Rate limiting and throttling",
-        "Monitoring and logging (e.g., Prometheus, ELK stack)"
-      ]
+      "content": [
+        {
+          "type": "heading",
+          "content": "Writing Clean and Scalable Code"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Project structuring and design patterns",
+            "Caching strategies (e.g., Redis)",
+            "Rate limiting and throttling",
+            "Monitoring and logging tools"
+          ]
+        }
+      ],
+      "questions": []
     }
   ]
 }

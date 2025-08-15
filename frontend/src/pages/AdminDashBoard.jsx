@@ -9,7 +9,7 @@ export default function AdminDashBoard() {
             <div className="flex-1 flex flex-col">
                 <AppBar />
                 <main className="p-6 flex-1 overflow-y-auto">
-                    <Outlet /> {/* ✅ This is what renders nested routes */}
+                    <Outlet /> 
                 </main>
             </div>
         </div>

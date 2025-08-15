@@ -1,7 +1,7 @@
 # backend/api/views_email.py
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from services.smtp_client import send_progress_email
+from ..services.smtp_client import send_progress_email
 
 @api_view(["POST"])
 def send_email(request):

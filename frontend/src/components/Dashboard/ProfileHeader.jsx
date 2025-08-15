@@ -35,7 +35,7 @@ export default function ProfileHeader({ user, onSave }) {
 
 
         {user?.about && (
-          <p className="text-sm text-zinc-400 mt-2 italic text-start">
+          <p className="text-sm text-zinc-400 mt-2 italic text-start max-w-lg">
             {user.about}
           </p>
         )}
@@ -65,16 +65,16 @@ export default function ProfileHeader({ user, onSave }) {
       </div>
 
       <Dialog open={openImg} onOpenChange={setOpenImg}>
-        <DialogContent className="pointer-events-none">
+        <DialogContent className="pointer-events-none bg-transparent border-0 w-64 h-64" >
           <div className="pointer-events-auto">
             <img
-              src={user?.profileLink }
+              src={user?.profileLink}
               alt="Profile Enlarged"
               onError={(e) => {
                 e.target.onerror = null
                 e.target.src = Img
               }}
-              className="w-40 h-40 rounded-full object-cover mx-auto"
+              className="w-52 h-52 rounded-full object-cover mx-auto"
             />
             <p className="text-center mt-4 text-lg font-semibold">{user?.name || "User Name"}</p>
           </div>

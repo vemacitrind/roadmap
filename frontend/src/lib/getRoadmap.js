@@ -1,12 +1,7 @@
 // lib/getRoadmap.js
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase/config"; // assumes you already initialized Firestore as `db`
+import { db } from "@/firebase/config";
 
-/**
- * Fetches a roadmap document by type and category.
- * 1. Looks for first document in roadmaps/{type}/{category}
- * 2. Fetches full document using its ID
- */
 export async function getRoadmap(type, category) {
   try {
     // Step 1: Get the collection reference

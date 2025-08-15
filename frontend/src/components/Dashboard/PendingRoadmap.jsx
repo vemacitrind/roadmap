@@ -1,76 +1,144 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase/config";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import { Icon } from "@iconify/react";
+import NullImg from "@/assets/Null.png";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Hourglass,ArrowUp,ArrowDown } from "lucide-react";
-import NullImg from "@/assets/Null.png"
-export default function PendingRoadmap({ roadmaps = {} }) {
-  const [filter, setFilter] = useState("all");
-  const [reverse, setReverse] = useState(true);
+import { ArrowUp, ArrowDown } from "lucide-react";
 
-  const filtered = Object.entries(roadmaps || {})
-    .filter(([_, data]) => {
-      if (filter === "all") return true;
-      if (filter === "complete") return data.isComplete;
-      return !data.isComplete;
-    })
-    .sort(([, a], [, b]) => {
-      const dateA = new Date(a.startedAt);
-      const dateB = new Date(b.startedAt);
-      return reverse ? dateB - dateA : dateA - dateB;
-    });
+export default function PendingRoadmap({ roadmapsProgress = {} }) {
+  const [roadmapDetails, setRoadmapDetails] = useState([]);
+  const [filter, setFilter] = useState("all"); 
+  const [sortAsc, setSortAsc] = useState(true);
+
+  useEffect(() => {
+    const fetchRoadmapDetails = async () => {
+      const details = [];
+
+      for (const [roadmapId, roadmapData] of Object.entries(roadmapsProgress)) {
+        try {
+          const roadmapRef = doc(
+            db,
+            `roadmaps/${roadmapData.type}/documents/${roadmapId}`
+          );
+          const roadmapSnap = await getDoc(roadmapRef);
+
+          if (roadmapSnap.exists()) {
+            const { title, icon } = roadmapSnap.data();
+            details.push({
+              id: roadmapId,
+              title,
+              icon,
+              progress: roadmapData.progress,
+              status: roadmapData.progress === 100 ? "Completed" : "Incomplete",
+              timestamp: roadmapData.startedAt
+            });
+          }
+        } catch (error) {
+          console.error(`Error fetching roadmap ${roadmapId}:`, error);
+        }
+      }
+
+      setRoadmapDetails(details);
+    };
+
+    fetchRoadmapDetails();
+  }, [roadmapsProgress]);
+
+  const filteredRoadmaps = roadmapDetails
+  .filter((roadmap) => {
+    if (filter === "all") return true;
+    if (filter === "complete") return roadmap.status === "Completed";
+    if (filter === "incomplete") return roadmap.status === "Incomplete";
+    return true;
+  })
+  .sort((a, b) => {
+    const timeA = new Date(a.timestamp); 
+    const timeB = new Date(b.timestamp);
+    return sortAsc ? timeA - timeB : timeB - timeA;
+  });
 
   return (
     <div className="space-y-6">
-      {/* Filter + Sort */}
-      <div className="flex flex-wrap justify-between items-center gap-2">
-        <div className="flex gap-2">
-          {["all", "incomplete", "complete"].map((f) => (
-            <Button
-              key={f}
-              size="sm"
-              variant={filter === f ? "default" : "outline"}
-              onClick={() => setFilter(f)}
-            >
-              {f.charAt(0).toUpperCase() + f.slice(1)}
-            </Button>
-          ))}
-        </div>
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={() => setReverse((r) => !r)}
-          className="text-zinc-400 hover:text-white"
-        >
-          {reverse ? <><ArrowUp className="w-4 h-4 text-zinc-300" /> Oldest First</> : <><ArrowDown className="w-4 h-4 text-zinc-300" /> Newest First</>}
-        </Button>
-      </div>
+      {/* Filter Buttons */}
+      <div className="flex gap-2 flex-wrap justify-between w-full">
+  <div className="flex gap-2 flex-wrap">
+    {["all", "complete", "incomplete"].map((f) => (
+      <Button
+        key={f}
+        size="sm"
+        variant={filter === f ? "default" : "outline"}
+        onClick={() => setFilter(f)}
+      >
+        {f.charAt(0).toUpperCase() + f.slice(1)}
+      </Button>
+    ))}
+  </div>
 
-      {/* Cards */}
-      <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-5 ${filtered.length > 0 ? "" : "place-items-center"}`}>
-        { filtered.length > 0 ? <>
-        {filtered.map(([title, data]) => (
-          <div
-          key={title}
-          className="rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition p-5 shadow-sm hover:shadow-md"
-          >
-            <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-            <p className="text-sm text-zinc-400">
-              Started: {new Date(data.startedAt).toLocaleDateString()}
-            </p>
-            <div className="flex items-center gap-2 mt-2 text-sm">
-              {data.isComplete ? (
-                <CheckCircle className="w-4 h-4 text-green-400" />
-              ) : (
-                <Hourglass className="w-4 h-4 text-yellow-400 animate-pulse" />
-              )}
-              <span>{data.isComplete ? "Completed" : "In Progress"}</span>
+  <Button
+    size="sm"
+    variant="default"
+    onClick={() => setSortAsc(!sortAsc)}
+    className="flex items-center space-x-2"
+  >
+    {sortAsc ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
+    <span>{sortAsc ? "Time Asc" : "Time Desc"}</span>
+  </Button>
+</div>
+
+
+      {/* Roadmap Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {filteredRoadmaps.length > 0 ? (
+          filteredRoadmaps.map((roadmap) => (
+            <div
+              key={roadmap.id}
+              className="flex items-center p-4 border rounded-lg shadow-sm bg-white dark:bg-zinc-900 gap-4"
+            >
+              {/* Left: Progress Circle with Icon Centered */}
+              <div className="relative w-20 h-20 flex-shrink-0">
+                <CircularProgressbar
+                  value={roadmap.progress}
+                  styles={buildStyles({
+                    pathColor:
+                      roadmap.status === "Completed" ? "#22c55e" : "#3b82f6",
+                    trailColor: "#d1d5db",
+                  })}
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {roadmap.icon ? (
+                    <Icon icon={roadmap.icon} className="w-8 h-8" />
+                  ) : (
+                    <img
+                      src={NullImg}
+                      alt="No Icon"
+                      className="w-8 h-8 object-contain"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Right: Title + Status */}
+              <div>
+                <h3 className="text-lg font-semibold">{roadmap.title}</h3>
+                <p
+                  className={`mt-1 text-sm text-start ${roadmap.status === "Completed"
+                      ? "text-green-500"
+                      : "text-yellow-500"
+                    }`}
+                >
+                  {roadmap.status}
+                </p>
+              </div>
             </div>
+          ))
+        ) : (
+          <div className="col-span-full flex justify-center">
+            <img src={NullImg} alt="No Roadmaps" className="w-48" />
           </div>
-                
-        ))} </> : 
-        <>
-          <img src={NullImg} alt="null" />
-        </>
-        }
+        )}
       </div>
     </div>
   );

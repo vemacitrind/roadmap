@@ -3,107 +3,124 @@ import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 import ChromaGrid from "@/components/ReactBit/ChromaGrid";
 import { JavaIcon,PythonIcon,JavascriptIcon,ReactIcon,FlutterIcon,CSharpIcon,NodejsIcon,TypeScriptIcon, DockerIcon,GitIcon,GoIcon } from "@/components/Icon";
 import {Database,MoveRight} from "lucide-react";
+import { Icon } from "@iconify/react";
+
+const IconWrapper = ({ name, className = "" }) => (
+  <div className="w-[42px] h-[42px] flex items-center justify-center">
+    <Icon
+      icon={name}
+      className={`scale-125 ${className}`}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "block",
+        color: "white"
+      }}
+    />
+  </div>
+);
 
 const items = [
   {
     title: "Java",
     subtitle: "Enterprise applications, Android, Spring Boot...",
-    icon: <JavaIcon size={42} />,
+    icon: <IconWrapper name="logos:java" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/java",
+    path: "/skill-based/java-tutorial",
   },
   {
     title: "Python",
     subtitle: "Web development, Data Science, AI/ML, Django...",
-    icon: <PythonIcon size={42} />,
+    icon: <IconWrapper name="logos:python" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/python",
+    path: "/skill-based/python-tutorial",
   },
   {
     title: "JavaScript",
     subtitle: "Frontend, Backend (Node.js), Full-stack...",
-    icon: <JavascriptIcon size={42} />,
+    icon: <IconWrapper name="logos:javascript" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/javascript",
+    path: "/skill-based/javascript",
   },
   {
     title: "React",
     subtitle: "Frontend UI, Single-Page Applications, JSX...",
-    icon: <ReactIcon size={42} />,
+    icon: <IconWrapper name="logos:react" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/react",
+    path: "/skill-based/react",
   },
   {
     title: "Go (Golang)",
     subtitle: "High-performance APIs, Concurrency, Microservices...",
-    icon: <GoIcon size={42} />,
+    icon: <IconWrapper name="logos:go" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/go",
+    path: "/skill-based/go",
   },
   {
     title: "Flutter",
     subtitle: "Cross-platform mobile apps, Dart, UI Toolkit...",
-    icon: <FlutterIcon size={42} />,
+    icon: <IconWrapper name="logos:flutter" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/flutter",
-    new:true
+    path: "/skill-based/flutter",
+    new: true,
   },
   {
     title: "TypeScript",
     subtitle: "Static typing for JS, Scalable applications...",
-    icon: <TypeScriptIcon size={42} />,
+    icon: <IconWrapper name="logos:typescript-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/typescript",
+    path: "/skill-based/typescript",
   },
   {
     title: "C# (.NET)",
     subtitle: "Windows apps, Web APIs, Game Dev (Unity)...",
-    icon: <CSharpIcon size={42} />,
+    icon: <IconWrapper name="devicon:csharp" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/csharp",
+    path: "/skill-based/csharp",
   },
   {
     title: "Node.js",
     subtitle: "Backend JavaScript, REST APIs, Event-driven...",
-    icon: <NodejsIcon size={42} />,
+    icon: <IconWrapper name="logos:nodejs" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/nodejs",
+    path: "/skill-based/nodejs",
   },
   {
     title: "SQL",
     subtitle: "Relational Databases, Data querying, MySQL, PostgreSQL...",
-    icon: <Database size={42} />,
+    icon: <IconWrapper name="vscode-icons:file-type-sql" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/sql",
+    path: "/skill-based/sql",
   },
   {
     title: "Docker",
     subtitle: "Containerization, Microservices, DevOps...",
-    icon: <DockerIcon size={42} />,
+    icon: <IconWrapper name="logos:docker-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/docker",
-    new:true
+    path: "/skill-based/docker",
+    new: true,
   },
   {
     title: "Git & GitHub",
     subtitle: "Version control, Collaboration, Code management...",
-    icon: <GitIcon size={42} />,
+    icon: <IconWrapper name="logos:git-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/explore/skill/git",
+    path: "/skill-based/git",
   },
 ];
+
 
 export default function SkillBasedSection() {
     return (

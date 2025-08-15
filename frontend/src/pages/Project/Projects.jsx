@@ -53,7 +53,6 @@ export default function Projects() {
     const x = (
         <>
             <div className="p-6 space-y-6 max-w-4xl mx-auto ">
-                {/* Technology Filter */}
                 <div className="flex items-center gap-3 mb-5">
                     <input
                         type="text"
