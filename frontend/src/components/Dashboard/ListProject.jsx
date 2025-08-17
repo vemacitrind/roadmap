@@ -52,7 +52,7 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
                     variant: "destructive",
                 });
                 console.error(error);
-                throw error; // stop further uploads
+                throw error; 
             }
         }
         return urls;

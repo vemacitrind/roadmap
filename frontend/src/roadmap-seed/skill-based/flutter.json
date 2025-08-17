@@ -1,0 +1,88 @@
+{
+  "title": "Flutter Tutorial",
+  "description": "Learn Flutter step-by-step, from installation to building your first app with widgets, layouts, and state management. Includes interactive code challenges and practical examples.",
+  "icon": "logos:flutter",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Flutter Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Flutter" },
+        { "type": "text", "content": "Download Flutter SDK from: https://docs.flutter.dev/get-started/install" },
+        { "type": "list", "content": [
+          "Download Flutter for your OS",
+          "Extract and add Flutter to PATH",
+          "Verify installation with `flutter doctor`"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Flutter Hello World",
+      "content": [
+        { "type": "heading", "content": "First Flutter App" },
+        { "type": "text", "content": "A Flutter app starts with the `main` function and uses `runApp` to launch a widget tree." },
+        { "type": "bash", "content": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MaterialApp(\n    home: Scaffold(\n      appBar: AppBar(title: Text('Hello Flutter')),\n      body: Center(child: Text('Hello, World!')),\n    ),\n  ));\n}" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Write a Flutter app that displays 'Hello, Flutter!'", "expectedOutput": "Hello, Flutter!" }
+      ]
+    },
+    {
+      "title": "Flutter Widgets",
+      "content": [
+        { "type": "heading", "content": "Widgets in Flutter" },
+        { "type": "text", "content": "Everything in Flutter is a widget. There are two main types: StatelessWidget and StatefulWidget." },
+        { "type": "bash", "content": "class MyWidget extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return Text('I am a widget');\n  }\n}" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Create a StatelessWidget that displays 'Welcome!'", "expectedOutput": "Welcome!" }
+      ]
+    },
+    {
+      "title": "Flutter Layouts",
+      "content": [
+        { "type": "heading", "content": "Row & Column" },
+        { "type": "text", "content": "Use Row and Column widgets to arrange UI elements horizontally and vertically." },
+        { "type": "bash", "content": "Column(\n  children: [\n    Text('First'),\n    Text('Second'),\n  ],\n)" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Create a Column with two Text widgets: 'One' and 'Two'", "expectedOutput": "One\nTwo" }
+      ]
+    },
+    {
+      "title": "Flutter Buttons",
+      "content": [
+        { "type": "heading", "content": "ElevatedButton" },
+        { "type": "text", "content": "Flutter provides multiple button types like ElevatedButton, TextButton, and IconButton." },
+        { "type": "bash", "content": "ElevatedButton(\n  onPressed: () {\n    print('Clicked');\n  },\n  child: Text('Click Me'),\n)" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Create an ElevatedButton with text 'Press'", "expectedOutput": "Press" }
+      ]
+    },
+    {
+      "title": "Flutter State",
+      "content": [
+        { "type": "heading", "content": "StatefulWidget" },
+        { "type": "text", "content": "Use StatefulWidget to manage dynamic data in Flutter apps." },
+        { "type": "bash", "content": "class Counter extends StatefulWidget {\n  @override\n  _CounterState createState() => _CounterState();\n}\n\nclass _CounterState extends State<Counter> {\n  int count = 0;\n  @override\n  Widget build(BuildContext context) {\n    return Column(\n      children: [\n        Text('$count'),\n        ElevatedButton(\n          onPressed: () => setState(() => count++),\n          child: Text('Increment'),\n        )\n      ],\n    );\n  }\n}" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Create a counter app that increments when a button is pressed", "expectedOutput": "0 → 1 → 2 ..." }
+      ]
+    },
+    {
+      "title": "Flutter Images",
+      "content": [
+        { "type": "heading", "content": "Image Widget" },
+        { "type": "text", "content": "Display images from assets or network using the Image widget." },
+        { "type": "bash", "content": "Image.network('https://flutter.dev/images/flutter-logo-sharing.png')" }
+      ],
+      "questions": [
+        { "language":"dart","question": "Load an image from https://flutter.dev/images/flutter-logo-sharing.png", "expectedOutput": "Flutter Logo" }
+      ]
+    }
+  ]
+}

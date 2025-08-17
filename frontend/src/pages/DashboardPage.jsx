@@ -12,13 +12,15 @@ import BasicTemplate16 from "@/components/BaseTemplates/BasicTemplate16";
 
 import { fetchUserProfile, updateUserProfile } from "@/lib/userProfile";
 import { listenToUserProjects } from '@/lib/project'
+import { db } from "@/firebase/config";
+import { getDoc ,doc } from "firebase/firestore";
 
 export default function Dashboard() {
   const { user } = useAuth();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [noUser, setNoUser] = useState(false);
-
+  const [roadmapDetails, setRoadmapDetails] = useState([]);
   const [activeView, setActiveView] = useState("roadmap");
 
   const [projects, setProjects] = useState([]);
@@ -53,6 +55,38 @@ export default function Dashboard() {
     setProfile((prev) => ({ ...prev, ...updated }));
   };
 
+  useEffect(() => {
+    const fetchRoadmapDetails = async () => {
+      const details = [];
+
+      for (const [roadmapId, roadmapData] of Object.entries(profile?.roadmapsProgress)) {
+        try {
+          const roadmapRef = doc(
+            db,
+            `roadmaps/${roadmapData.type}/documents/${roadmapId}`
+          );
+          const roadmapSnap = await getDoc(roadmapRef);
+
+          if (roadmapSnap.exists()) {
+            const { title, icon } = roadmapSnap.data();
+            details.push({
+              id: roadmapId,
+              title,
+              icon,
+              progress: roadmapData.progress,
+              status: roadmapData.progress === 100 ? "Completed" : "Incomplete",
+              timestamp: roadmapData.startedAt
+            });
+          }
+        } catch (error) {
+          console.error(`Error fetching roadmap ${roadmapId}:`, error);
+        }
+      }
+      setRoadmapDetails(details);
+    };
+    fetchRoadmapDetails();
+  }, [profile]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-400">
@@ -72,13 +106,12 @@ export default function Dashboard() {
     );
   }
 
-  const completed = Object.entries(profile?.roadmap || {})
-    .filter(([_, data]) => data.isComplete)
-    .map(([title, data]) => ({
-      title,
-      name: data.name?.toLowerCase() || "",
-    }));
-
+  const completed = roadmapDetails
+  .filter((roadmap) => roadmap.progress === 100)
+  .map((roadmap) => ({
+    title: roadmap.title,
+    icon: roadmap.icon,
+  }));
 
   const x = (
     <>
@@ -113,7 +146,7 @@ export default function Dashboard() {
 
         {/* Show PendingRoadmap or ProjectSection based on toggle */}
         {activeView === "roadmap" ? (
-          <PendingRoadmap roadmapsProgress={profile?.roadmapsProgress} />
+          <PendingRoadmap roadmapDetails={roadmapDetails} />
         ) : (
           <ProjectSection projects={projects} loading={projectsLoading} user={user} />
         )}

@@ -6,7 +6,6 @@ import SkillBasedSection from '@/components/Home/SkillBasedSection';
 import HeroSection from '@/components/Home/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import MobileNavbar from '@/components/MobileNavbar';
-import FloatingChat from '@/components/FloatingChat';
 
 export default function Home() {
   const parallaxRef = useRef();
@@ -35,7 +34,7 @@ export default function Home() {
       
       <FloatingNavbar parallaxRef={parallaxRef} />
       <MobileNavbar parallaxRef={parallaxRef} />
-      {showChat && <FloatingChat/>}
+      
 
       <Parallax pages={4} ref={parallaxRef}>
 

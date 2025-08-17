@@ -1,0 +1,176 @@
+{
+  "title": "Go Tutorial",
+  "description": "Learn Go (Golang) step-by-step, from installation to working with structs and concurrency. Includes interactive code challenges and practical examples for each topic.",
+  "icon": "logos:go",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Go Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Go" },
+        { "type": "text", "content": "Go can be installed from the official website: https://go.dev/dl/" },
+        { "type": "list", "content": [
+          "Download and install Go for your OS",
+          "Add Go to your PATH (usually done automatically)",
+          "Verify installation with `go version`"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Go Syntax",
+      "content": [
+        { "type": "heading", "content": "Hello World Program" },
+        { "type": "text", "content": "Go programs start with a package declaration and a `main` function." },
+        { "type": "bash", "content": "package main\nimport \"fmt\"\nfunc main() {\n    fmt.Println(\"Hello, World!\")\n}" }
+      ],
+      "questions": [
+        {"language":"go","question": "Write a Go program to print 'Hello, Go!'", "expectedOutput": "Hello, Go!" }
+      ]
+    },
+    {
+      "title": "Go Comments",
+      "content": [
+        { "type": "heading", "content": "Comments in Go" },
+        { "type": "text", "content": "Go supports single-line `//` and multi-line `/* ... */` comments." },
+        { "type": "bash", "content": "// This is a single-line comment\n/* This is a\nmulti-line comment */" }
+      ],
+      "questions": [
+        { "language":"go","question": "Write a comment saying 'My first Go program' and print Hello", "expectedOutput": "Hello" }
+      ]
+    },
+    {
+      "title": "Go Variables",
+      "content": [
+        { "type": "heading", "content": "Declaring Variables" },
+        { "type": "text", "content": "Variables in Go are declared using the `var` keyword, or with shorthand `:=`." },
+        { "type": "bash", "content": "var x int = 5\ny := \"John\"\nfmt.Println(x)\nfmt.Println(y)" }
+      ],
+      "questions": [
+        { "language":"go","question": "Create a variable age with value 25 and print it", "expectedOutput": "25" }
+      ]
+    },
+    {
+      "title": "Go Data Types",
+      "content": [
+        { "type": "heading", "content": "Data Types in Go" },
+        { "type": "text", "content": "Go has types such as int, float32, float64, string, bool, array, slice, map, and struct." },
+        { "type": "bash", "content": "var a int = 10\nvar b float64 = 3.14\nvar c string = \"Hello\"" }
+      ],
+      "questions": [
+        { "language":"go","question": "Create int, float, and string variables and print each", "expectedOutput": "10\n3.14\nHello" }
+      ]
+    },
+    {
+      "title": "Go Numbers",
+      "content": [
+        { "type": "heading", "content": "Working with Numbers" },
+        { "type": "text", "content": "Go supports integers, floats, and complex numbers." },
+        { "type": "bash", "content": "var x int = 1\nvar y float64 = 2.5\nz := complex(3, 4)\nfmt.Println(z)" }
+      ],
+      "questions": [
+        { "language":"go","question": "Assign a complex number 2+3i to a variable and print it", "expectedOutput": "(2+3i)" }
+      ]
+    },
+    {
+      "title": "Go Type Casting",
+      "content": [
+        { "type": "heading", "content": "Type Conversion" },
+        { "type": "text", "content": "Go requires explicit type conversion between different types." },
+        { "type": "bash", "content": "var a int = 10\nvar b float64 = float64(a)\nfmt.Println(b)" }
+      ],
+      "questions": [
+        { "language":"go","question": "Convert integer 42 to float and print it", "expectedOutput": "42" }
+      ]
+    },
+    {
+      "title": "Go Strings",
+      "content": [
+        { "type": "heading", "content": "Working with Strings" },
+        { "type": "text", "content": "Strings in Go are UTF-8 encoded and support slicing." },
+        { "type": "bash", "content": "str := \"Golang\"\nfmt.Println(str[0])        // ASCII code\nfmt.Println(str[0:4])     // Substring" }
+      ],
+      "questions": [
+        { "language":"go","question": "Store 'Golang' in a variable and print the first 4 letters", "expectedOutput": "Gola" }
+      ]
+    },
+    {
+      "title": "Go Booleans",
+      "content": [
+        { "type": "heading", "content": "Boolean Values" },
+        { "type": "text", "content": "Booleans in Go can be true or false and are used in conditions." },
+        { "type": "bash", "content": "fmt.Println(10 > 9)\nfmt.Println(10 == 9)" }
+      ],
+      "questions": [
+        { "language":"go","question": "Write an expression that returns true if 7 is greater than 3", "expectedOutput": "true" }
+      ]
+    },
+    {
+      "title": "Go Operators",
+      "content": [
+        { "type": "heading", "content": "Operators in Go" },
+        { "type": "text", "content": "Go supports arithmetic, comparison, logical, and assignment operators." },
+        { "type": "bash", "content": "a := 5\nb := 3\nfmt.Println(a + b)\nfmt.Println(a * b)" }
+      ],
+      "questions": [
+        { "language":"go","question": "Add 8 and 12", "expectedOutput": "20" }
+      ]
+    },
+    {
+      "title": "Go Arrays",
+      "content": [
+        { "type": "heading", "content": "Arrays" },
+        { "type": "text", "content": "Arrays in Go have a fixed size and contain elements of the same type." },
+        { "type": "bash", "content": "var arr = [3]int{1, 2, 3}\nfmt.Println(arr[1])" }
+      ],
+      "questions": [
+        { "language":"go","question": "Create an array of 3 numbers and print the second number", "expectedOutput": "2" }
+      ]
+    },
+    {
+      "title": "Go Slices",
+      "content": [
+        { "type": "heading", "content": "Slices" },
+        { "type": "text", "content": "Slices are more powerful than arrays and allow dynamic resizing." },
+        { "type": "bash", "content": "nums := []int{1, 2, 3, 4}\nfmt.Println(nums[1:3])" }
+      ],
+      "questions": [
+        { "language":"go","question": "Create a slice of 4 numbers and print the last two", "expectedOutput": "[3 4]" }
+      ]
+    },
+    {
+      "title": "Go Maps",
+      "content": [
+        { "type": "heading", "content": "Maps" },
+        { "type": "text", "content": "Maps are key-value stores in Go." },
+        { "type": "bash", "content": "m := map[string]int{\"age\": 30, \"year\": 2025}\nfmt.Println(m[\"age\"])" }
+      ],
+      "questions": [
+        { "language":"go","question": "Create a map with name and age, print name", "expectedOutput": "John" }
+      ]
+    },
+    {
+      "title": "Go If...Else",
+      "content": [
+        { "type": "heading", "content": "If...Else Statements" },
+        { "type": "text", "content": "Go supports if, else if, and else blocks." },
+        { "type": "bash", "content": "a := 10\nb := 20\nif b > a {\n    fmt.Println(\"b is greater than a\")\n}" }
+      ],
+      "questions": [
+        { "language":"go","question": "Write an if statement that prints 'Yes' if 5 is less than 10", "expectedOutput": "Yes" }
+      ]
+    },
+    {
+      "title": "Go Switch",
+      "content": [
+        { "type": "heading", "content": "Switch Statement" },
+        { "type": "text", "content": "Go's switch is concise and powerful, without fallthrough by default." },
+        { "type": "bash", "content": "x := 2\nswitch x {\ncase 1:\n    fmt.Println(\"One\")\ncase 2:\n    fmt.Println(\"Two\")\n}" }
+      ],
+      "questions": [
+        { "language":"go","question": "Write a switch statement that prints 'Three' if variable is 3", "expectedOutput": "Three" }
+      ]
+    }
+  ]
+}

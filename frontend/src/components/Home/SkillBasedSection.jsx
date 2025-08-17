@@ -43,7 +43,7 @@ const items = [
     icon: <IconWrapper name="logos:javascript" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/javascript",
+    path: "/skill-based/javascript-tutorial",
   },
   {
     title: "React",
@@ -51,7 +51,7 @@ const items = [
     icon: <IconWrapper name="logos:react" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/react",
+    path: "/skill-based/react-tutorial",
   },
   {
     title: "Go (Golang)",
@@ -59,7 +59,7 @@ const items = [
     icon: <IconWrapper name="logos:go" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/go",
+    path: "/skill-based/go-tutorial",
   },
   {
     title: "Flutter",
@@ -67,7 +67,7 @@ const items = [
     icon: <IconWrapper name="logos:flutter" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/flutter",
+    path: "/skill-based/flutter-tutorial",
     new: true,
   },
   {
@@ -76,7 +76,7 @@ const items = [
     icon: <IconWrapper name="logos:typescript-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/typescript",
+    path: "/skill-based/typescript-tutorial",
   },
   {
     title: "C# (.NET)",
@@ -84,7 +84,7 @@ const items = [
     icon: <IconWrapper name="devicon:csharp" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/csharp",
+    path: "/skill-based/csharp-tutorial",
   },
   {
     title: "Node.js",
@@ -92,7 +92,7 @@ const items = [
     icon: <IconWrapper name="logos:nodejs" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/nodejs",
+    path: "/skill-based/nodejs-tutorial",
   },
   {
     title: "SQL",
@@ -100,7 +100,7 @@ const items = [
     icon: <IconWrapper name="vscode-icons:file-type-sql" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/sql",
+    path: "/skill-based/sql-tutorial",
   },
   {
     title: "Docker",
@@ -108,7 +108,7 @@ const items = [
     icon: <IconWrapper name="logos:docker-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/docker",
+    path: "/skill-based/docker-tutorial",
     new: true,
   },
   {
@@ -117,7 +117,7 @@ const items = [
     icon: <IconWrapper name="logos:git-icon" />,
     borderColor: "#71717a",
     gradient: "linear-gradient(145deg, #18181b, #3f3f46)",
-    path: "/skill-based/git",
+    path: "/skill-based/git-tutorial",
   },
 ];
 

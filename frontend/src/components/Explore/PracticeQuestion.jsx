@@ -77,7 +77,7 @@ function PracticeQuestion({
       <div className="relative w-full">
         <textarea
           rows={6}
-          placeholder="Write your Python code here..."
+          placeholder="Write your code here..."
           className="w-full bg-gray-900 border border-gray-700 rounded-md p-3 font-mono text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary pr-16"
           value={answers[`${currentIndex}-${qIdx}`] || ""}
           onChange={(e) =>
@@ -96,7 +96,7 @@ function PracticeQuestion({
           className="absolute top-2 right-2 p-2 rounded-md"
           disabled={loading}
         >
-          {loading ? "Running..." : <Icon icon="fluent:triangle-right-32-filled" className="w-6 h-6" />} Run
+          {loading ? "Running..." : <><Icon icon="fluent:triangle-right-32-filled" className="w-6 h-6" />Run</>} 
         </Button>
       </div>
 

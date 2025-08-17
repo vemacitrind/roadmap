@@ -1,0 +1,165 @@
+{
+  "title": "JavaScript Tutorial",
+  "description": "Master JavaScript step-by-step, from setup to modern ES6+ features. Includes interactive code challenges and practical examples for each topic.",
+  "icon": "logos:javascript",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "JavaScript Get Started",
+      "content": [
+        { "type": "heading", "content": "Setup JavaScript" },
+        { "type": "text", "content": "JavaScript can run directly in the browser console or inside an HTML file." },
+        { "type": "list", "content": [
+          "Open your browser and press F12 → Console tab",
+          "Write JavaScript code directly in the console",
+          "Or, include `<script>` tags in an HTML file and run it"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "JavaScript Syntax",
+      "content": [
+        { "type": "heading", "content": "Execute JavaScript Syntax" },
+        { "type": "text", "content": "JavaScript syntax can be executed directly in the browser or with Node.js." },
+        { "type": "bash", "content": "console.log(\"Hello, World!\");" }
+      ],
+      "questions": [
+        {"language":"javascript","question": "Write a JavaScript program to print 'Hello, JavaScript!'", "expectedOutput": "Hello, JavaScript!" }
+      ]
+    },
+    {
+      "title": "JavaScript Comments",
+      "content": [
+        { "type": "heading", "content": "Comments in JavaScript" },
+        { "type": "text", "content": "Comments can be single-line `//` or multi-line `/* ... */`." },
+        { "type": "bash", "content": "// This is a comment\nconsole.log(\"Hello\");" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Write a comment saying 'My first JS program' and print Hello", "expectedOutput": "Hello" }
+      ]
+    },
+    {
+      "title": "JavaScript Variables",
+      "content": [
+        { "type": "heading", "content": "Creating Variables" },
+        { "type": "text", "content": "Variables can be declared using `let`, `const`, or `var`." },
+        { "type": "bash", "content": "let x = 5;\nlet y = \"John\";\nconsole.log(x);\nconsole.log(y);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Create a variable age with value 25 and print it", "expectedOutput": "25" }
+      ]
+    },
+    {
+      "title": "JavaScript Data Types",
+      "content": [
+        { "type": "heading", "content": "Data Types in JavaScript" },
+        { "type": "text", "content": "JavaScript has data types like number, string, boolean, object, array, null, undefined, and symbol." },
+        { "type": "bash", "content": "let x = 5;       // number\nlet y = 3.14;    // number\nlet z = \"Hello\"; // string" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Create variables of number, string, and boolean type and print each", "expectedOutput": "5\nHello\ntrue" }
+      ]
+    },
+    {
+      "title": "JavaScript Numbers",
+      "content": [
+        { "type": "heading", "content": "Number Types" },
+        { "type": "text", "content": "JavaScript uses `number` type for both integers and floating-point numbers." },
+        { "type": "bash", "content": "let a = 10;    // integer\nlet b = 5.5;   // float\nlet c = 2e5;   // exponential" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Assign a floating number 7.25 to a variable and print it", "expectedOutput": "7.25" }
+      ]
+    },
+    {
+      "title": "JavaScript Type Casting",
+      "content": [
+        { "type": "heading", "content": "Type Conversion" },
+        { "type": "text", "content": "Casting can be done with functions like Number(), String(), and Boolean()." },
+        { "type": "bash", "content": "let x = Number(\"3.14\");\nlet y = String(123);\nlet z = Boolean(0);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Convert string '42' to a number and print it", "expectedOutput": "42" }
+      ]
+    },
+    {
+      "title": "JavaScript Strings",
+      "content": [
+        { "type": "heading", "content": "Working with Strings" },
+        { "type": "text", "content": "Strings are written inside quotes and have many built-in methods." },
+        { "type": "bash", "content": "let x = \"Hello\";\nconsole.log(x[0]);\nconsole.log(x.substring(1,4));" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Store 'JavaScript' in a variable and print the first 4 letters", "expectedOutput": "Java" }
+      ]
+    },
+    {
+      "title": "JavaScript Booleans",
+      "content": [
+        { "type": "heading", "content": "Boolean Values" },
+        { "type": "text", "content": "Booleans represent logical values: true or false." },
+        { "type": "bash", "content": "console.log(10 > 9);\nconsole.log(10 == 9);\nconsole.log(10 < 9);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Write an expression that returns true if 15 is greater than 7", "expectedOutput": "true" }
+      ]
+    },
+    {
+      "title": "JavaScript Operators",
+      "content": [
+        { "type": "heading", "content": "Operators in JavaScript" },
+        { "type": "text", "content": "Operators perform operations on variables and values: +, -, *, /, %, etc." },
+        { "type": "bash", "content": "let x = 5;\nlet y = 3;\nconsole.log(x + y);\nconsole.log(x - y);\nconsole.log(x * y);\nconsole.log(x / y);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Multiply 6 and 7", "expectedOutput": "42" }
+      ]
+    },
+    {
+      "title": "JavaScript Arrays",
+      "content": [
+        { "type": "heading", "content": "Arrays" },
+        { "type": "text", "content": "Arrays are used to store multiple values in one variable." },
+        { "type": "bash", "content": "let fruits = [\"apple\", \"banana\", \"cherry\"];\nconsole.log(fruits[0]);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Create an array of 3 numbers and print the last number", "expectedOutput": "3" }
+      ]
+    },
+    {
+      "title": "JavaScript Objects",
+      "content": [
+        { "type": "heading", "content": "Objects" },
+        { "type": "text", "content": "Objects are collections of key-value pairs." },
+        { "type": "bash", "content": "let person = {name: \"John\", age: 30};\nconsole.log(person.name);" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Create an object with name and age, print age", "expectedOutput": "30" }
+      ]
+    },
+    {
+      "title": "JavaScript If...Else",
+      "content": [
+        { "type": "heading", "content": "If...Else Statements" },
+        { "type": "text", "content": "JavaScript supports if, else if, and else conditions." },
+        { "type": "bash", "content": "let a = 33;\nlet b = 200;\nif (b > a) {\n  console.log(\"b is greater than a\");\n}" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Write an if statement that prints 'Yes' if 8 is less than 10", "expectedOutput": "Yes" }
+      ]
+    },
+    {
+      "title": "JavaScript Switch",
+      "content": [
+        { "type": "heading", "content": "Switch Statement" },
+        { "type": "text", "content": "Switch is used to perform different actions based on different conditions." },
+        { "type": "bash", "content": "let x = 2;\nswitch(x) {\n  case 1:\n    console.log(\"One\");\n    break;\n  case 2:\n    console.log(\"Two\");\n    break;\n}" }
+      ],
+      "questions": [
+        { "language":"javascript","question": "Write a switch statement that prints 'Three' if variable is 3", "expectedOutput": "Three" }
+      ]
+    }
+  ]
+}

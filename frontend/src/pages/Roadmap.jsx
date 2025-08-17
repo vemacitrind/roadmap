@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams ,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { db } from "@/firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -9,19 +9,21 @@ import { Separator } from "@/components/ui/separator";
 import { Icon } from "@iconify/react";
 import PracticeQuestion from "@/components/Explore/PracticeQuestion";
 import { useAuth } from "@/auth/AuthContext";
-import { isStarted , handleStart as handleStartDB } from "@/lib/userData";
 import PageNotFound from "./PageNotFound";
 import Loader from "@/components/Loader";
+import { isStarted, handleStart as handleStartDB } from "@/lib/userData";
 import { markLessonComplete } from "@/lib/userData"
+import { sendRoadmapStartEmail } from "@/lib/api";
+import BasicTemplate16 from "@/components/BaseTemplates/BasicTemplate16";
 
 export default function RoadmapPage() {
   const { user } = useAuth()
-    const { type,slug } = useParams();
+  const { type, slug } = useParams();
   const [roadmap, setRoadmap] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [started,setStarted] = useState(false);
+  const [started, setStarted] = useState(false);
   const isLocked = !user || !started;
   const showLogin = !user;
   const showStart = user && !started;
@@ -47,7 +49,7 @@ export default function RoadmapPage() {
         setLoading(false);
       }
     }
-    
+
     fetchRoadmap();
   }, [slug]);
 
@@ -63,27 +65,23 @@ export default function RoadmapPage() {
       return;
     }
 
-    handleStartDB(user,type, roadmap, (started) => {
+    handleStartDB(user, type, roadmap, (started) => {
       if (started) {
         setStarted(true);
+        sendRoadmapStartEmail(
+          user.email,
+          roadmap.title,
+          roadmap.description
+        );
       }
     });
   }
 
-  if (loading) return <Loader/>
+  if (loading) return <Loader />
   if (!roadmap) return <PageNotFound type="roadmap-error" />;
 
   const syllabus = roadmap.Syllabus || [];
   const currentLesson = syllabus[currentIndex];
-
-  async function handleNext(){
-    if (type === "role-based"){
-      await markLessonComplete(user?.uid, roadmap?.id, currentIndex, syllabus.length)
-    }
-    if( currentIndex !== syllabus.length - 1){
-      setCurrentIndex((prev) => prev + 1)
-    }
-  }
 
   const renderContent = (content) => {
     switch (content.type) {
@@ -110,7 +108,7 @@ export default function RoadmapPage() {
     }
   };
 
-  return (
+  const x = (
     <div className="max-w-6xl mx-auto p-6 space-y-8 text-start">
       {/* Roadmap Header */}
       <Card className="shadow-xl border border-gray-800 bg-gradient-to-r from-gray-900 via-gray-950 to-black">
@@ -198,10 +196,10 @@ export default function RoadmapPage() {
           <div className="absolute inset-0 flex items-center justify-center">
             {showLogin && (
               <Link to="/login">
-              <Button variant="default" className="gap-2">
-                <Icon icon="mdi:lock" className="w-5 h-5" />
-                Login
-              </Button>
+                <Button variant="default" className="gap-2">
+                  <Icon icon="mdi:lock" className="w-5 h-5" />
+                  Login
+                </Button>
               </Link>
             )}
             {showStart && (
@@ -231,12 +229,24 @@ export default function RoadmapPage() {
           Lesson {currentIndex + 1} of {syllabus.length}
         </span>
         <Button
-          disabled={currentIndex === syllabus.length - 1}
-          onClick={handleNext}
+          onClick={async () => {
+            if (type === "role-based") {
+              await markLessonComplete(user?.uid, roadmap?.id, currentIndex, syllabus.length);
+            }
+
+            // Only increment if not the last lesson
+            if (currentIndex !== syllabus.length - 1) {
+              setCurrentIndex((prev) => prev + 1);
+            }
+          }}
         >
-          Next →
+          {currentIndex === syllabus.length - 1 ? "Finish" : "Next →"}
         </Button>
       </div>
     </div>
   );
+
+  return (
+    <BasicTemplate16 children={x} />
+  )
 }

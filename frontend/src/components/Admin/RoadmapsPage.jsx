@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { getAllRoadmaps } from "@/lib/roadmapData";
 import { Button } from "@/components/ui/button";
-import { Table, TableHeader, TableRow, TableCell, TableBody,TableHead } from "@/components/ui/table";
-import { LayoutList, LayoutGrid ,Plus } from "lucide-react";
+import { Table, TableHeader, TableRow, TableCell, TableBody, TableHead } from "@/components/ui/table";
+import { LayoutList, LayoutGrid, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -12,10 +12,12 @@ import { db } from "@/firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import { toast } from "sonner";
 import { to } from "react-spring";
+import { Upload } from "lucide-react";
+
 
 export default function RoadmapsPage() {
   const [roadmaps, setRoadmaps] = useState([]);
-  const [view, setView] = useState("card"); 
+  const [view, setView] = useState("card");
   const [filter, setFilter] = useState("all");
   const [open, setOpen] = useState(false);
   const [type, setType] = useState("skill-based");
@@ -24,8 +26,8 @@ export default function RoadmapsPage() {
 
   useEffect(() => {
     getAllRoadmaps().then(setRoadmaps);
-    setTimeout(()=>setloading(false),1500);
-    
+    setTimeout(() => setLoading(false), 1500);
+
   }, []);
 
   const filtered = roadmaps.filter((r) => {
@@ -70,22 +72,35 @@ export default function RoadmapsPage() {
       <div className="space-y-6">
         {/* Controls */}
         <div className="flex justify-between items-center gap-4">
-          <div className="flex gap-2">
-            {["all", "role-based", "skill-based"].map((cat) => (
-              <Button
-                key={cat}
-                variant={filter === cat ? "default" : "outline"}
-                onClick={() => setFilter(cat)}
-              >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </Button>
-            ))}
-          </div>
+  {/* Left side filters */}
+  <div className="flex gap-2">
+    {["all", "role-based", "skill-based"].map((cat) => (
+      <Button
+        key={cat}
+        variant={filter === cat ? "default" : "outline"}
+        onClick={() => setFilter(cat)}
+      >
+        {cat.charAt(0).toUpperCase() + cat.slice(1)}
+      </Button>
+    ))}
+  </div>
 
-          <Button variant="ghost" onClick={() => setView(view === "card" ? "table" : "card")}>
-            {view === "card" ? <LayoutGrid className="w-5 h-5" /> : <LayoutList className="w-5 h-5" />}
-          </Button>
-          <Dialog open={open} onOpenChange={setOpen}>
+  {/* Right side actions */}
+  <div className="flex items-center gap-2 ml-auto">
+    {/* View toggle button */}
+    <Button
+      variant="ghost"
+      onClick={() => setView(view === "card" ? "table" : "card")}
+    >
+      {view === "card" ? (
+        <LayoutGrid className="w-5 h-5" />
+      ) : (
+        <LayoutList className="w-5 h-5" />
+      )}
+    </Button>
+
+    {/* Add Roadmap Dialog */}
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default">
           <Plus className="w-4 h-4 mr-2" /> Add roadmap
@@ -116,10 +131,25 @@ export default function RoadmapsPage() {
             </RadioGroup>
           </div>
 
-          {/* File Input */}
+          {/* Custom File Input */}
           <div>
             <Label>Upload JSON</Label>
-            <Input type="file" accept=".json" onChange={handleFileChange} />
+            <div className="mt-2">
+              <label
+                htmlFor="file-upload"
+                className="flex items-center justify-center w-full px-4 py-2 border border-dashed border-zinc-600 rounded-lg cursor-pointer hover:bg-zinc-800 transition"
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                <span>Choose JSON File</span>
+              </label>
+              <Input
+                id="file-upload"
+                type="file"
+                accept=".json"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+            </div>
           </div>
 
           {/* Submit */}
@@ -133,7 +163,9 @@ export default function RoadmapsPage() {
         </div>
       </DialogContent>
     </Dialog>
-        </div>
+  </div>
+</div>
+
 
         {/* Card View */}
         {view === "card" && (

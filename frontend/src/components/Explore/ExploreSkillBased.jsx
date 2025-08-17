@@ -6,10 +6,22 @@ import { fetchSkillBasedRoadmaps } from "@/lib/roadmap"
 
 export default function ExploreSkillBased() {
     const [roadmaps, setRoadmaps] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchSkillBasedRoadmaps().then(setRoadmaps);
-    }, []);
+            const loadRoadmaps = async () => {
+                try {
+                    const data = await fetchSkillBasedRoadmaps();
+                    setRoadmaps(data);
+                } catch (err) {
+                    console.error("Error fetching roadmaps:", err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+    
+            loadRoadmaps();
+        }, []);
 
     const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 
@@ -21,7 +33,11 @@ export default function ExploreSkillBased() {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {roadmaps.map((roadmap) => (
+                {loading
+                    ? Array.from({ length: 6 }).map((_, i) => (
+                        <div key={i} className="animate-pulse h-32 rounded-xl bg-zinc-800" />
+                    ))
+                    :roadmaps.map((roadmap) => (
                     <Link
                         key={roadmap.id}
                         to={`/skill-based/${slugify(roadmap.title)}`}
@@ -32,7 +48,7 @@ export default function ExploreSkillBased() {
                                 {roadmap.icon && (
                                     <Icon
                                         icon={roadmap.icon}
-                                        className="w-10 h-10 transition duration-300 filter brightness-0 invert group-hover:filter-none"
+                                        className="w-10 h-10 transition duration-300 filter brightness-90 invert-[0.25] group-hover:filter-none"
                                         
                                     />
                                 )}

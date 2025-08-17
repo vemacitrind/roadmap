@@ -19,7 +19,7 @@ import AnalyticsPage from "@/components/Admin/AnalyticsPage";
 import Community from "@/pages/Community"
 import { Toaster } from "sonner";
 import ProjectDetails from "@/pages/Project/ProjectDetails"
-import Project from "@/pages/Project/Projects"
+import Projects from "@/pages/Project/Projects"
 import ProjectsPage from "@/components/Admin/ProjectsPage";
 import CommunityPage from "@/components/Admin/CommunityPage";
 import RoadmapPage from "@/pages/Roadmap"
@@ -38,7 +38,7 @@ function App() {
         <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} /> */}
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/project/" element={<Project />} />
+        <Route path="/projects/" element={<Projects />} />
         <Route path="/:type/:slug" element={<RoadmapPage />} />
         <Route path="/project/:projectId" element={<ProjectDetails />} />
         <Route path="/admin" element={<AdminDashBoard />}>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/'; 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL; 
 
 export const sendProgressEmail = async (email, progressData) => {
   return axios.post(`${API_BASE_URL}/send-progress-email`, {
@@ -23,7 +23,7 @@ export const saveDailyLog = async (userId, logData) => {
 };
 
 export const sendRoadmapStartEmail = async (email, title, description) => {
-  axios.post(`${API_BASE_URL}send-roadmap-start-email`, {
+  axios.post(`${API_BASE_URL}/send-roadmap-start-email`, {
     email: email,
     title: title,
     description: description,

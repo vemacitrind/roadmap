@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
+
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Icon } from "@iconify/react";
@@ -8,85 +7,49 @@ import NullImg from "@/assets/Null.png";
 import { Button } from "@/components/ui/button";
 import { ArrowUp, ArrowDown } from "lucide-react";
 
-export default function PendingRoadmap({ roadmapsProgress = {} }) {
-  const [roadmapDetails, setRoadmapDetails] = useState([]);
-  const [filter, setFilter] = useState("all"); 
+export default function PendingRoadmap({ roadmapDetails = {} }) {
+  const [filter, setFilter] = useState("all");
   const [sortAsc, setSortAsc] = useState(true);
-
-  useEffect(() => {
-    const fetchRoadmapDetails = async () => {
-      const details = [];
-
-      for (const [roadmapId, roadmapData] of Object.entries(roadmapsProgress)) {
-        try {
-          const roadmapRef = doc(
-            db,
-            `roadmaps/${roadmapData.type}/documents/${roadmapId}`
-          );
-          const roadmapSnap = await getDoc(roadmapRef);
-
-          if (roadmapSnap.exists()) {
-            const { title, icon } = roadmapSnap.data();
-            details.push({
-              id: roadmapId,
-              title,
-              icon,
-              progress: roadmapData.progress,
-              status: roadmapData.progress === 100 ? "Completed" : "Incomplete",
-              timestamp: roadmapData.startedAt
-            });
-          }
-        } catch (error) {
-          console.error(`Error fetching roadmap ${roadmapId}:`, error);
-        }
-      }
-
-      setRoadmapDetails(details);
-    };
-
-    fetchRoadmapDetails();
-  }, [roadmapsProgress]);
-
   const filteredRoadmaps = roadmapDetails
-  .filter((roadmap) => {
-    if (filter === "all") return true;
-    if (filter === "complete") return roadmap.status === "Completed";
-    if (filter === "incomplete") return roadmap.status === "Incomplete";
-    return true;
-  })
-  .sort((a, b) => {
-    const timeA = new Date(a.timestamp); 
-    const timeB = new Date(b.timestamp);
-    return sortAsc ? timeA - timeB : timeB - timeA;
-  });
+    .filter((roadmap) => {
+      if (filter === "all") return true;
+      if (filter === "complete") return roadmap.status === "Completed";
+      if (filter === "incomplete") return roadmap.status === "Incomplete";
+      return true;
+    })
+    .sort((a, b) => {
+      const timeA = new Date(a.timestamp);
+      const timeB = new Date(b.timestamp);
+      return sortAsc ? timeA - timeB : timeB - timeA;
+    });
 
   return (
     <div className="space-y-6">
       {/* Filter Buttons */}
       <div className="flex gap-2 flex-wrap justify-between w-full">
-  <div className="flex gap-2 flex-wrap">
-    {["all", "complete", "incomplete"].map((f) => (
-      <Button
-        key={f}
-        size="sm"
-        variant={filter === f ? "default" : "outline"}
-        onClick={() => setFilter(f)}
-      >
-        {f.charAt(0).toUpperCase() + f.slice(1)}
-      </Button>
-    ))}
-  </div>
+        <div className="flex gap-2 flex-wrap">
+          {["all", "complete", "incomplete"].map((f) => (
+            <Button
+              key={f}
+              size="sm"
+              variant={filter === f ? "default" : "outline"}
+              onClick={() => setFilter(f)}
+            >
+              {f.charAt(0).toUpperCase() + f.slice(1)}
+            </Button>
+          ))}
+        </div>
 
-  <Button
-    size="sm"
-    variant="default"
-    onClick={() => setSortAsc(!sortAsc)}
-    className="flex items-center space-x-2"
-  >
-    {sortAsc ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
-    <span>{sortAsc ? "Time Asc" : "Time Desc"}</span>
-  </Button>
-</div>
+        <Button
+          size="sm"
+          variant="default"
+          onClick={() => setSortAsc(!sortAsc)}
+          className="flex items-center space-x-2"
+        >
+          {sortAsc ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
+          <span>{sortAsc ? "Time Asc" : "Time Desc"}</span>
+        </Button>
+      </div>
 
 
       {/* Roadmap Cards */}
@@ -125,8 +88,8 @@ export default function PendingRoadmap({ roadmapsProgress = {} }) {
                 <h3 className="text-lg font-semibold">{roadmap.title}</h3>
                 <p
                   className={`mt-1 text-sm text-start ${roadmap.status === "Completed"
-                      ? "text-green-500"
-                      : "text-yellow-500"
+                    ? "text-green-500"
+                    : "text-yellow-500"
                     }`}
                 >
                   {roadmap.status}

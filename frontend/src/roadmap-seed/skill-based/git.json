@@ -1,0 +1,110 @@
+{
+  "title": "Git Tutorial",
+  "description": "Learn Git step-by-step, from installation to version control with commits, branches, merges, and remote repositories. Includes interactive exercises and practical examples for each topic.",
+  "icon": "logos:git-icon",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Git Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Git" },
+        { "type": "text", "content": "Git can be installed from https://git-scm.com/downloads" },
+        { "type": "list", "content": [
+          "Download the installer for your OS",
+          "Run the installer and follow the instructions",
+          "Verify installation with `git --version`"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Git Configuration",
+      "content": [
+        { "type": "heading", "content": "Set up Git" },
+        { "type": "text", "content": "Configure your Git username and email to track your commits." },
+        { "type": "bash", "content": "git config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Set your Git username to 'Alice' and email to 'alice@example.com'", "expectedOutput": "git config commands executed" }
+      ]
+    },
+    {
+      "title": "Git Repository",
+      "content": [
+        { "type": "heading", "content": "Create a Repository" },
+        { "type": "text", "content": "Initialize a Git repository in your project folder to start version controlling." },
+        { "type": "bash", "content": "git init\ngit status" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Initialize a new Git repository in the current folder", "expectedOutput": "Initialized empty Git repository" }
+      ]
+    },
+    {
+      "title": "Git Add & Commit",
+      "content": [
+        { "type": "heading", "content": "Stage and Commit Changes" },
+        { "type": "text", "content": "Use `git add` to stage files and `git commit` to save changes." },
+        { "type": "bash", "content": "git add .\ngit commit -m \"Initial commit\"\ngit log" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Add all files and commit with message 'First commit'", "expectedOutput": "Commit recorded" }
+      ]
+    },
+    {
+      "title": "Git Branches",
+      "content": [
+        { "type": "heading", "content": "Working with Branches" },
+        { "type": "text", "content": "Branches allow you to work on features independently." },
+        { "type": "bash", "content": "git branch feature-1\ngit checkout feature-1\ngit branch" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Create and switch to a branch named 'feature-1'", "expectedOutput": "Switched to branch 'feature-1'" }
+      ]
+    },
+    {
+      "title": "Git Merge",
+      "content": [
+        { "type": "heading", "content": "Merging Branches" },
+        { "type": "text", "content": "Merge branches to integrate features into main branch." },
+        { "type": "bash", "content": "git checkout main\ngit merge feature-1" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Merge 'feature-1' branch into 'main'", "expectedOutput": "Merge successful" }
+      ]
+    },
+    {
+      "title": "Git Remote",
+      "content": [
+        { "type": "heading", "content": "Connecting to Remote" },
+        { "type": "text", "content": "Connect your local repository to a remote GitHub repository." },
+        { "type": "bash", "content": "git remote add origin https://github.com/user/repo.git\ngit push -u origin main" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Add a remote named 'origin' and push the main branch", "expectedOutput": "Pushed to origin main" }
+      ]
+    },
+    {
+      "title": "Git Pull & Fetch",
+      "content": [
+        { "type": "heading", "content": "Updating Local Repository" },
+        { "type": "text", "content": "Use `git fetch` to get updates and `git pull` to merge changes from remote." },
+        { "type": "bash", "content": "git fetch origin\ngit pull origin main" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Fetch and pull changes from remote 'origin'", "expectedOutput": "Updated local branch" }
+      ]
+    },
+    {
+      "title": "Git Ignore",
+      "content": [
+        { "type": "heading", "content": ".gitignore File" },
+        { "type": "text", "content": "Use .gitignore to exclude files from being tracked by Git." },
+        { "type": "bash", "content": "node_modules/\n.env\n.DS_Store" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Create a .gitignore file to ignore node_modules and .env", "expectedOutput": ".gitignore created" }
+      ]
+    }
+  ]
+}

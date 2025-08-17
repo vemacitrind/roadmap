@@ -3,6 +3,7 @@
 import os
 import sys
 
+port = os.getenv("DJANGO_PORT", "5000")
 
 def main():
     """Run administrative tasks."""

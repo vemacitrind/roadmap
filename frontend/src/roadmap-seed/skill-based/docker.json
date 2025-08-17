@@ -1,0 +1,110 @@
+{
+  "title": "Docker Tutorial",
+  "description": "Learn Docker step-by-step, from installation to building and running containers. Includes interactive examples and practical exercises for each topic.",
+  "icon": "logos:docker-icon",
+  "category": "DevOps",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "Docker Get Started",
+      "content": [
+        { "type": "heading", "content": "Install Docker" },
+        { "type": "text", "content": "Docker can be installed from the official website: https://docs.docker.com/get-docker/" },
+        { "type": "list", "content": [
+          "Download Docker Desktop (Windows/Mac) or Docker Engine (Linux)",
+          "Follow the installation instructions",
+          "Verify installation by running `docker --version`"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "Docker Basics",
+      "content": [
+        { "type": "heading", "content": "Hello World Container" },
+        { "type": "text", "content": "Run your first container using Docker Hub images." },
+        { "type": "bash", "content": "docker run hello-world" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Run the hello-world Docker image", "expectedOutput": "Hello from Docker!" }
+      ]
+    },
+    {
+      "title": "Docker Images",
+      "content": [
+        { "type": "heading", "content": "Working with Images" },
+        { "type": "text", "content": "Images are templates used to create containers." },
+        { "type": "bash", "content": "docker pull ubuntu\n docker images" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Pull the alpine image and list all images", "expectedOutput": "alpine latest ..." }
+      ]
+    },
+    {
+      "title": "Docker Containers",
+      "content": [
+        { "type": "heading", "content": "Running Containers" },
+        { "type": "text", "content": "Containers are instances of images. You can run, stop, and remove them." },
+        { "type": "bash", "content": "docker run -it ubuntu bash\ndocker ps\ndocker stop <container_id>" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Run an nginx container in detached mode", "expectedOutput": "nginx container running in background" }
+      ]
+    },
+    {
+      "title": "Dockerfile",
+      "content": [
+        { "type": "heading", "content": "Building Images with Dockerfile" },
+        { "type": "text", "content": "Dockerfiles define how to build custom images." },
+        { "type": "bash", "content": "FROM alpine\nCMD [\"echo\", \"Hello Dockerfile\"]" }
+      ],
+      "questions": [
+        { "language":"dockerfile","question": "Write a Dockerfile that prints 'My First Image'", "expectedOutput": "My First Image" }
+      ]
+    },
+    {
+      "title": "Docker Volumes",
+      "content": [
+        { "type": "heading", "content": "Persisting Data with Volumes" },
+        { "type": "text", "content": "Volumes store data outside the container lifecycle." },
+        { "type": "bash", "content": "docker run -v mydata:/data alpine ls /data" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Create a volume named myvolume and mount it to /app", "expectedOutput": "myvolume created and mounted" }
+      ]
+    },
+    {
+      "title": "Docker Networks",
+      "content": [
+        { "type": "heading", "content": "Networking in Docker" },
+        { "type": "text", "content": "Docker networks connect containers together." },
+        { "type": "bash", "content": "docker network create mynetwork\ndocker run -d --name container1 --network=mynetwork alpine sleep 1000" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Create a network called appnet", "expectedOutput": "appnet created" }
+      ]
+    },
+    {
+      "title": "Docker Compose",
+      "content": [
+        { "type": "heading", "content": "Multi-Container Apps with Docker Compose" },
+        { "type": "text", "content": "Docker Compose is used to manage multi-container applications." },
+        { "type": "bash", "content": "version: '3'\nservices:\n  web:\n    image: nginx\n    ports:\n      - \"8080:80\"" }
+      ],
+      "questions": [
+        { "language":"yaml","question": "Write a docker-compose.yml with one service running redis", "expectedOutput": "Redis container running" }
+      ]
+    },
+    {
+      "title": "Docker Hub",
+      "content": [
+        { "type": "heading", "content": "Push and Pull Images" },
+        { "type": "text", "content": "You can publish your custom images to Docker Hub." },
+        { "type": "bash", "content": "docker login\ndocker tag myimage username/myimage:v1\ndocker push username/myimage:v1" }
+      ],
+      "questions": [
+        { "language":"bash","question": "Tag an image 'myapp' and push it to Docker Hub", "expectedOutput": "Pushed username/myapp:latest" }
+      ]
+    }
+  ]
+}

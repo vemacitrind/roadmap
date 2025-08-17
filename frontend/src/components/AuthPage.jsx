@@ -7,7 +7,8 @@ import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner"
-import {saveUserIfNew} from "@/lib/firebaseUser";
+import { saveUserIfNew } from "@/lib/firebaseUser";
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthPage() {
   const {
@@ -17,6 +18,7 @@ export default function AuthPage() {
     requestOtp,
     verifyOtp,
   } = useAuth();
+  const navigate = useNavigate();
 
   const [mode, setMode] = useState("signin");
   const [email, setEmail] = useState("");
@@ -26,15 +28,14 @@ export default function AuthPage() {
   const [processing, setProcessing] = useState(false);
 
   const handleEmailSignIn = async () => {
-    if (!email || !password) return (
-      toast.error('Sign In Failed', {
+    if (!email || !password) {
+      return toast.error('Sign In Failed', {
         description: 'Enter email and password',
-      })
-    )
+      });
+    }
     setProcessing(true);
     try {
       await loginWithEmail(email, password, rememberMe);
-
       const user = auth.currentUser;
       if (user) {
         const userInfo = {
@@ -43,14 +44,15 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        saveUserIfNew(user)
+        saveUserIfNew(user);
         setTimeout(() => {
-          window.location.href = '/';
+          // Use navigate(-1) to go back in history
+          navigate(-1);
         }, 1500);
-        toast.success('Sign in complete!')
+        toast.success('Sign in complete!');
       }
     } catch (e) {
-      toast.error('Invalid email or password')
+      toast.error('Invalid email or password');
     } finally {
       setProcessing(false);
     }
@@ -79,11 +81,12 @@ export default function AuthPage() {
   };
 
   const handleOtpSubmit = async () => {
-    if (!otp || otp.length !== 6) return toast.error('Enter valid 6-digit OTP')
+    if (!otp || otp.length !== 6) {
+      return toast.error('Enter valid 6-digit OTP');
+    }
     setProcessing(true);
     try {
       const res = await verifyOtp(email, otp);
-      // console.log(JSON.stringify(res))
       if (!res.verified) throw new Error("Invalid OTP");
       await signupWithEmail(email, password, true);
       const user = auth.currentUser;
@@ -94,14 +97,14 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        saveUserIfNew(user)
+        saveUserIfNew(user);
         setTimeout(() => {
-          window.location.href = '/';
+          navigate(-1);
         }, 1500);
-        toast.success('Sign in complete!')
+        toast.success('Sign in complete!');
       }
     } catch (e) {
-      alert("OTP verification failed" + e);
+      alert("OTP verification failed: " + e);
     } finally {
       setProcessing(false);
     }
@@ -119,14 +122,15 @@ export default function AuthPage() {
           name: user.displayName || null,
         };
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        saveUserIfNew(user)
+        saveUserIfNew(user);
         setTimeout(() => {
-          window.location.href = '/';
+          // Replace with React Router history back
+          navigate(-1);
         }, 1500);
-        toast.success('Sign in complete!')
+        toast.success('Sign in complete!');
       }
     } catch {
-      toast.error('Google login failed')
+      toast.error('Google login failed');
     } finally {
       setProcessing(false);
     }

@@ -177,7 +177,6 @@ export const getTotalSales = (callback, user) => {
   };
 };
 
-
 export async function handleWithdraw(uid,totalEarnings, withdrawAmount) {
   if (!withdrawAmount || isNaN(withdrawAmount)) {
     toast.warning("Please enter a valid amount.");

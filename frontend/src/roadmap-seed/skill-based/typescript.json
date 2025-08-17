@@ -1,0 +1,110 @@
+{
+  "title": "Typescript Tutorial",
+  "description": "Learn TypeScript step-by-step, from installation to advanced features like types, interfaces, and generics. Includes interactive code challenges and practical examples for each topic.",
+  "icon": "logos:typescript-icon",
+  "category": "Programming",
+  "type": "skill-based",
+  "Syllabus": [
+    {
+      "title": "TypeScript Get Started",
+      "content": [
+        { "type": "heading", "content": "Install TypeScript" },
+        { "type": "text", "content": "TypeScript can be installed via npm: https://www.typescriptlang.org/#installation" },
+        { "type": "list", "content": [
+          "Install Node.js from https://nodejs.org/",
+          "Run `npm install -g typescript` to install TypeScript globally",
+          "Verify installation with `tsc --version`"
+        ] }
+      ],
+      "questions": []
+    },
+    {
+      "title": "TypeScript Syntax",
+      "content": [
+        { "type": "heading", "content": "Hello World Program" },
+        { "type": "text", "content": "TypeScript files use the .ts extension and can be compiled to JavaScript." },
+        { "type": "bash", "content": "let message: string = 'Hello, TypeScript!';\nconsole.log(message);" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Write a TypeScript program that prints 'Hello, TypeScript!'", "expectedOutput": "Hello, TypeScript!" }
+      ]
+    },
+    {
+      "title": "TypeScript Variables",
+      "content": [
+        { "type": "heading", "content": "Declaring Variables" },
+        { "type": "text", "content": "Variables can be declared using `let`, `const`, or `var` with explicit types." },
+        { "type": "bash", "content": "let name: string = 'John';\nconst age: number = 25;\nconsole.log(name);\nconsole.log(age);" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Create a variable 'age' of type number with value 30 and print it", "expectedOutput": "30" }
+      ]
+    },
+    {
+      "title": "TypeScript Data Types",
+      "content": [
+        { "type": "heading", "content": "Basic Data Types" },
+        { "type": "text", "content": "TypeScript supports types like string, number, boolean, array, tuple, enum, any, and void." },
+        { "type": "bash", "content": "let isActive: boolean = true;\nlet numbers: number[] = [1,2,3];\nlet tuple: [string, number] = ['Alice', 30];" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Create a boolean variable 'flag' as true and print it", "expectedOutput": "true" }
+      ]
+    },
+    {
+      "title": "TypeScript Functions",
+      "content": [
+        { "type": "heading", "content": "Function Types" },
+        { "type": "text", "content": "Functions can have typed parameters and return types." },
+        { "type": "bash", "content": "function add(a: number, b: number): number {\n  return a + b;\n}\nconsole.log(add(5,3));" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Write a function 'multiply' that multiplies two numbers and prints the result", "expectedOutput": "15" }
+      ]
+    },
+    {
+      "title": "TypeScript Interfaces",
+      "content": [
+        { "type": "heading", "content": "Using Interfaces" },
+        { "type": "text", "content": "Interfaces define object shapes and can be used for type checking." },
+        { "type": "bash", "content": "interface Person {\n  name: string;\n  age: number;\n}\nlet user: Person = { name: 'John', age: 30 };\nconsole.log(user.name);" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Create an interface 'Car' with properties 'make' and 'year' and print make", "expectedOutput": "Toyota" }
+      ]
+    },
+    {
+      "title": "TypeScript Classes",
+      "content": [
+        { "type": "heading", "content": "Classes and Objects" },
+        { "type": "text", "content": "TypeScript supports ES6 classes with typed properties and methods." },
+        { "type": "bash", "content": "class Animal {\n  name: string;\n  constructor(name: string) {\n    this.name = name;\n  }\n  speak() {\n    console.log(this.name + ' makes a sound');\n  }\n}\nlet dog = new Animal('Dog');\ndog.speak();" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Create a class 'Person' with a name property and method to print it", "expectedOutput": "Alice" }
+      ]
+    },
+    {
+      "title": "TypeScript Generics",
+      "content": [
+        { "type": "heading", "content": "Generic Functions" },
+        { "type": "text", "content": "Generics allow writing reusable functions and classes with types." },
+        { "type": "bash", "content": "function identity<T>(arg: T): T {\n  return arg;\n}\nconsole.log(identity<string>('Hello'));" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Write a generic function that returns the value passed and print it", "expectedOutput": "123" }
+      ]
+    },
+    {
+      "title": "TypeScript Modules",
+      "content": [
+        { "type": "heading", "content": "Import and Export" },
+        { "type": "text", "content": "TypeScript supports ES6 modules using `export` and `import`." },
+        { "type": "bash", "content": "// math.ts\nexport function add(a: number, b: number) { return a + b; }\n\n// app.ts\nimport { add } from './math';\nconsole.log(add(2,3));" }
+      ],
+      "questions": [
+        { "language":"typescript","question": "Export a function 'greet' from a module and import it to print 'Hello'", "expectedOutput": "Hello" }
+      ]
+    }
+  ]
+}
