@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { LogOut, LayoutDashboard } from "lucide-react";
 import { useAuth } from "@/auth/AuthContext";
 import { useAuth as ua } from "@/auth/useAuth"
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link } from "react-router-dom";
 
 export default function AppBar() {
   const { user } = useAuth();
@@ -19,7 +19,9 @@ export default function AppBar() {
 
   return (
     <header className="w-full bg-zinc-900 border-b border-zinc-800 px-6 py-3 flex items-center justify-between">
+      <Link to="/">
       <div className="text-white font-bold text-2xl tracking-wide" style={{ fontFamily: 'Noto Serif JP' }}>roadmap.in</div>
+      </Link>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="rounded-full p-0">

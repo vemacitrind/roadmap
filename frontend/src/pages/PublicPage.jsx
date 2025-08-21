@@ -7,11 +7,13 @@ import CompletedBadges from "@/components/Dashboard/CompletedBadges";
 import PendingRoadmap from "@/components/Dashboard/PendingRoadmap";
 import ProjectSection from "@/components/Dashboard/ProjectSection";
 import BasicTemplate16 from "@/components/BaseTemplates/BasicTemplate16";
-
+import { doc, setDoc ,getDoc } from "firebase/firestore";
+import { db } from "@/firebase/config";
 import { fetchUserProfile } from "@/lib/userProfile";
 import { listenToUserProjects } from "@/lib/project";
-import { db } from "@/firebase/config";
-import { getDoc, doc } from "firebase/firestore";
+import { toast } from "sonner";
+import PageNotFound from "./PageNotFound";
+import Loader from "@/components/Loader";
 
 export default function PublicDashboard() {
     const { uid } = useParams();
@@ -25,7 +27,6 @@ export default function PublicDashboard() {
 
     useEffect(() => {
         if (!uid) return;
-
         fetchUserProfile(uid)
             .then((data) => setProfile(data))
             .finally(() => setLoading(false));
@@ -41,54 +42,73 @@ export default function PublicDashboard() {
 
     useEffect(() => {
         const fetchRoadmapDetails = async () => {
-            if (!profile?.roadmapsProgress) return;
-            const details = [];
-            for (const [roadmapId, roadmapData] of Object.entries(profile.roadmapsProgress)) {
-                try {
-                    const roadmapRef = doc(db, `roadmaps/${roadmapData.type}/documents/${roadmapId}`);
-                    const roadmapSnap = await getDoc(roadmapRef);
-
-                    if (roadmapSnap.exists()) {
-                        const { title, icon } = roadmapSnap.data();
-                        details.push({
-                            id: roadmapId,
-                            title,
-                            icon,
-                            progress: roadmapData.progress,
-                            status: roadmapData.progress === 100 ? "Completed" : "Incomplete",
-                            timestamp: roadmapData.startedAt,
-                        });
-                    }
-                } catch (error) {
-                    console.error(`Error fetching roadmap ${roadmapId}:`, error);
-                }
+          const details = [];
+    
+          for (const [roadmapId, roadmapData] of Object.entries(profile?.roadmapsProgress)) {
+            try {
+              const roadmapRef = doc(
+                db,
+                `roadmaps/${roadmapData.type}/documents/${roadmapId}`
+              );
+              const roadmapSnap = await getDoc(roadmapRef);
+    
+              if (roadmapSnap.exists()) {
+                const { title, icon } = roadmapSnap.data();
+                details.push({
+                  id: roadmapId,
+                  title,
+                  icon,
+                  progress: roadmapData.progress,
+                  status: roadmapData.progress === 100 ? "Completed" : "Incomplete",
+                  timestamp: roadmapData.startedAt
+                });
+              }
+            } catch (error) {
+              console.error(`Error fetching roadmap ${roadmapId}:`, error);
             }
-            setRoadmapDetails(details);
+          }
+          setRoadmapDetails(details);
         };
-
         fetchRoadmapDetails();
-    }, [profile]);
+      }, [profile]);
+
+    if (!uid) {
+        return (
+            <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-400">
+                Please login first.
+            </div>
+        );
+    }
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-zinc-400">
-                Loading profile…
-            </div>
+            <Loader/>
         );
     }
 
-    if (!profile) {
+    if (!profile || Object.keys(profile).length === 0) {
         return (
-            <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
-                <div className="text-center text-zinc-300 space-y-4">
-                    <h2 className="text-2xl font-semibold">User not found</h2>
-                    <a href="/" className="inline-block px-6 py-2 font-medium underline">
-                        Go Home
-                    </a>
-                </div>
-            </div>
+            <PageNotFound />
         );
     }
+
+    const onSave = async (dataToSubmit) => {
+        if (!user?.uid) {
+            toast.error("User ID missing");
+            return;
+        }
+        try {
+            const userDocRef = doc(db, "users", user.uid);
+            await setDoc(userDocRef, dataToSubmit, { merge: true });
+            toast.success("Profile updated successfully!");
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            toast.error("Failed to update profile.");
+        }
+    };
 
     const completed = (roadmapDetails || [])
         .filter((roadmap) => roadmap.progress === 100)
@@ -96,15 +116,15 @@ export default function PublicDashboard() {
             title: roadmap.title,
             icon: roadmap.icon,
         }));
-        
-    console.log(user?.uid)
+
     const canEdit = user?.uid && user?.uid === uid;
 
     const pageContent = (
         <div className="max-w-5xl mx-auto space-y-10">
-            {/* Pass canEdit as a prop */}
-            <ProfileHeader user={profile} canEdit={canEdit} />
+            <ProfileHeader user={profile} canEdit={canEdit} onSave={onSave} />
+
             <CompletedBadges data={completed} />
+
             <div className="flex relative mb-6 border-b border-zinc-700 justify-around">
                 {["roadmap", "projects"].map((view) => (
                     <button
@@ -124,6 +144,7 @@ export default function PublicDashboard() {
                     }}
                 />
             </div>
+
             {activeView === "roadmap" ? (
                 <PendingRoadmap roadmapDetails={roadmapDetails} />
             ) : (

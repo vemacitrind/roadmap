@@ -24,12 +24,12 @@ export default function AboutSection() {
                         <h2 className="text-lg font-semibold text-white mb-2">Quick Links</h2>
                         <ul className="space-y-1 text-sm text-zinc-400">
                             <li>
-                                <Link to="/explore?type=role-based" className="hover:text-white transition">
+                                <Link to="/explore?type=role" className="hover:text-white transition">
                                     Role-Based
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/explore?type=skill-based" className="hover:text-white transition">
+                                <Link to="/explore?type=skill" className="hover:text-white transition">
                                     Skill-Based
                                 </Link>
                             </li>

@@ -7,8 +7,12 @@ export async function getAllUsers() {
 }
 
 export async function getAllRoadmaps() {
-  const snapshot = await getDocs(collection(db, "roadmaps"));
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const skillSnapshot = await getDocs(collection(db, "roadmaps", "skill-based", "documents"));
+  const roleSnapshot = await getDocs(collection(db, "roadmaps", "role-based", "documents"));
+
+  const allDocs = [...skillSnapshot.docs, ...roleSnapshot.docs];
+
+  return allDocs.map((doc) => ({ id: doc.id, ...doc.data() }));
 }
 
 export async function getAllProjects() {

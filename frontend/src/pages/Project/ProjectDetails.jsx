@@ -113,6 +113,7 @@ export default function ProjectDetails() {
             <img
               src={creatorProfile?.profileLink || "/placeholder.png"}
               alt={creatorProfile?.name || "Creator"}
+              referrerPolicy="no-referrer"
               className="w-14 h-14 rounded-full border border-zinc-700 object-cover cursor-pointer"
             />
           </RouterLink>

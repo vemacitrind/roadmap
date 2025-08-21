@@ -7,23 +7,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, LayoutDashboard } from "lucide-react";
+import { LogOut, LayoutDashboard, LogIn, Settings } from "lucide-react";
 import { fetchUserProfile } from "@/lib/userProfile";
+import { isAdmin } from "@/auth/isAdmin";
 
 export default function BasicHeader() {
   const { logout, user } = useAuth();
   const navigate = useNavigate();
   const menuRef = useRef();
   const [profile, setProfile] = useState(null);
-  const userr = Auth()
+  const userr = Auth();
 
   useEffect(() => {
-    fetchUserProfile(userr?.user?.uid).
-      then((data) => {
-        setProfile(data)
-      }).
-      catch(err => console.log(err))
-  }, [])
+    fetchUserProfile(userr?.user?.uid)
+      .then((data) => {
+        setProfile(data);
+      })
+      .catch((err) => { });
+  }, []);
 
   const handleLogout = async () => {
     await logout();
@@ -33,6 +34,7 @@ export default function BasicHeader() {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
+        // No action needed here
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -49,7 +51,11 @@ export default function BasicHeader() {
         <span className="text-sm">Back</span>
       </button>
 
-      <Link to="/" className="text-white font-bold text-2xl tracking-wide hover:opacity-90" style={{ fontFamily: 'Noto Serif JP' }}>
+      <Link
+        to="/"
+        className="text-white font-bold text-2xl tracking-wide hover:opacity-90"
+        style={{ fontFamily: "Noto Serif JP" }}
+      >
         roadmap.in
       </Link>
 
@@ -66,19 +72,34 @@ export default function BasicHeader() {
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
+
           <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700 text-white">
-            <DropdownMenuItem onClick={() => navigate(`/${user?.uid}`)}>
-              <LayoutDashboard className="mr-2 w-4 h-4" />
-              Dashboard
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleLogout} className="text-red-400">
-              <LogOut className="mr-2 w-4 h-4 text-red-400" />
-              Logout
-            </DropdownMenuItem>
+            {user ? (
+              <>
+                {isAdmin(user) && (
+                  <DropdownMenuItem onClick={() => navigate("/admin")}>
+                    < Settings className="mr-2 w-4 h-4" />
+                    Admin Panel
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem onClick={() => navigate(`/${user.uid}`)}>
+                  <LayoutDashboard className="mr-2 w-4 h-4" />
+                  Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout} className="text-red-400">
+                  <LogOut className="mr-2 w-4 h-4 text-red-400" />
+                  Logout
+                </DropdownMenuItem>
+              </>
+            ) : (
+              <DropdownMenuItem onClick={() => navigate("/login")} className="text-green-400">
+                <LogIn className="mr-2 w-4 h-4" />
+                Login
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
     </header>
   );
 }

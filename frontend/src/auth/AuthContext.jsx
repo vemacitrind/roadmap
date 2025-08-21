@@ -36,7 +36,6 @@ export function AuthProvider({ children }) {
 
         setUser(userInfo);
         localStorage.setItem("authUser", JSON.stringify(userInfo));
-        console.log("🔥 Synced Firebase + Firestore profile");
       } catch (err) {
         console.error("❌ Failed to load profile:", err);
         setUser(null);
@@ -44,7 +43,6 @@ export function AuthProvider({ children }) {
     } else {
       setUser(null);
       localStorage.removeItem("authUser");
-      console.log("👋 User signed out, removed from localStorage");
     }
   });
 

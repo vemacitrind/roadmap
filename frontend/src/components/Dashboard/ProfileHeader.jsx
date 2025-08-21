@@ -7,7 +7,7 @@ import Img from "@/assets/people-user.png";
 import { LuGlobe } from "react-icons/lu";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-export default function ProfileHeader({ user, onSave, canEdit = false }) {
+export default function ProfileHeader({ user, canEdit = false ,onSave }) {
   const [open, setOpen] = useState(false);
   const [openImg, setOpenImg] = useState(false);
 
@@ -84,7 +84,7 @@ export default function ProfileHeader({ user, onSave, canEdit = false }) {
         </DialogContent>
       </Dialog>
 
-      <EditProfileDialog open={open} onClose={() => setOpen(false)} userData={user} onSave={onSave} />
+      <EditProfileDialog open={open} onClose={() => setOpen(false)}  userData={user} onSave={onSave} />
     </>
   );
 }

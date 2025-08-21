@@ -11,9 +11,10 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Pencil } from "lucide-react";
 
-export default function EditProfileDialog({ open, onClose, userData, onSave }) {
-  const fileInputRef = useRef(null);
+import UserImg from "@/assets/people-user.png"
 
+export default function EditProfileDialog({ open, onClose, userData ,onSave }) {
+  const fileInputRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     about: "",
@@ -75,7 +76,7 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.name.trim()) return toast.error("Name required!");
     const dataToSubmit = {
       ...formData,
@@ -84,7 +85,7 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
         "https://github-production-user-asset-6210df.s3.amazonaws.com/161121265/465578099-c397a40b-d7a4-4e86-b7c5-8326c9a90610.png",
     };
 
-    onSave(dataToSubmit);
+    await onSave(dataToSubmit);
     onClose();
   };
 
@@ -97,7 +98,7 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
 
         <div className="flex justify-center mb-6 relative">
           <img
-            src={formData.profileLink}
+            src={formData.profileLink || UserImg}
             alt="Profile"
             className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
           />
@@ -105,7 +106,7 @@ export default function EditProfileDialog({ open, onClose, userData, onSave }) {
             onClick={() => fileInputRef.current.click()}
             className="absolute bottom-0 right-[calc(50%-48px)] bg-white p-1 rounded-full shadow hover:bg-gray-100"
           >
-            <Pencil size={16} className="text-zinc-950"/>
+            <Pencil size={16} className="text-zinc-950" />
           </button>
           <input
             type="file"

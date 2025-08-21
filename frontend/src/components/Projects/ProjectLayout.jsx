@@ -37,6 +37,7 @@ export default function ProjectLayout({ project }) {
           src={project.userProfile?.profileLink || "/placeholder.png"}
           alt={project.userProfile?.name || "Unknown"}
           className="w-8 h-8 rounded-full object-cover"
+          referrerPolicy="no-referrer"
         />
         <span className="text-sm text-zinc-300 font-medium">
           {project.userProfile?.name || "Unknown"}
