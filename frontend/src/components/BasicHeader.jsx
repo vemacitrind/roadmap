@@ -67,7 +67,7 @@ export default function BasicHeader() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700 text-white">
-            <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+            <DropdownMenuItem onClick={() => navigate(`/${user?.uid}`)}>
               <LayoutDashboard className="mr-2 w-4 h-4" />
               Dashboard
             </DropdownMenuItem>

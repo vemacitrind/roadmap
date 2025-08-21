@@ -6,6 +6,7 @@ export async function getAllRoadmaps() {
   const result = [];
 
   for (const type of types) {
+    // Reference the roadmap type document
     const docRef = doc(db, "roadmaps", type);
     const docSnap = await getDoc(docRef);
 
@@ -13,21 +14,18 @@ export async function getAllRoadmaps() {
       throw new Error(`No such roadmap type: ${type}`);
     }
 
-    const collections = docSnap.data().collections || [];
+    // Instead of 'collections', directly get documents subcollection
+    const documentsColRef = collection(db, `roadmaps/${type}/documents`);
+    const documentsSnapshot = await getDocs(documentsColRef);
 
-    for (const category of collections) {
-      const colRef = collection(db, `roadmaps/${type}/${category}`);
-      const snapshot = await getDocs(colRef);
-
-      if (!snapshot.empty) {
-        const firstDoc = snapshot.docs[0];
+    if (!documentsSnapshot.empty) {
+      documentsSnapshot.docs.forEach((docItem) => {
         result.push({
-          id: firstDoc.id,
+          id: docItem.id,
           type,
-          category,
-          ...firstDoc.data(),
+          ...docItem.data(),
         });
-      }
+      });
     }
   }
 

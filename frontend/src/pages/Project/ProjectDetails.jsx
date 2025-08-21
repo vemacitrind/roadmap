@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link as RouterLink } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import BasicHeader from "@/components/BasicHeader";
@@ -33,6 +33,9 @@ export default function ProjectDetails() {
   const [open, setOpen] = useState(false);
   const [qrLoading, setQrLoading] = useState(false);
   const [qrUrl, setQrUrl] = useState(null);
+
+  // Disable Buy button if logged-in user is project creator
+  const isCreator = user?.uid === project?.uid;
 
   const handleBuyClick = () => {
     if (!user) {
@@ -106,11 +109,13 @@ export default function ProjectDetails() {
       <main className="min-h-screen bg-zinc-950 text-white p-6 md:p-10 max-w-4xl mx-auto mt-24">
         {/* Creator */}
         <div className="flex items-center gap-4 mb-6">
-          <img
-            src={creatorProfile?.profileLink || "/placeholder.png"}
-            alt={creatorProfile?.name || "Creator"}
-            className="w-14 h-14 rounded-full border border-zinc-700 object-cover"
-          />
+          <RouterLink to={`/${project?.uid}`}>
+            <img
+              src={creatorProfile?.profileLink || "/placeholder.png"}
+              alt={creatorProfile?.name || "Creator"}
+              className="w-14 h-14 rounded-full border border-zinc-700 object-cover cursor-pointer"
+            />
+          </RouterLink>
           <div>
             <p className="text-sm text-zinc-400 text-start">Created by</p>
             <h2 className="text-xl font-semibold">{creatorProfile?.name || "Unknown"}</h2>
@@ -189,6 +194,8 @@ export default function ProjectDetails() {
             variant="default"
             className="px-6 py-3 rounded transition"
             onClick={handleBuyClick}
+            disabled={isCreator}
+            title={isCreator ? "You cannot buy your own project" : undefined}
           >
             Buy Project
           </Button>

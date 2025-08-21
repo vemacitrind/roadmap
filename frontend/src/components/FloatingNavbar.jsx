@@ -21,7 +21,7 @@ const FloatingNavbar = ({ parallaxRef }) => {
   });
   const isLoggedIn = !!user;
   const admin = isLoggedIn && isAdmin(user);
-  const destination = isLoggedIn ? (admin ? "/admin" : "/dashboard") : "/login";
+  const destination = isLoggedIn ? (admin ? "/admin" : `/${user.uid}`) : "/login";
 
   const goTo = (index) => {
     const item = navItems[index];

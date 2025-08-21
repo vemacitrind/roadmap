@@ -19,7 +19,7 @@ export default function MobileNavbar({ parallaxRef }) {
   const user = JSON.parse(localStorage.getItem("authUser"));
   const isLoggedIn = !!user;
   const admin = isLoggedIn && isAdmin(user);
-  const destination = isLoggedIn ? (admin ? "/admin" : "/dashboard") : "/login";
+  const destination = isLoggedIn ? (admin ? "/admin" : `/${user.uid}`) : "/login";
 
   const handleClick = (item, index) => {
     setActiveIndex(index);

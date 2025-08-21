@@ -4,7 +4,6 @@ import { Wallet, Plus, Info } from "lucide-react";
 import NullImg from "@/assets/Null.png";
 import ListProject from "./ListProject";
 import { addProject, getTotalSales, handleWithdraw as impHandleWithdraw } from '@/lib/project';
-import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import ProjectLayout2 from "../Projects/ProjectLayout2";
@@ -17,7 +16,7 @@ import {
   DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu";
 
-export default function ProjectSection({ projects = [], user }) {
+export default function ProjectSection({ projects = [], user, canEdit = false }) {
   const [open, setOpen] = useState(false);
   const [totalEarnings, setTotalEarnings] = useState(0);
   const [amount, setAmount] = useState("");
@@ -26,10 +25,10 @@ export default function ProjectSection({ projects = [], user }) {
   const [selectedTech, setSelectedTech] = useState([]);
 
   useEffect(() => {
-    if (user) {
+    if (user && canEdit) {  
       getTotalSales(setTotalEarnings, user);
     }
-  }, [user]);
+  }, [user, canEdit]);
 
   const handleWithdraw = () => {
     impHandleWithdraw(user.uid, totalEarnings, amount);
@@ -39,32 +38,32 @@ export default function ProjectSection({ projects = [], user }) {
     ...new Set(projects.flatMap((p) => p.technologies || [])),
   ];
 
-  // ✅ Filtering
   const filtered = projects.filter((project) => {
-    if (selectedTech.length === 0) return true; // "All"
+    if (selectedTech.length === 0) return true; 
     return project.technologies?.some((t) => selectedTech.includes(t));
   });
 
   return (
     <>
       <div className="space-y-6">
-        {/* Earnings */}
-        <div className="flex justify-between items-center bg-green-500 rounded-lg p-4 h-28">
-          <div className="flex items-center gap-2 text-lg font-semibold text-white">
-            Total Earnings: ₹{totalEarnings.toLocaleString("en-IN")}
+        {canEdit && (
+          <div className="flex justify-between items-center bg-green-500 rounded-lg p-4 h-28">
+            <div className="flex items-center gap-2 text-lg font-semibold text-white">
+              Total Earnings: ₹{totalEarnings.toLocaleString("en-IN")}
+            </div>
+            <Button
+              onClick={() => setWithdrawOpen(true)}
+              size="sm"
+              variant="default"
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white rounded-md px-3 py-1"
+            >
+              <Wallet className="w-4 h-4" />
+              Withdraw
+            </Button>
           </div>
-          <Button
-            onClick={() => setWithdrawOpen(true)}
-            size="sm"
-            variant="default"
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white rounded-md px-3 py-1"
-          >
-            <Wallet className="w-4 h-4" />
-            Withdraw
-          </Button>
-        </div>
+        )}
 
-        {/* ✅ Technology Filter Dropdown */}
+        {/* Technology Filter Dropdown */}
         <div className="flex flex-wrap gap-2 items-center w-full">
           <DropdownMenu>
             <DropdownMenuTrigger className="border border-zinc-700 px-3 py-2 rounded text-white">
@@ -103,8 +102,6 @@ export default function ProjectSection({ projects = [], user }) {
               })}
             </DropdownMenuContent>
           </DropdownMenu>
-
-          {/* Add Project */}
           <Button
             onClick={() => setOpen(true)}
             size="sm"
@@ -124,9 +121,7 @@ export default function ProjectSection({ projects = [], user }) {
         >
           {filtered.length > 0 ? (
             filtered.map((project) => (
-              // <Link key={project.id} to={`/project/${project.id}`}>
-                <ProjectLayout2 project={project} />
-              // </Link>
+              <ProjectLayout2 key={project.id} project={project} canEdit={canEdit} />
             ))
           ) : (
             <img src={NullImg} alt="No projects found" />
@@ -135,45 +130,42 @@ export default function ProjectSection({ projects = [], user }) {
       </div>
 
       {/* List Project Dialog */}
-      <ListProject
-        open={open}
-        onOpenChange={setOpen}
-        onSubmit={addProject}
-        user={user}
-      />
+      <ListProject open={open} onOpenChange={setOpen} onSubmit={addProject} user={user} />
 
-      {/* Withdraw Dialog */}
-      <Dialog open={withdrawOpen} onOpenChange={setWithdrawOpen}>
-        <DialogContent className="bg-zinc-950 text-white">
-          <DialogHeader>
-            <DialogTitle className="text-white">Withdraw Funds</DialogTitle>
-          </DialogHeader>
+      {/* Withdraw Dialog - show only if canEdit */}
+      {canEdit && (
+        <Dialog open={withdrawOpen} onOpenChange={setWithdrawOpen}>
+          <DialogContent className="bg-zinc-950 text-white">
+            <DialogHeader>
+              <DialogTitle className="text-white">Withdraw Funds</DialogTitle>
+            </DialogHeader>
 
-          <div className="space-y-3">
-            <label className="block text-sm flex items-center gap-1">
-              Amount
-              <Info className="w-4 h-4 text-gray-400" title="30% platform charges" />
-              <span className="text-xs text-gray-400 ml-1">30% platform charges</span>
-            </label>
-            <Input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="bg-white text-black"
-              placeholder="Enter amount"
-            />
-          </div>
+            <div className="space-y-3">
+              <label className="block text-sm flex items-center gap-1">
+                Amount
+                <Info className="w-4 h-4 text-gray-400" title="30% platform charges" />
+                <span className="text-xs text-gray-400 ml-1">30% platform charges</span>
+              </label>
+              <Input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="bg-white text-black"
+                placeholder="Enter amount"
+              />
+            </div>
 
-          <DialogFooter>
-            <Button variant="secondary" onClick={() => setWithdrawOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="default" onClick={handleWithdraw}>
-              Withdraw
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            <DialogFooter>
+              <Button variant="secondary" onClick={() => setWithdrawOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="default" onClick={handleWithdraw}>
+                Withdraw
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 }

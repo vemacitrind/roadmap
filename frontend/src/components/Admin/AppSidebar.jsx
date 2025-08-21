@@ -2,7 +2,7 @@
 import { Home, Users, BarChart2, List, LogOut, UsersRound, ChevronLeft, ChevronRight,Newspaper,HardDrive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "@/auth/AuthContext";
+import { useAuth  } from "@/auth/useAuth"
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -17,7 +17,6 @@ export default function AppSidebar() {
     { name: "Roadmaps", path: "/admin/roadmaps", icon: <List className="w-4 h-4" /> },
     { name: "Users", path: "/admin/users", icon: <Users className="w-4 h-4" /> },
     { name: "Projects", path: "/admin/projects", icon: <HardDrive className="w-4 h-4" /> },
-    { name: "Analytics", path: "/admin/analytics", icon: <BarChart2 className="w-4 h-4" /> },
     { name: "Community", path: "/admin/community", icon: <Newspaper className="w-4 h-4" /> },
   ];
 
@@ -35,7 +34,7 @@ export default function AppSidebar() {
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-8 px-2">
-        {!collapsed && <div className="text-xl font-bold">Admin</div>}
+        {!collapsed && <div className="text-lg font-semibold">Admin Panel</div>}
         <Button
           variant="ghost"
           size="icon"

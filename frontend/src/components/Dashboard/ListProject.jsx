@@ -29,7 +29,6 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
     const [techQuery, setTechQuery] = useState("");
     const [selectedTech, setSelectedTech] = useState([]);
 
-    // Upload images one by one, return array of URLs
     const uploadImages = async () => {
         const urls = [];
         for (const file of images) {
@@ -110,7 +109,7 @@ export default function ListProject({ open, onOpenChange, onSubmit, user }) {
             is_available: true,
             uid: user.uid,
         };
-
+        console.log(projectData)
         try {
             await onSubmit(projectData);
             toast.success("Project listed successfully!");

@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import EditProfileDialog from "@/components/Dashboard/EditProfileDialog";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import Img from "@/assets/people-user.png"
+import Img from "@/assets/people-user.png";
 import { LuGlobe } from "react-icons/lu";
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-export default function ProfileHeader({ user, onSave }) {
+export default function ProfileHeader({ user, onSave, canEdit = false }) {
   const [open, setOpen] = useState(false);
   const [openImg, setOpenImg] = useState(false);
 
@@ -24,15 +24,18 @@ export default function ProfileHeader({ user, onSave }) {
                 e.target.src = Img;
               }}
               onClick={() => setOpenImg(true)}
-              className="w-16 h-16 rounded-full object-cover border border-zinc-700"
+              className="w-16 h-16 rounded-full object-cover border border-zinc-700 cursor-pointer"
             />
             <h2 className="text-2xl font-bold">{user?.name || "Anonymous"}</h2>
           </div>
-          <Button size="sm" variant="outline" onClick={() => setOpen(true)} className="gap-1">
-            <Pencil size={16} /> Edit Profile
-          </Button>
-        </div>
 
+          {/* Show Edit Button only if canEdit is true */}
+          {canEdit && (
+            <Button size="sm" variant="outline" onClick={() => setOpen(true)} className="gap-1">
+              <Pencil size={16} /> Edit Profile
+            </Button>
+          )}
+        </div>
 
         {user?.about && (
           <p className="text-sm text-zinc-400 mt-2 italic text-start max-w-lg">
@@ -65,14 +68,14 @@ export default function ProfileHeader({ user, onSave }) {
       </div>
 
       <Dialog open={openImg} onOpenChange={setOpenImg}>
-        <DialogContent className="pointer-events-none bg-transparent border-0 w-64 h-64" >
+        <DialogContent className="pointer-events-none bg-transparent border-0 w-64 h-64">
           <div className="pointer-events-auto">
             <img
               src={user?.profileLink}
               alt="Profile Enlarged"
               onError={(e) => {
-                e.target.onerror = null
-                e.target.src = Img
+                e.target.onerror = null;
+                e.target.src = Img;
               }}
               className="w-52 h-52 rounded-full object-cover mx-auto"
             />
@@ -81,12 +84,7 @@ export default function ProfileHeader({ user, onSave }) {
         </DialogContent>
       </Dialog>
 
-      <EditProfileDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        userData={user}
-        onSave={onSave}
-      />
+      <EditProfileDialog open={open} onClose={() => setOpen(false)} userData={user} onSave={onSave} />
     </>
   );
 }

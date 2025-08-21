@@ -10,8 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import BasicHeader from "@/components/BasicHeader";
 import FloatingPostInput from "@/components/Community/FloatingPostInput";
 import { Separator } from "@/components/ui/separator";
-
-
+import Loader from "@/components/Loader";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Community() {
   const [posts, setPosts] = useState([]);
@@ -21,9 +21,13 @@ export default function Community() {
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [commentsMap, setCommentsMap] = useState({});
   const [showHeader, setShowHeader] = useState(true);
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = listenToPosts(setPosts);
+    const unsubscribe = listenToPosts((fetchedPosts) => {
+      setPosts(fetchedPosts);
+      setLoading(false);
+    });
     return () => unsubscribe();
   }, []);
 
@@ -35,17 +39,18 @@ export default function Community() {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowHeader(false); // scrolling down
+        setShowHeader(false);
       } else {
-        setShowHeader(true); // scrolling up
+        setShowHeader(true);
       }
 
       lastScrollY = currentScrollY;
 
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        setShowHeader(true); // show again when scrolling stops
+        setShowHeader(true);
       }, 300);
+      
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -96,9 +101,9 @@ export default function Community() {
       >
         <BasicHeader />
       </div>
-
+      {loading ? <Loader/> : <></>}
       <div className="mt-20 mb-40 max-w-4xl mx-auto text-white space-y-10">
-        {posts.map((post, index) => {
+        {posts.map((post) => {
           const isAdminPost = post.uid === "0mpJx8NHbwXydCCdhBfvkqNbeyB2";
           const isLiked = post.isLiked?.[post.id];
           const isCommentOpen = activePostId === post.id;
@@ -107,16 +112,27 @@ export default function Community() {
             <div
               key={post.id}
               className={`p-6 shadow-lg backdrop-blur-sm transition hover:scale-[1.01] ${isAdminPost
-                  ? "bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-transparent border-t border-b border-blue-500/50 rounded-none"
-                  : "bg-zinc-900/70 border border-zinc-800 rounded-xl"
+                ? "bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-transparent border-t border-b border-blue-500/50 rounded-none"
+                : "bg-zinc-900/70 border border-zinc-800 rounded-xl"
                 }`}
             >
               <div className="flex items-start gap-5">
-                <img
-                  src={post.profileLink || "/placeholder.png"}
-                  alt={post.name}
-                  className="w-14 h-14 rounded-full border border-zinc-700 object-cover shadow-md"
-                />
+                {isAdminPost ? (
+                  <img
+                    src={post.profileLink || "/placeholder.png"}
+                    alt={post.name}
+                    className="w-14 h-14 rounded-full border border-zinc-700 object-cover shadow-md"
+                  />
+                ) : (
+                  <RouterLink to={`/${post.uid}`}>
+                    <img
+                      src={post.profileLink || "/placeholder.png"}
+                      alt={post.name}
+                      className="w-14 h-14 rounded-full border border-zinc-700 object-cover shadow-md cursor-pointer"
+                    />
+                  </RouterLink>
+                )}
+
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <div>
@@ -135,7 +151,6 @@ export default function Community() {
                         )}
                       </h2>
                     </div>
-
                   </div>
                   <div className="flex gap-2">
                     {post.source && (
@@ -235,14 +250,10 @@ export default function Community() {
                   )}
                 </div>
               </div>
-
-              {/* {index !== posts.length - 1 && <Separator className="mt-4" />} */}
             </div>
           );
         })}
       </div>
-
-
 
       {user && <FloatingPostInput user={user} />}
       <Dialog open={showLoginDialog} onOpenChange={setShowLoginDialog}>

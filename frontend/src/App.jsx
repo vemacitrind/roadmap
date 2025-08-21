@@ -2,15 +2,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Explore from "./pages/Explore"
 import PageNotFound from "./pages/PageNotFound";
-import RoleBasedCategoryPage from "./pages/RoleBasedCategoryPage";
-import SkillBasedCategoryPage from "./pages/SkillBasedCategoryPage";
-import AdminPanel from "./pages/AdminPanel";
 import { isAdmin } from "./auth/isAdmin";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
-import { useAuth } from "@/auth/AuthContext";
-// import "@/lib/console"
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth, AuthProvider } from "@/auth/AuthContext";
+import "@/lib/console"
 import './App.css'
-import DashboardPage from "./pages/DashboardPage";
 import AdminDashBoard from "./pages/AdminDashBoard";
 import UsersPage from "@/components/Admin/UsersPage";
 import DashboardPagea from "@/components/Admin/DashboardPage";
@@ -23,8 +19,9 @@ import Projects from "@/pages/Project/Projects"
 import ProjectsPage from "@/components/Admin/ProjectsPage";
 import CommunityPage from "@/components/Admin/CommunityPage";
 import RoadmapPage from "@/pages/Roadmap"
+import PublicDashboard from "./pages/PublicPage";
 
-function App() {
+function AppRoutes() {
   const { user } = useAuth();
   return (
     <>
@@ -34,14 +31,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
-        {/* <Route path="/explore/role/:category" element={<RoleBasedCategoryPage />} />
-        <Route path="/explore/skill/:category" element={<SkillBasedCategoryPage />} /> */}
-        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/projects/" element={<Projects />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/:type/:slug" element={<RoadmapPage />} />
         <Route path="/project/:projectId" element={<ProjectDetails />} />
-        <Route path="/admin" element={<AdminDashBoard />}>
+        <Route path="/:uid" element={<PublicDashboard/>}/>
+        <Route
+          path="/admin"
+          element={user && isAdmin(user) ? <AdminDashBoard /> : <Navigate to="/" />}
+        >
           <Route index element={<DashboardPagea />} />
           <Route path="roadmaps" element={<RoadmapsPage />} />
           <Route path="users" element={<UsersPage />} />
@@ -49,9 +47,16 @@ function App() {
           <Route path="projects" element={<ProjectsPage />} />
           <Route path="community" element={<CommunityPage />} />
         </Route>
-        <Route path="/aaa" element={user && isAdmin(user) ? <AdminPanel /> : <Navigate to="/" />} />
       </Routes>
     </>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 

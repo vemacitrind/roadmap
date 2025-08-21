@@ -46,7 +46,6 @@ export default function AuthPage() {
         localStorage.setItem("authUser", JSON.stringify(userInfo));
         saveUserIfNew(user);
         setTimeout(() => {
-          // Use navigate(-1) to go back in history
           navigate(-1);
         }, 1500);
         toast.success('Sign in complete!');
@@ -124,7 +123,6 @@ export default function AuthPage() {
         localStorage.setItem("authUser", JSON.stringify(userInfo));
         saveUserIfNew(user);
         setTimeout(() => {
-          // Replace with React Router history back
           navigate(-1);
         }, 1500);
         toast.success('Sign in complete!');

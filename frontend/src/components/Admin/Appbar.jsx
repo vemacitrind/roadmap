@@ -4,10 +4,12 @@ import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { LogOut, LayoutDashboard } from "lucide-react";
 import { useAuth } from "@/auth/AuthContext";
+import { useAuth as ua } from "@/auth/useAuth"
 import { useNavigate } from "react-router-dom";
 
 export default function AppBar() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
+  const {logout} = ua();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -17,13 +19,7 @@ export default function AppBar() {
 
   return (
     <header className="w-full bg-zinc-900 border-b border-zinc-800 px-6 py-3 flex items-center justify-between">
-      <div className="text-white text-xl font-semibold tracking-wide">Admin Panel</div>
-
-      <Input
-        placeholder="Search..."
-        className="max-w-sm bg-zinc-800 text-white border-zinc-700"
-      />
-
+      <div className="text-white font-bold text-2xl tracking-wide" style={{ fontFamily: 'Noto Serif JP' }}>roadmap.in</div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="rounded-full p-0">
@@ -37,7 +33,7 @@ export default function AppBar() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700 text-white">
-          <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+          <DropdownMenuItem onClick={() => navigate(`/${user.uid}`)}>
             <LayoutDashboard className="mr-2 w-4 h-4" />
             Dashboard
           </DropdownMenuItem>
