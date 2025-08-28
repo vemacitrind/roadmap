@@ -56,11 +56,11 @@ Roadmap isn’t just about tutorials—it’s a complete ecosystem where learner
 ---
 
 ## Tech Stack (Planned / Example)
-- Frontend: React, Next.js / Vue.js  
-- Backend: Node.js, Express, Django (choose adaptable stacks)  
-- Database: PostgreSQL / MongoDB  
-- Authentication: JWT / OAuth  
-- Deployment: Docker, Kubernetes, Vercel / Netlify / AWS  
+- Frontend: React, Vite
+- Backend: Node.js, Django 
+- Database: Firebase
+- Authentication: Firebase Auth
+- Deployment: none 
 
 ---
 
