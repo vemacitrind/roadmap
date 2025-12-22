@@ -1,102 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Feature Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      background: #0f0f0f;
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: sans-serif;
+      overflow: hidden;
     }
 
     .carousel {
-      width: 90%;
-      max-width: 900px;
-      overflow: hidden;
+      width: 95vw;
+      max-width: 1400px;
+      height: 85vh;
       position: relative;
-      border-radius: 12px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     }
 
     .track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      height: 100%;
+      transition: transform 0.6s ease;
     }
 
     .slide {
       min-width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
     }
 
     .slide img {
-      width: 100%;
-      display: block;
-      border-radius: 12px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
-    .controls {
+    .nav {
       position: absolute;
       top: 50%;
+      transform: translateY(-50%);
       width: 100%;
       display: flex;
       justify-content: space-between;
-      transform: translateY(-50%);
+      pointer-events: none;
     }
 
-    button {
+    .nav button {
+      pointer-events: all;
       background: rgba(0,0,0,0.6);
       border: none;
       color: white;
-      font-size: 24px;
-      padding: 10px 16px;
+      font-size: 36px;
+      padding: 14px 22px;
       cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+
+    .nav button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .label {
+      position: absolute;
+      bottom: 14px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <div class="carousel">
-    <div class="track" id="track">
-      <div class="slide"><img src="https://github.com/user-attachments/assets/3563ce7c-6885-4571-b4a2-ed6232f07675"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/2a8672dd-dfca-4dd9-8839-2b98286c5d16"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/557c432c-fd84-4218-8e8e-de649669aa17"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/7afa957f-e785-4871-85ce-b20e9d83f22b"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/7628a9d0-b31b-4f84-ba40-f8e37f33a8f6"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/6beac90a-ac9d-4afe-857f-c158b1a9cc73"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/ec2cae53-bcb4-4627-9cb0-f31bcc6dea3d"></div>
-      <div class="slide"><img src="https://github.com/user-attachments/assets/8ebc859c-1848-48c3-801a-8ff9b7316f88"></div>
-    </div>
+<div class="carousel">
+  <div class="track" id="track">
 
-    <div class="controls">
-      <button onclick="prev()">❮</button>
-      <button onclick="next()">❯</button>
-    </div>
+    <!-- Admin (6) -->
+    <div class="slide"><img src="https://github.com/user-attachments/assets/904a52d6-d698-4cd3-b82e-983e9208399c"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/ac7bdb35-ba4d-4d1f-883d-6ab8406ff1fc"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/8faca6bc-8ede-45b6-a7f4-29c0aef339d4"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/c04d809d-dca4-4635-bd1c-b77f4ac03ba5"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/b5403be8-590c-4f26-9b92-bd81f6135a06"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/44891ad6-45ea-42d9-8e0c-f0392b487c5f"></div>
+
+    <!-- User (8) -->
+    <div class="slide"><img src="https://github.com/user-attachments/assets/3563ce7c-6885-4571-b4a2-ed6232f07675"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/2a8672dd-dfca-4dd9-8839-2b98286c5d16"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/557c432c-fd84-4218-8e8e-de649669aa17"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/7afa957f-e785-4871-85ce-b20e9d83f22b"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/7628a9d0-b31b-4f84-ba40-f8e37f33a8f6"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/6beac90a-ac9d-4afe-857f-c158b1a9cc73"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/ec2cae53-bcb4-4627-9cb0-f31bcc6dea3d"></div>
+    <div class="slide"><img src="https://github.com/user-attachments/assets/8ebc859c-1848-48c3-801a-8ff9b7316f88"></div>
+
   </div>
 
-  <script>
-    let index = 0;
-    const track = document.getElementById('track');
-    const slides = document.querySelectorAll('.slide');
+  <div class="nav">
+    <button onclick="prev()">❮</button>
+    <button onclick="next()">❯</button>
+  </div>
 
-    function update() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
+  <div class="label" id="label"></div>
+</div>
 
-    function next() {
-      index = (index + 1) % slides.length;
-      update();
-    }
+<script>
+  const track = document.getElementById("track");
+  const slides = document.querySelectorAll(".slide");
+  const label = document.getElementById("label");
+  let index = 0;
 
-    function prev() {
-      index = (index - 1 + slides.length) % slides.length;
-      update();
-    }
-  </script>
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    label.textContent = `Slide ${index + 1} / ${slides.length}`;
+  }
+
+  function next() {
+    index = (index + 1) % slides.length;
+    update();
+  }
+
+  function prev() {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+  });
+
+  update();
+</script>
 
 </body>
 </html>
